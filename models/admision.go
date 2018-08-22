@@ -17,7 +17,7 @@ type Admision struct {
 	ReciboInscripcion  int                 `orm:"column(recibo_inscripcion)"`
 	Periodo            int                 `orm:"column(periodo)"`
 	Propuesta          int                 `orm:"column(propuesta);null"`
-	EstadoInscripcion  *EstadoAdmision     `orm:"column(estado_inscripcion);rel(fk)"`
+	EstadoAdmision  *EstadoAdmision     `orm:"column(estado_admision);rel(fk)"`
 	LineaInvestigacion *LineaInvestigacion `orm:"column(linea_investigacion);rel(fk)"`
 	Enfasis            int                 `orm:"column(enfasis);null"`
 }
