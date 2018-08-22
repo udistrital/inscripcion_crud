@@ -10,7 +10,7 @@ import (
 )
 
 type Admision struct {
-	Id                 int                 `orm:"column(id);pk"`
+	Id                 int                 `orm:"column(id);pk;auto"`
 	Aspirante          int                 `orm:"column(aspirante)"`
 	ProgramaAcademico  int                 `orm:"column(programa_academico)"`
 	ReciboMatricula    int                 `orm:"column(recibo_matricula);null"`
@@ -54,7 +54,7 @@ func GetAdmisionById(id int) (v *Admision, err error) {
 func GetAllAdmision(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Admision))
+	qs := o.QueryTable(new(Admision)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
