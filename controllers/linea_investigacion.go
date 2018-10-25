@@ -1,13 +1,13 @@
 package controllers
 
 import (
-	"github.com/udistrital/admisiones_crud/models"
 	"encoding/json"
 	"errors"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/udistrital/admisiones_crud/models"
 )
 
 // LineaInvestigacionController operations for LineaInvestigacion
@@ -38,10 +38,10 @@ func (c *LineaInvestigacionController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -58,7 +58,7 @@ func (c *LineaInvestigacionController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetLineaInvestigacionById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = v
 	}
@@ -121,7 +121,7 @@ func (c *LineaInvestigacionController) GetAll() {
 
 	l, err := models.GetAllLineaInvestigacion(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = l
 	}
@@ -142,12 +142,12 @@ func (c *LineaInvestigacionController) Put() {
 	v := models.LineaInvestigacion{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateLineaInvestigacionById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -163,9 +163,9 @@ func (c *LineaInvestigacionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteLineaInvestigacion(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }

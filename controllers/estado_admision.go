@@ -1,13 +1,13 @@
 package controllers
 
 import (
-	"github.com/udistrital/admisiones_crud/models"
 	"encoding/json"
 	"errors"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/udistrital/admisiones_crud/models"
 )
 
 // EstadoAdmisionController operations for EstadoAdmision
@@ -38,10 +38,10 @@ func (c *EstadoAdmisionController) Post() {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -58,7 +58,7 @@ func (c *EstadoAdmisionController) GetOne() {
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetEstadoAdmisionById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = v
 	}
@@ -121,7 +121,7 @@ func (c *EstadoAdmisionController) GetAll() {
 
 	l, err := models.GetAllEstadoAdmision(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
 		c.Data["json"] = l
 	}
@@ -142,12 +142,12 @@ func (c *EstadoAdmisionController) Put() {
 	v := models.EstadoAdmision{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateEstadoAdmisionById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 		} else {
-			c.Data["json"] = err.Error()
+			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
@@ -163,9 +163,9 @@ func (c *EstadoAdmisionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteEstadoAdmision(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 	} else {
-		c.Data["json"] = err.Error()
+		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	}
 	c.ServeJSON()
 }
