@@ -126,6 +126,121 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /enfasis/:
+    get:
+      tags:
+      - enfasis
+      description: get Enfasis
+      operationId: EnfasisController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Enfasis'
+        "403":
+          description: ""
+    post:
+      tags:
+      - enfasis
+      description: create Enfasis
+      operationId: EnfasisController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Enfasis content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Enfasis'
+      responses:
+        "201":
+          description: '{int} models.Enfasis'
+        "403":
+          description: body is empty
+  /enfasis/{id}:
+    get:
+      tags:
+      - enfasis
+      description: get Enfasis by id
+      operationId: EnfasisController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Enfasis'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - enfasis
+      description: update the Enfasis
+      operationId: EnfasisController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Enfasis content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Enfasis'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Enfasis'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - enfasis
+      description: delete the Enfasis
+      operationId: EnfasisController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
   /estado_admision/:
     get:
       tags:
@@ -361,12 +476,13 @@ definitions:
     title: Admision
     type: object
     properties:
+      AceptaTerminos:
+        type: boolean
       Aspirante:
         type: integer
         format: int64
       Enfasis:
-        type: integer
-        format: int64
+        $ref: '#/definitions/models.Enfasis'
       EstadoAdmision:
         $ref: '#/definitions/models.EstadoAdmision'
       Id:
@@ -387,6 +503,27 @@ definitions:
         type: integer
         format: int64
       ReciboMatricula:
+        type: integer
+        format: int64
+  models.Enfasis:
+    title: Enfasis
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
+      ProgramaAcademico:
         type: integer
         format: int64
   models.EstadoAdmision:
@@ -432,6 +569,9 @@ tags:
 - name: admision
   description: |
     AdmisionController operations for Admision
+- name: enfasis
+  description: |
+    EnfasisController operations for Enfasis
 - name: estado_admision
   description: |
     EstadoAdmisionController operations for EstadoAdmision

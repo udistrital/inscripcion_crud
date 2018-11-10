@@ -86,7 +86,7 @@ func init() {
 			AllowHTTPMethods: []string{"delete"},
 			MethodParams: param.Make(),
 			Params: nil})
-	
+
 	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EstadoAdmisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EstadoAdmisionController"],
 		beego.ControllerComments{
 			Method: "Post",
