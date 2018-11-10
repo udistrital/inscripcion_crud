@@ -14,12 +14,13 @@ type Admision struct {
 	Aspirante          int                 `orm:"column(aspirante)"`
 	ProgramaAcademico  int                 `orm:"column(programa_academico)"`
 	ReciboMatricula    int                 `orm:"column(recibo_matricula);null"`
-	ReciboInscripcion  int                 `orm:"column(recibo_inscripcion)"`
+	ReciboInscripcion  int                 `orm:"column(recibo_inscripcion);null"`
 	Periodo            int                 `orm:"column(periodo)"`
 	Propuesta          int                 `orm:"column(propuesta);null"`
-	EstadoAdmision  *EstadoAdmision     `orm:"column(estado_admision);rel(fk)"`
+	Enfasis            *Enfasis            `orm:"column(enfasis);rel(fk)"`
 	LineaInvestigacion *LineaInvestigacion `orm:"column(linea_investigacion);rel(fk)"`
-	Enfasis            int                 `orm:"column(enfasis);null"`
+	EstadoAdmision     *EstadoAdmision     `orm:"column(estado_admision);rel(fk)"`
+	AceptaTerminos     bool                `orm:"column(acepta_terminos)"`
 }
 
 func (t *Admision) TableName() string {
