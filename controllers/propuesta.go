@@ -10,13 +10,13 @@ import (
 	"github.com/udistrital/admisiones_crud/models"
 )
 
-// EnfasisController operations for Enfasis
-type EnfasisController struct {
+// PropuestaController operations for Propuesta
+type PropuestaController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *EnfasisController) URLMapping() {
+func (c *PropuestaController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -26,15 +26,15 @@ func (c *EnfasisController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Enfasis
-// @Param	body		body 	models.Enfasis	true		"body for Enfasis content"
-// @Success 201 {int} models.Enfasis
+// @Description create Propuesta
+// @Param	body		body 	models.Propuesta	true		"body for Propuesta content"
+// @Success 201 {int} models.Propuesta
 // @Failure 403 body is empty
 // @router / [post]
-func (c *EnfasisController) Post() {
-	var v models.Enfasis
+func (c *PropuestaController) Post() {
+	var v models.Propuesta
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddEnfasis(&v); err == nil {
+		if _, err := models.AddPropuesta(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -48,15 +48,15 @@ func (c *EnfasisController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get Enfasis by id
+// @Description get Propuesta by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Enfasis
+// @Success 200 {object} models.Propuesta
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *EnfasisController) GetOne() {
+func (c *PropuestaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetEnfasisById(id)
+	v, err := models.GetPropuestaById(id)
 	if err != nil {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
@@ -67,17 +67,17 @@ func (c *EnfasisController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Enfasis
+// @Description get Propuesta
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Enfasis
+// @Success 200 {object} models.Propuesta
 // @Failure 403
 // @router / [get]
-func (c *EnfasisController) GetAll() {
+func (c *PropuestaController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -110,7 +110,7 @@ func (c *EnfasisController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] =models.Alert{Type: "error", Code: "S_400", Body: "Error:invalid query key/value pair"}
+				c.Data["json"] = models.Alert{Type: "error", Code: "S_400", Body: "Error:invalid query key/value pair"}
 				c.ServeJSON()
 				return
 			}
@@ -119,7 +119,7 @@ func (c *EnfasisController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllEnfasis(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllPropuesta(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
@@ -130,18 +130,18 @@ func (c *EnfasisController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Enfasis
+// @Description update the Propuesta
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Enfasis	true		"body for Enfasis content"
-// @Success 200 {object} models.Enfasis
+// @Param	body		body 	models.Propuesta	true		"body for Propuesta content"
+// @Success 200 {object} models.Propuesta
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *EnfasisController) Put() {
+func (c *PropuestaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Enfasis{Id: id}
+	v := models.Propuesta{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateEnfasisById(&v); err == nil {
+		if err := models.UpdatePropuestaById(&v); err == nil {
 			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 		} else {
 			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
@@ -154,15 +154,15 @@ func (c *EnfasisController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the Enfasis
+// @Description delete the Propuesta
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *EnfasisController) Delete() {
+func (c *PropuestaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteEnfasis(id); err == nil {
+	if err := models.DeletePropuesta(id); err == nil {
 		c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 	} else {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
