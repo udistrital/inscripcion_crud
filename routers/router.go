@@ -39,6 +39,18 @@ func init() {
 				&controllers.LineaInvestigacionController{},
 			),
 		),
+
+		beego.NSNamespace("/propuesta",
+			beego.NSInclude(
+				&controllers.PropuestaController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_proyecto",
+			beego.NSInclude(
+				&controllers.TipoProyectoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
