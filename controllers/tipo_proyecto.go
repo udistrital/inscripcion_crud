@@ -2,12 +2,12 @@ package controllers
 
 import (
 	"encoding/json"
-	"errors"
-	"propuesta_crud/models"
+	//"errors"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
+	"github.com/udistrital/admisiones_crud/models"
 )
 
 // TipoProyectoController operations for TipoProyecto

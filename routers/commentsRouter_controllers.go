@@ -166,14 +166,14 @@ func init() {
 			AllowHTTPMethods: []string{"delete"},
 			MethodParams: param.Make(),
 			Params: nil})
-	
+
 	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PropuestaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PropuestaController"],
-	beego.ControllerComments{
-		Method: "Post",
-		Router: `/`,
-		AllowHTTPMethods: []string{"post"},
-		MethodParams: param.Make(),
-		Params: nil})
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
 
 	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PropuestaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PropuestaController"],
 		beego.ControllerComments{
@@ -246,6 +246,5 @@ func init() {
 			AllowHTTPMethods: []string{"delete"},
 			MethodParams: param.Make(),
 			Params: nil})
-		
 
 }
