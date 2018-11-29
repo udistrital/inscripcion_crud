@@ -47,6 +47,46 @@ func init() {
 			MethodParams: param.Make(),
 			Params: nil})
 
+	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"],
+		beego.ControllerComments{
+			Method: "Post",
+			Router: `/`,
+			AllowHTTPMethods: []string{"post"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"],
+		beego.ControllerComments{
+			Method: "GetAll",
+			Router: `/`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"],
+		beego.ControllerComments{
+			Method: "GetOne",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"get"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"],
+		beego.ControllerComments{
+			Method: "Put",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"put"},
+			MethodParams: param.Make(),
+			Params: nil})
+
+	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EnfasisController"],
+		beego.ControllerComments{
+			Method: "Delete",
+			Router: `/:id`,
+			AllowHTTPMethods: []string{"delete"},
+			MethodParams: param.Make(),
+			Params: nil})
+
 	beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EstadoAdmisionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:EstadoAdmisionController"],
 		beego.ControllerComments{
 			Method: "Post",

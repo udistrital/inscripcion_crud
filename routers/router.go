@@ -22,6 +22,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/enfasis",
+			beego.NSInclude(
+				&controllers.EnfasisController{},
+			),
+		),
+
 		beego.NSNamespace("/estado_admision",
 			beego.NSInclude(
 				&controllers.EstadoAdmisionController{},
