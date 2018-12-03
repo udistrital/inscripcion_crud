@@ -26,4 +26,4 @@ Definir los valores de las siguientes variables de entorno:
 Ejemplo: API_ADMISIONES_HTTP_PORT=8083 ADMISIONES_CRUD__PGUSER=user ADMISIONES_CRUD__PGPASS=password ADMISIONES_CRUD__PGURLS=localhost ADMISIONES_CRUD__PGDB=udistrital_core_db ADMISIONES_CRUD__SCHEMA=core_new bee run
 
 ## MODELO
-![image]().
+![image](https://github.com/udistrital/admisiones_crud/blob/develop/academi_v2-2018-11-10_00_41.png).
