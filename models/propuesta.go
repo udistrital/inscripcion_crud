@@ -13,12 +13,11 @@ type Propuesta struct {
 	Id                 int           `orm:"column(id);pk"`
 	Nombre             string        `orm:"column(nombre)"`
 	Resumen            string        `orm:"column(resumen);null"`
-	Investigador       int           `orm:"column(investigador)"`
 	GrupoInvestigacion int           `orm:"column(grupo_investigacion);null"`
 	LineaInvestigacion int           `orm:"column(linea_investigacion);null"`
-	DuracionProyecto   int           `orm:"column(duracion_proyecto);null"`
-	UnidadTiempo       int           `orm:"column(unidad_tiempo);null"`
-	LugarEjecucion     int           `orm:"column(lugar_ejecucion);null"`
+	Enfasis            int           `orm:"column(enfasis);null"`
+	FormatoProyecto    string        `orm:"column(formato_proyecto);null"`
+	Admision           *Admision     `orm:"column(admision);rel(fk)"`
 	TipoProyecto       *TipoProyecto `orm:"column(tipo_proyecto);rel(fk)"`
 }
 

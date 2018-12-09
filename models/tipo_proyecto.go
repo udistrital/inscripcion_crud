@@ -10,9 +10,12 @@ import (
 )
 
 type TipoProyecto struct {
-	Id          int    `orm:"column(id);pk"`
-	Nombre      string `orm:"column(nombre)"`
-	Descripcion string `orm:"column(descripcion);null"`
+	Id                int     `orm:"column(id);pk"`
+	Nombre            string  `orm:"column(nombre)"`
+	Descripcion       string  `orm:"column(descripcion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
+	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	Activo            bool    `orm:"column(activo)"`
 }
 
 func (t *TipoProyecto) TableName() string {
