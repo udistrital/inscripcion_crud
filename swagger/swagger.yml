@@ -799,22 +799,20 @@ definitions:
     title: Propuesta
     type: object
     properties:
-      DuracionProyecto:
+      Admision:
+        $ref: '#/definitions/models.Admision'
+      Enfasis:
         type: integer
         format: int64
+      FormatoProyecto:
+        type: string
       GrupoInvestigacion:
         type: integer
         format: int64
       Id:
         type: integer
         format: int64
-      Investigador:
-        type: integer
-        format: int64
       LineaInvestigacion:
-        type: integer
-        format: int64
-      LugarEjecucion:
         type: integer
         format: int64
       Nombre:
@@ -823,13 +821,14 @@ definitions:
         type: string
       TipoProyecto:
         $ref: '#/definitions/models.TipoProyecto'
-      UnidadTiempo:
-        type: integer
-        format: int64
   models.TipoProyecto:
     title: TipoProyecto
     type: object
     properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
       Descripcion:
         type: string
       Id:
@@ -837,6 +836,9 @@ definitions:
         format: int64
       Nombre:
         type: string
+      NumeroOrden:
+        type: number
+        format: double
 tags:
 - name: admision
   description: |
