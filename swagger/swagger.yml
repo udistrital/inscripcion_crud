@@ -471,6 +471,236 @@ paths:
           description: '{string} delete success!'
         "403":
           description: id is empty
+  /propuesta/:
+    get:
+      tags:
+      - propuesta
+      description: get Propuesta
+      operationId: PropuestaController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Propuesta'
+        "403":
+          description: ""
+    post:
+      tags:
+      - propuesta
+      description: create Propuesta
+      operationId: PropuestaController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for Propuesta content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Propuesta'
+      responses:
+        "201":
+          description: '{int} models.Propuesta'
+        "403":
+          description: body is empty
+  /propuesta/{id}:
+    get:
+      tags:
+      - propuesta
+      description: get Propuesta by id
+      operationId: PropuestaController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Propuesta'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - propuesta
+      description: update the Propuesta
+      operationId: PropuestaController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for Propuesta content
+        required: true
+        schema:
+          $ref: '#/definitions/models.Propuesta'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.Propuesta'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - propuesta
+      description: delete the Propuesta
+      operationId: PropuestaController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
+  /tipo_proyecto/:
+    get:
+      tags:
+      - tipo_proyecto
+      description: get TipoProyecto
+      operationId: TipoProyectoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoProyecto'
+        "403":
+          description: ""
+    post:
+      tags:
+      - tipo_proyecto
+      description: create TipoProyecto
+      operationId: TipoProyectoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for TipoProyecto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoProyecto'
+      responses:
+        "201":
+          description: '{int} models.TipoProyecto'
+        "403":
+          description: body is empty
+  /tipo_proyecto/{id}:
+    get:
+      tags:
+      - tipo_proyecto
+      description: get TipoProyecto by id
+      operationId: TipoProyectoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoProyecto'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - tipo_proyecto
+      description: update the TipoProyecto
+      operationId: TipoProyectoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for TipoProyecto content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoProyecto'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoProyecto'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - tipo_proyecto
+      description: delete the TipoProyecto
+      operationId: TipoProyectoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
 definitions:
   models.Admision:
     title: Admision
@@ -565,6 +795,50 @@ definitions:
       NumeroOrden:
         type: number
         format: double
+  models.Propuesta:
+    title: Propuesta
+    type: object
+    properties:
+      Admision:
+        $ref: '#/definitions/models.Admision'
+      Enfasis:
+        type: integer
+        format: int64
+      FormatoProyecto:
+        type: string
+      GrupoInvestigacion:
+        type: integer
+        format: int64
+      Id:
+        type: integer
+        format: int64
+      LineaInvestigacion:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      Resumen:
+        type: string
+      TipoProyecto:
+        $ref: '#/definitions/models.TipoProyecto'
+  models.TipoProyecto:
+    title: TipoProyecto
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
 tags:
 - name: admision
   description: |
@@ -578,3 +852,9 @@ tags:
 - name: linea_investigacion
   description: |
     LineaInvestigacionController operations for LineaInvestigacion
+- name: propuesta
+  description: |
+    PropuestaController operations for Propuesta
+- name: tipo_proyecto
+  description: |
+    TipoProyectoController operations for TipoProyecto
