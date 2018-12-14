@@ -9,7 +9,7 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TipoProyecto struct {
+type EnfasisProyecto struct {
 	Id                int     `orm:"column(id);pk;auto"`
 	Nombre            string  `orm:"column(nombre)"`
 	Descripcion       string  `orm:"column(descripcion);null"`
@@ -18,39 +18,39 @@ type TipoProyecto struct {
 	Activo            bool    `orm:"column(activo)"`
 }
 
-func (t *TipoProyecto) TableName() string {
-	return "tipo_proyecto"
+func (t *EnfasisProyecto) TableName() string {
+	return "enfasis_proyecto"
 }
 
 func init() {
-	orm.RegisterModel(new(TipoProyecto))
+	orm.RegisterModel(new(EnfasisProyecto))
 }
 
-// AddTipoProyecto insert a new TipoProyecto into database and returns
+// AddEnfasisProyecto insert a new EnfasisProyecto into database and returns
 // last inserted Id on success.
-func AddTipoProyecto(m *TipoProyecto) (id int64, err error) {
+func AddEnfasisProyecto(m *EnfasisProyecto) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTipoProyectoById retrieves TipoProyecto by Id. Returns error if
+// GetEnfasisProyectoById retrieves EnfasisProyecto by Id. Returns error if
 // Id doesn't exist
-func GetTipoProyectoById(id int) (v *TipoProyecto, err error) {
+func GetEnfasisProyectoById(id int) (v *EnfasisProyecto, err error) {
 	o := orm.NewOrm()
-	v = &TipoProyecto{Id: id}
+	v = &EnfasisProyecto{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllTipoProyecto retrieves all TipoProyecto matches certain condition. Returns empty list if
+// GetAllEnfasisProyecto retrieves all EnfasisProyecto matches certain condition. Returns empty list if
 // no records exist
-func GetAllTipoProyecto(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEnfasisProyecto(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TipoProyecto)).RelatedSel()
+	qs := o.QueryTable(new(EnfasisProyecto)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -100,7 +100,7 @@ func GetAllTipoProyecto(query map[string]string, fields []string, sortby []strin
 		}
 	}
 
-	var l []TipoProyecto
+	var l []EnfasisProyecto
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -123,11 +123,11 @@ func GetAllTipoProyecto(query map[string]string, fields []string, sortby []strin
 	return nil, err
 }
 
-// UpdateTipoProyecto updates TipoProyecto by Id and returns error if
+// UpdateEnfasisProyecto updates EnfasisProyecto by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateTipoProyectoById(m *TipoProyecto) (err error) {
+func UpdateEnfasisProyectoById(m *EnfasisProyecto) (err error) {
 	o := orm.NewOrm()
-	v := TipoProyecto{Id: m.Id}
+	v := EnfasisProyecto{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -138,15 +138,15 @@ func UpdateTipoProyectoById(m *TipoProyecto) (err error) {
 	return
 }
 
-// DeleteTipoProyecto deletes TipoProyecto by Id and returns error if
+// DeleteEnfasisProyecto deletes EnfasisProyecto by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteTipoProyecto(id int) (err error) {
+func DeleteEnfasisProyecto(id int) (err error) {
 	o := orm.NewOrm()
-	v := TipoProyecto{Id: id}
+	v := EnfasisProyecto{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&TipoProyecto{Id: id}); err == nil {
+		if num, err = o.Delete(&EnfasisProyecto{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

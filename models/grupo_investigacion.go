@@ -9,48 +9,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type TipoProyecto struct {
-	Id                int     `orm:"column(id);pk;auto"`
-	Nombre            string  `orm:"column(nombre)"`
-	Descripcion       string  `orm:"column(descripcion);null"`
-	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
-	NumeroOrden       float64 `orm:"column(numero_orden);null"`
-	Activo            bool    `orm:"column(activo)"`
+type GrupoInvestigacion struct {
+	Id          int     `orm:"column(id);pk;auto"`
+	Nombre      string  `orm:"column(nombre)"`
+	Sigla       string  `orm:"column(sigla);null"`
+	Descripcion string  `orm:"column(descripcion);null"`
+	NumeroOrden float64 `orm:"column(numero_orden);null"`
+	Activo      bool    `orm:"column(activo)"`
 }
 
-func (t *TipoProyecto) TableName() string {
-	return "tipo_proyecto"
+func (t *GrupoInvestigacion) TableName() string {
+	return "grupo_investigacion"
 }
 
 func init() {
-	orm.RegisterModel(new(TipoProyecto))
+	orm.RegisterModel(new(GrupoInvestigacion))
 }
 
-// AddTipoProyecto insert a new TipoProyecto into database and returns
+// AddGrupoInvestigacion insert a new GrupoInvestigacion into database and returns
 // last inserted Id on success.
-func AddTipoProyecto(m *TipoProyecto) (id int64, err error) {
+func AddGrupoInvestigacion(m *GrupoInvestigacion) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetTipoProyectoById retrieves TipoProyecto by Id. Returns error if
+// GetGrupoInvestigacionById retrieves GrupoInvestigacion by Id. Returns error if
 // Id doesn't exist
-func GetTipoProyectoById(id int) (v *TipoProyecto, err error) {
+func GetGrupoInvestigacionById(id int) (v *GrupoInvestigacion, err error) {
 	o := orm.NewOrm()
-	v = &TipoProyecto{Id: id}
+	v = &GrupoInvestigacion{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllTipoProyecto retrieves all TipoProyecto matches certain condition. Returns empty list if
+// GetAllGrupoInvestigacion retrieves all GrupoInvestigacion matches certain condition. Returns empty list if
 // no records exist
-func GetAllTipoProyecto(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllGrupoInvestigacion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(TipoProyecto)).RelatedSel()
+	qs := o.QueryTable(new(GrupoInvestigacion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -100,7 +100,7 @@ func GetAllTipoProyecto(query map[string]string, fields []string, sortby []strin
 		}
 	}
 
-	var l []TipoProyecto
+	var l []GrupoInvestigacion
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -123,11 +123,11 @@ func GetAllTipoProyecto(query map[string]string, fields []string, sortby []strin
 	return nil, err
 }
 
-// UpdateTipoProyecto updates TipoProyecto by Id and returns error if
+// UpdateGrupoInvestigacion updates GrupoInvestigacion by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateTipoProyectoById(m *TipoProyecto) (err error) {
+func UpdateGrupoInvestigacionById(m *GrupoInvestigacion) (err error) {
 	o := orm.NewOrm()
-	v := TipoProyecto{Id: m.Id}
+	v := GrupoInvestigacion{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -138,15 +138,15 @@ func UpdateTipoProyectoById(m *TipoProyecto) (err error) {
 	return
 }
 
-// DeleteTipoProyecto deletes TipoProyecto by Id and returns error if
+// DeleteGrupoInvestigacion deletes GrupoInvestigacion by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteTipoProyecto(id int) (err error) {
+func DeleteGrupoInvestigacion(id int) (err error) {
 	o := orm.NewOrm()
-	v := TipoProyecto{Id: id}
+	v := GrupoInvestigacion{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&TipoProyecto{Id: id}); err == nil {
+		if num, err = o.Delete(&GrupoInvestigacion{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
