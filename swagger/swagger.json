@@ -361,6 +361,179 @@
                 }
             }
         },
+        "/enfasis_proyecto/": {
+            "get": {
+                "tags": [
+                    "enfasis_proyecto"
+                ],
+                "description": "get EnfasisProyecto",
+                "operationId": "EnfasisProyectoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.EnfasisProyecto"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "enfasis_proyecto"
+                ],
+                "description": "create EnfasisProyecto",
+                "operationId": "EnfasisProyectoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for EnfasisProyecto content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.EnfasisProyecto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.EnfasisProyecto"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/enfasis_proyecto/{id}": {
+            "get": {
+                "tags": [
+                    "enfasis_proyecto"
+                ],
+                "description": "get EnfasisProyecto by id",
+                "operationId": "EnfasisProyectoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.EnfasisProyecto"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "enfasis_proyecto"
+                ],
+                "description": "update the EnfasisProyecto",
+                "operationId": "EnfasisProyectoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for EnfasisProyecto content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.EnfasisProyecto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.EnfasisProyecto"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "enfasis_proyecto"
+                ],
+                "description": "delete the EnfasisProyecto",
+                "operationId": "EnfasisProyectoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
         "/estado_admision/": {
             "get": {
                 "tags": [
@@ -515,6 +688,179 @@
                 ],
                 "description": "delete the EstadoAdmision",
                 "operationId": "EstadoAdmisionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/grupo_investigacion/": {
+            "get": {
+                "tags": [
+                    "grupo_investigacion"
+                ],
+                "description": "get GrupoInvestigacion",
+                "operationId": "GrupoInvestigacionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.GrupoInvestigacion"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "grupo_investigacion"
+                ],
+                "description": "create GrupoInvestigacion",
+                "operationId": "GrupoInvestigacionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for GrupoInvestigacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GrupoInvestigacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.GrupoInvestigacion"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/grupo_investigacion/{id}": {
+            "get": {
+                "tags": [
+                    "grupo_investigacion"
+                ],
+                "description": "get GrupoInvestigacion by id",
+                "operationId": "GrupoInvestigacionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.GrupoInvestigacion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "grupo_investigacion"
+                ],
+                "description": "update the GrupoInvestigacion",
+                "operationId": "GrupoInvestigacionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for GrupoInvestigacion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.GrupoInvestigacion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.GrupoInvestigacion"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "grupo_investigacion"
+                ],
+                "description": "delete the GrupoInvestigacion",
+                "operationId": "GrupoInvestigacionController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -1131,6 +1477,32 @@
                 }
             }
         },
+        "models.EnfasisProyecto": {
+            "title": "EnfasisProyecto",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
         "models.EstadoAdmision": {
             "title": "EstadoAdmision",
             "type": "object",
@@ -1154,6 +1526,32 @@
                 "NumeroOrden": {
                     "type": "number",
                     "format": "double"
+                }
+            }
+        },
+        "models.GrupoInvestigacion": {
+            "title": "GrupoInvestigacion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                },
+                "Sigla": {
+                    "type": "string"
                 }
             }
         },
@@ -1194,16 +1592,14 @@
                 "Admision": {
                     "$ref": "#/definitions/models.Admision"
                 },
-                "Enfasis": {
-                    "type": "integer",
-                    "format": "int64"
+                "EnfasisProyecto": {
+                    "$ref": "#/definitions/models.EnfasisProyecto"
                 },
                 "FormatoProyecto": {
                     "type": "string"
                 },
                 "GrupoInvestigacion": {
-                    "type": "integer",
-                    "format": "int64"
+                    "$ref": "#/definitions/models.GrupoInvestigacion"
                 },
                 "Id": {
                     "type": "integer",
@@ -1261,8 +1657,16 @@
             "description": "EnfasisController operations for Enfasis\n"
         },
         {
+            "name": "enfasis_proyecto",
+            "description": "EnfasisProyectoController operations for EnfasisProyecto\n"
+        },
+        {
             "name": "estado_admision",
             "description": "EstadoAdmisionController operations for EstadoAdmision\n"
+        },
+        {
+            "name": "grupo_investigacion",
+            "description": "GrupoInvestigacionController operations for GrupoInvestigacion\n"
         },
         {
             "name": "linea_investigacion",

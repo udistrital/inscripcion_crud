@@ -9,51 +9,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Propuesta struct {
-	Id                 int           `orm:"column(id);pk;auto"`
-	Nombre             string        `orm:"column(nombre)"`
-	Resumen            string        `orm:"column(resumen);null"`
-	GrupoInvestigacion *GrupoInvestigacion           `orm:"column(grupo_investigacion);rel(fk);null"`
-	LineaInvestigacion *LineaInvestigacion           `orm:"column(linea_investigacion);rel(fk)";null`
-	FormatoProyecto    int        `orm:"column(formato_proyecto);null"`
-	Admision           *Admision     `orm:"column(admision);rel(fk)"`
-	TipoProyecto       *TipoProyecto `orm:"column(tipo_proyecto);rel(fk)"`
-	EnfasisProyecto    *EnfasisProyecto `orm:"column(enfasis_proyecto);rel(fk)"`
+type EnfasisProyecto struct {
+	Id                int     `orm:"column(id);pk;auto"`
+	Nombre            string  `orm:"column(nombre)"`
+	Descripcion       string  `orm:"column(descripcion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
+	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	Activo            bool    `orm:"column(activo)"`
 }
 
-func (t *Propuesta) TableName() string {
-	return "propuesta"
+func (t *EnfasisProyecto) TableName() string {
+	return "enfasis_proyecto"
 }
 
 func init() {
-	orm.RegisterModel(new(Propuesta))
+	orm.RegisterModel(new(EnfasisProyecto))
 }
 
-// AddPropuesta insert a new Propuesta into database and returns
+// AddEnfasisProyecto insert a new EnfasisProyecto into database and returns
 // last inserted Id on success.
-func AddPropuesta(m *Propuesta) (id int64, err error) {
+func AddEnfasisProyecto(m *EnfasisProyecto) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetPropuestaById retrieves Propuesta by Id. Returns error if
+// GetEnfasisProyectoById retrieves EnfasisProyecto by Id. Returns error if
 // Id doesn't exist
-func GetPropuestaById(id int) (v *Propuesta, err error) {
+func GetEnfasisProyectoById(id int) (v *EnfasisProyecto, err error) {
 	o := orm.NewOrm()
-	v = &Propuesta{Id: id}
+	v = &EnfasisProyecto{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllPropuesta retrieves all Propuesta matches certain condition. Returns empty list if
+// GetAllEnfasisProyecto retrieves all EnfasisProyecto matches certain condition. Returns empty list if
 // no records exist
-func GetAllPropuesta(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEnfasisProyecto(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Propuesta)).RelatedSel()
+	qs := o.QueryTable(new(EnfasisProyecto)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -103,7 +100,7 @@ func GetAllPropuesta(query map[string]string, fields []string, sortby []string, 
 		}
 	}
 
-	var l []Propuesta
+	var l []EnfasisProyecto
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -126,11 +123,11 @@ func GetAllPropuesta(query map[string]string, fields []string, sortby []string, 
 	return nil, err
 }
 
-// UpdatePropuesta updates Propuesta by Id and returns error if
+// UpdateEnfasisProyecto updates EnfasisProyecto by Id and returns error if
 // the record to be updated doesn't exist
-func UpdatePropuestaById(m *Propuesta) (err error) {
+func UpdateEnfasisProyectoById(m *EnfasisProyecto) (err error) {
 	o := orm.NewOrm()
-	v := Propuesta{Id: m.Id}
+	v := EnfasisProyecto{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -141,15 +138,15 @@ func UpdatePropuestaById(m *Propuesta) (err error) {
 	return
 }
 
-// DeletePropuesta deletes Propuesta by Id and returns error if
+// DeleteEnfasisProyecto deletes EnfasisProyecto by Id and returns error if
 // the record to be deleted doesn't exist
-func DeletePropuesta(id int) (err error) {
+func DeleteEnfasisProyecto(id int) (err error) {
 	o := orm.NewOrm()
-	v := Propuesta{Id: id}
+	v := EnfasisProyecto{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Propuesta{Id: id}); err == nil {
+		if num, err = o.Delete(&EnfasisProyecto{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
