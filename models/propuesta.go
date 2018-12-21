@@ -13,9 +13,9 @@ type Propuesta struct {
 	Id                 int           `orm:"column(id);pk;auto"`
 	Nombre             string        `orm:"column(nombre)"`
 	Resumen            string        `orm:"column(resumen);null"`
-	GrupoInvestigacion int           `orm:"column(grupo_investigacion);null"`
-	LineaInvestigacion int           `orm:"column(linea_investigacion);null"`
-	FormatoProyecto    string        `orm:"column(formato_proyecto);null"`
+	GrupoInvestigacion *GrupoInvestigacion           `orm:"column(grupo_investigacion);rel(fk);null"`
+	LineaInvestigacion *LineaInvestigacion           `orm:"column(linea_investigacion);rel(fk)";null`
+	FormatoProyecto    int        `orm:"column(formato_proyecto);null"`
 	Admision           *Admision     `orm:"column(admision);rel(fk)"`
 	TipoProyecto       *TipoProyecto `orm:"column(tipo_proyecto);rel(fk)"`
 	EnfasisProyecto    *EnfasisProyecto `orm:"column(enfasis_proyecto);rel(fk)"`

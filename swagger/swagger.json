@@ -1599,8 +1599,7 @@
                     "type": "string"
                 },
                 "GrupoInvestigacion": {
-                    "type": "integer",
-                    "format": "int64"
+                    "$ref": "#/definitions/models.GrupoInvestigacion"
                 },
                 "Id": {
                     "type": "integer",
