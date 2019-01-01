@@ -28,12 +28,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/enfasis_proyecto",
-			beego.NSInclude(
-				&controllers.EnfasisProyectoController{},
-			),
-		),
-
 		beego.NSNamespace("/estado_admision",
 			beego.NSInclude(
 				&controllers.EstadoAdmisionController{},

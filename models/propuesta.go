@@ -18,7 +18,6 @@ type Propuesta struct {
 	FormatoProyecto    int        `orm:"column(formato_proyecto);null"`
 	Admision           *Admision     `orm:"column(admision);rel(fk)"`
 	TipoProyecto       *TipoProyecto `orm:"column(tipo_proyecto);rel(fk)"`
-	EnfasisProyecto    *EnfasisProyecto `orm:"column(enfasis_proyecto);rel(fk)"`
 }
 
 func (t *Propuesta) TableName() string {
