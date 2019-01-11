@@ -232,7 +232,7 @@ func init() {
             Filters: nil,
             Params: nil})
     
-    beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"],
+    beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
     beego.ControllerComments{
         Method: "Post",
         Router: `/`,
@@ -241,7 +241,7 @@ func init() {
         Filters: nil,
         Params: nil})
 
-    beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"],
+    beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
         beego.ControllerComments{
             Method: "GetAll",
             Router: `/`,
@@ -250,7 +250,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"],
+    beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
         beego.ControllerComments{
             Method: "GetOne",
             Router: `/:id`,
@@ -259,7 +259,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"],
+    beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
         beego.ControllerComments{
             Method: "Put",
             Router: `/:id`,
@@ -268,7 +268,7 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["periodo/controllers:PeriodoAcademicoController"],
+    beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,
