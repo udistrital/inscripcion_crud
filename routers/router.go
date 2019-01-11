@@ -46,6 +46,12 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/periodo_academico",
+			beego.NSInclude(
+				&controllers.PeriodoAcademicoController{},
+			),
+		),
+
 		beego.NSNamespace("/propuesta",
 			beego.NSInclude(
 				&controllers.PropuestaController{},
