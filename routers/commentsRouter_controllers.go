@@ -231,15 +231,15 @@ func init() {
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})
-    
+
     beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
-    beego.ControllerComments{
-        Method: "Post",
-        Router: `/`,
-        AllowHTTPMethods: []string{"post"},
-        MethodParams: param.Make(),
-        Filters: nil,
-        Params: nil})
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
 
     beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"] = append(beego.GlobalControllerRouter["github.com/udistrital/admisiones_crud/controllers:PeriodoAcademicoController"],
         beego.ControllerComments{
