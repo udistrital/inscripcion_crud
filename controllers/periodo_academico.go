@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	//"errors"
 	"strconv"
 	"strings"
 
@@ -9,13 +10,13 @@ import (
 	"github.com/udistrital/admisiones_crud/models"
 )
 
-// AdmisionController operations for Admision
-type AdmisionController struct {
+// PeriodoAcademicoController operations for PeriodoAcademico
+type PeriodoAcademicoController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *AdmisionController) URLMapping() {
+func (c *PeriodoAcademicoController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -25,15 +26,15 @@ func (c *AdmisionController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Admision
-// @Param	body		body 	models.Admision	true		"body for Admision content"
-// @Success 201 {int} models.Admision
+// @Description create PeriodoAcademico
+// @Param	body		body 	models.PeriodoAcademico	true		"body for PeriodoAcademico content"
+// @Success 201 {int} models.PeriodoAcademico
 // @Failure 403 body is empty
 // @router / [post]
-func (c *AdmisionController) Post() {
-	var v models.Admision
+func (c *PeriodoAcademicoController) Post() {
+	var v models.PeriodoAcademico
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddAdmision(&v); err == nil {
+		if _, err := models.AddPeriodoAcademico(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -47,15 +48,15 @@ func (c *AdmisionController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get Admision by id
+// @Description get PeriodoAcademico by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Admision
+// @Success 200 {object} models.PeriodoAcademico
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *AdmisionController) GetOne() {
+func (c *PeriodoAcademicoController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetAdmisionById(id)
+	v, err := models.GetPeriodoAcademicoById(id)
 	if err != nil {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
@@ -66,17 +67,17 @@ func (c *AdmisionController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Admision
+// @Description get PeriodoAcademico
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Admision
+// @Success 200 {object} models.PeriodoAcademico
 // @Failure 403
 // @router / [get]
-func (c *AdmisionController) GetAll() {
+func (c *PeriodoAcademicoController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -118,7 +119,7 @@ func (c *AdmisionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllAdmision(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllPeriodoAcademico(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
 	} else {
@@ -129,18 +130,18 @@ func (c *AdmisionController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Admision
+// @Description update the PeriodoAcademico
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Admision	true		"body for Admision content"
-// @Success 200 {object} models.Admision
+// @Param	body		body 	models.PeriodoAcademico	true		"body for PeriodoAcademico content"
+// @Success 200 {object} models.PeriodoAcademico
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *AdmisionController) Put() {
+func (c *PeriodoAcademicoController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Admision{Id: id}
+	v := models.PeriodoAcademico{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateAdmisionById(&v); err == nil {
+		if err := models.UpdatePeriodoAcademicoById(&v); err == nil {
 			c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 		} else {
 			c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
@@ -153,15 +154,15 @@ func (c *AdmisionController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the Admision
+// @Description delete the PeriodoAcademico
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *AdmisionController) Delete() {
+func (c *PeriodoAcademicoController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteAdmision(id); err == nil {
+	if err := models.DeletePeriodoAcademico(id); err == nil {
 		c.Data["json"] = models.Alert{Type: "success", Code: "200", Body: "OK"}
 	} else {
 		c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: err.Error()}
