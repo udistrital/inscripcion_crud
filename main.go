@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/udistrital/admisiones_crud/routers"
+	_ "github.com/planesticud/admisiones_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 
 		"github.com/astaxie/beego"

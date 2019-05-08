@@ -7,7 +7,7 @@ import (
 	"strings"
 
 	"github.com/astaxie/beego"
-	"github.com/udistrital/admisiones_crud/models"
+	"github.com/planesticud/admisiones_crud/models"
 )
 
 // PropuestaController operations for Propuesta
