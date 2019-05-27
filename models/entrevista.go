@@ -5,56 +5,53 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Admision struct {
-	Id                 int                 `orm:"column(id);pk;auto"`
-	Aspirante          int                 `orm:"column(aspirante)"`
-	ProgramaAcademico  int                 `orm:"column(programa_academico)"`
-	ReciboMatricula    int                 `orm:"column(recibo_matricula);null"`
-	ReciboInscripcion  int                 `orm:"column(recibo_inscripcion);null"`
-	Periodo            *PeriodoAcademico   `orm:"column(periodo);rel(fk)"`
-	Enfasis            *Enfasis            `orm:"column(enfasis);rel(fk);null"`
-	LineaInvestigacion *LineaInvestigacion `orm:"column(linea_investigacion);rel(fk)";null`
-	EstadoAdmision     *EstadoAdmision     `orm:"column(estado_admision);rel(fk)"`
-	AceptaTerminos     bool                `orm:"column(acepta_terminos)"`
+type Entrevista struct {
+	Id              int            `orm:"column(id);pk;auto"`
+	Admision        int      `orm:"column(admision)"`
+	FechaAsignacion time.Time      `orm:"column(fecha_asignacion);type(date)"`
+	Entrevistador   *Entrevistador `orm:"column(entrevistador);rel(fk)"`
+	Estado          *EstadoEntrevista          `orm:"column(estado);rel(fk)"`
+	HoraAsignacion  time.Time      `orm:"column(hora_asignacion);type(timestamp without time zone)"`
 }
 
-func (t *Admision) TableName() string {
-	return "admision"
+func (t *Entrevista) TableName() string {
+	return "entrevista"
 }
 
 func init() {
-	orm.RegisterModel(new(Admision))
+	orm.RegisterModel(new(Entrevista))
 }
 
-// AddAdmision insert a new Admision into database and returns
+// AddEntrevista insert a new Entrevista into database and returns
 // last inserted Id on success.
-func AddAdmision(m *Admision) (id int64, err error) {
+func AddEntrevista(m *Entrevista) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetAdmisionById retrieves Admision by Id. Returns error if
+// GetEntrevistaById retrieves Entrevista by Id. Returns error if
 // Id doesn't exist
-func GetAdmisionById(id int) (v *Admision, err error) {
+func GetEntrevistaById(id int) (v *Entrevista, err error) {
 	o := orm.NewOrm()
-	v = &Admision{Id: id}
+	v = &Entrevista{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllAdmision retrieves all Admision matches certain condition. Returns empty list if
+// GetAllEntrevista retrieves all Entrevista matches certain condition. Returns empty list if
 // no records exist
-func GetAllAdmision(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEntrevista(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Admision)).RelatedSel()
+	qs := o.QueryTable(new(Entrevista)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -104,7 +101,7 @@ func GetAllAdmision(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Admision
+	var l []Entrevista
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -127,11 +124,11 @@ func GetAllAdmision(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateAdmision updates Admision by Id and returns error if
+// UpdateEntrevista updates Entrevista by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateAdmisionById(m *Admision) (err error) {
+func UpdateEntrevistaById(m *Entrevista) (err error) {
 	o := orm.NewOrm()
-	v := Admision{Id: m.Id}
+	v := Entrevista{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -142,15 +139,15 @@ func UpdateAdmisionById(m *Admision) (err error) {
 	return
 }
 
-// DeleteAdmision deletes Admision by Id and returns error if
+// DeleteEntrevista deletes Entrevista by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteAdmision(id int) (err error) {
+func DeleteEntrevista(id int) (err error) {
 	o := orm.NewOrm()
-	v := Admision{Id: id}
+	v := Entrevista{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Admision{Id: id}); err == nil {
+		if num, err = o.Delete(&Entrevista{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

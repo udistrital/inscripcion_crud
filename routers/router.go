@@ -63,6 +63,36 @@ func init() {
 				&controllers.TipoProyectoController{},
 			),
 		),
+
+		beego.NSNamespace("/entrevista",
+			beego.NSInclude(
+				&controllers.EntrevistaController{},
+			),
+		),
+
+		beego.NSNamespace("/entrevistador",
+			beego.NSInclude(
+				&controllers.EntrevistadorController{},
+			),
+		),
+
+		beego.NSNamespace("/estado_entrevista",
+			beego.NSInclude(
+				&controllers.EstadoEntrevistaController{},
+			),
+
+		),
+		beego.NSNamespace("/criterio_admision",
+			beego.NSInclude(
+				&controllers.CriterioAdmisionController{},
+			),
+		),
+		beego.NSNamespace("/tipo_criterio",
+			beego.NSInclude(
+				&controllers.TipoCriterioController{},
+			),
+		),
+		
 	)
 	beego.AddNamespace(ns)
 }

@@ -52,6 +52,51 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:CriterioAdmisionController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EnfasisController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EnfasisController"],
         beego.ControllerComments{
             Method: "Post",
@@ -97,6 +142,96 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistaController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EntrevistadorController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoAdmisionController"],
         beego.ControllerComments{
             Method: "Post",
@@ -134,6 +269,51 @@ func init() {
             Params: nil})
 
     beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoAdmisionController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoAdmisionController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:EstadoEntrevistaController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,
@@ -314,6 +494,51 @@ func init() {
             Params: nil})
 
     beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:PropuestaController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:PropuestaController"],
+        beego.ControllerComments{
+            Method: "Delete",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"delete"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"],
+        beego.ControllerComments{
+            Method: "Post",
+            Router: `/`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"],
+        beego.ControllerComments{
+            Method: "GetAll",
+            Router: `/`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"],
+        beego.ControllerComments{
+            Method: "GetOne",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"get"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"],
+        beego.ControllerComments{
+            Method: "Put",
+            Router: `/:id`,
+            AllowHTTPMethods: []string{"put"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
+    beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"] = append(beego.GlobalControllerRouter["github.com/planesticud/admisiones_crud/controllers:TipoCriterioController"],
         beego.ControllerComments{
             Method: "Delete",
             Router: `/:id`,

@@ -9,52 +9,48 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Admision struct {
-	Id                 int                 `orm:"column(id);pk;auto"`
-	Aspirante          int                 `orm:"column(aspirante)"`
-	ProgramaAcademico  int                 `orm:"column(programa_academico)"`
-	ReciboMatricula    int                 `orm:"column(recibo_matricula);null"`
-	ReciboInscripcion  int                 `orm:"column(recibo_inscripcion);null"`
-	Periodo            *PeriodoAcademico   `orm:"column(periodo);rel(fk)"`
-	Enfasis            *Enfasis            `orm:"column(enfasis);rel(fk);null"`
-	LineaInvestigacion *LineaInvestigacion `orm:"column(linea_investigacion);rel(fk)";null`
-	EstadoAdmision     *EstadoAdmision     `orm:"column(estado_admision);rel(fk)"`
-	AceptaTerminos     bool                `orm:"column(acepta_terminos)"`
+type TipoCriterio struct {
+	Id                int     `orm:"column(id);pk;auto"`
+	Nombre            string  `orm:"column(nombre)"`
+	Descripcion       string  `orm:"column(descripcion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
+	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	Activo            bool    `orm:"column(activo)"`
 }
 
-func (t *Admision) TableName() string {
-	return "admision"
+func (t *TipoCriterio) TableName() string {
+	return "tipo_criterio"
 }
 
 func init() {
-	orm.RegisterModel(new(Admision))
+	orm.RegisterModel(new(TipoCriterio))
 }
 
-// AddAdmision insert a new Admision into database and returns
+// AddTipoCriterio insert a new TipoCriterio into database and returns
 // last inserted Id on success.
-func AddAdmision(m *Admision) (id int64, err error) {
+func AddTipoCriterio(m *TipoCriterio) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetAdmisionById retrieves Admision by Id. Returns error if
+// GetTipoCriterioById retrieves TipoCriterio by Id. Returns error if
 // Id doesn't exist
-func GetAdmisionById(id int) (v *Admision, err error) {
+func GetTipoCriterioById(id int) (v *TipoCriterio, err error) {
 	o := orm.NewOrm()
-	v = &Admision{Id: id}
+	v = &TipoCriterio{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllAdmision retrieves all Admision matches certain condition. Returns empty list if
+// GetAllTipoCriterio retrieves all TipoCriterio matches certain condition. Returns empty list if
 // no records exist
-func GetAllAdmision(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTipoCriterio(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Admision)).RelatedSel()
+	qs := o.QueryTable(new(TipoCriterio)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -104,7 +100,7 @@ func GetAllAdmision(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Admision
+	var l []TipoCriterio
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -127,11 +123,11 @@ func GetAllAdmision(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateAdmision updates Admision by Id and returns error if
+// UpdateTipoCriterio updates TipoCriterio by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateAdmisionById(m *Admision) (err error) {
+func UpdateTipoCriterioById(m *TipoCriterio) (err error) {
 	o := orm.NewOrm()
-	v := Admision{Id: m.Id}
+	v := TipoCriterio{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -142,15 +138,15 @@ func UpdateAdmisionById(m *Admision) (err error) {
 	return
 }
 
-// DeleteAdmision deletes Admision by Id and returns error if
+// DeleteTipoCriterio deletes TipoCriterio by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteAdmision(id int) (err error) {
+func DeleteTipoCriterio(id int) (err error) {
 	o := orm.NewOrm()
-	v := Admision{Id: id}
+	v := TipoCriterio{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Admision{Id: id}); err == nil {
+		if num, err = o.Delete(&TipoCriterio{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
