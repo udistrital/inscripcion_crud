@@ -10,48 +10,50 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Entrevista struct {
-	Id              int            `orm:"column(id);pk;auto"`
-	Admision        int      `orm:"column(admision)"`
-	FechaAsignacion time.Time      `orm:"column(fecha_asignacion);type(date)"`
-	Entrevistador   *Entrevistador `orm:"column(entrevistador);rel(fk)"`
-	Estado          *EstadoEntrevista          `orm:"column(estado);rel(fk)"`
-	HoraAsignacion  time.Time      `orm:"column(hora_asignacion);type(timestamp without time zone)"`
+type TipoInscripcion struct {
+	Id                int       `orm:"column(id);pk;auto"`
+	Nombre            string    `orm:"column(nombre)"`
+	Descripcion       string    `orm:"column(descripcion);null"`
+	CodigoAbreviacion string    `orm:"column(codigo_abreviacion)"`
+	Activo            bool      `orm:"column(activo)"`
+	NumeroOrden       float64   `orm:"column(numero_orden);null"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 }
 
-func (t *Entrevista) TableName() string {
-	return "entrevista"
+func (t *TipoInscripcion) TableName() string {
+	return "tipo_inscripcion"
 }
 
 func init() {
-	orm.RegisterModel(new(Entrevista))
+	orm.RegisterModel(new(TipoInscripcion))
 }
 
-// AddEntrevista insert a new Entrevista into database and returns
+// AddTipoInscripcion insert a new TipoInscripcion into database and returns
 // last inserted Id on success.
-func AddEntrevista(m *Entrevista) (id int64, err error) {
+func AddTipoInscripcion(m *TipoInscripcion) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetEntrevistaById retrieves Entrevista by Id. Returns error if
+// GetTipoInscripcionById retrieves TipoInscripcion by Id. Returns error if
 // Id doesn't exist
-func GetEntrevistaById(id int) (v *Entrevista, err error) {
+func GetTipoInscripcionById(id int) (v *TipoInscripcion, err error) {
 	o := orm.NewOrm()
-	v = &Entrevista{Id: id}
+	v = &TipoInscripcion{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllEntrevista retrieves all Entrevista matches certain condition. Returns empty list if
+// GetAllTipoInscripcion retrieves all TipoInscripcion matches certain condition. Returns empty list if
 // no records exist
-func GetAllEntrevista(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTipoInscripcion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Entrevista)).RelatedSel()
+	qs := o.QueryTable(new(TipoInscripcion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -101,7 +103,7 @@ func GetAllEntrevista(query map[string]string, fields []string, sortby []string,
 		}
 	}
 
-	var l []Entrevista
+	var l []TipoInscripcion
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -124,11 +126,11 @@ func GetAllEntrevista(query map[string]string, fields []string, sortby []string,
 	return nil, err
 }
 
-// UpdateEntrevista updates Entrevista by Id and returns error if
+// UpdateTipoInscripcion updates TipoInscripcion by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateEntrevistaById(m *Entrevista) (err error) {
+func UpdateTipoInscripcionById(m *TipoInscripcion) (err error) {
 	o := orm.NewOrm()
-	v := Entrevista{Id: m.Id}
+	v := TipoInscripcion{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -139,15 +141,15 @@ func UpdateEntrevistaById(m *Entrevista) (err error) {
 	return
 }
 
-// DeleteEntrevista deletes Entrevista by Id and returns error if
+// DeleteTipoInscripcion deletes TipoInscripcion by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteEntrevista(id int) (err error) {
+func DeleteTipoInscripcion(id int) (err error) {
 	o := orm.NewOrm()
-	v := Entrevista{Id: id}
+	v := TipoInscripcion{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Entrevista{Id: id}); err == nil {
+		if num, err = o.Delete(&TipoInscripcion{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

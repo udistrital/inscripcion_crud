@@ -15,13 +15,13 @@
     },
     "basePath": "/v1",
     "paths": {
-        "/admision/": {
+        "/estado_inscripcion/": {
             "get": {
                 "tags": [
-                    "admision"
+                    "estado_inscripcion"
                 ],
-                "description": "get Admision",
-                "operationId": "AdmisionController.Get All",
+                "description": "get EstadoInscripcion",
+                "operationId": "EstadoInscripcionController.Get All",
                 "parameters": [
                     {
                         "in": "query",
@@ -64,48 +64,48 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Admision"
+                            "$ref": "#/definitions/models.EstadoInscripcion"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
             "post": {
                 "tags": [
-                    "admision"
+                    "estado_inscripcion"
                 ],
-                "description": "create Admision",
-                "operationId": "AdmisionController.Post",
+                "description": "create EstadoInscripcion",
+                "operationId": "EstadoInscripcionController.Post",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Admision content",
+                        "description": "body for EstadoInscripcion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Admision"
+                            "$ref": "#/definitions/models.EstadoInscripcion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.Admision"
+                        "description": "{int} models.EstadoInscripcion"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
         },
-        "/admision/{id}": {
+        "/estado_inscripcion/{id}": {
             "get": {
                 "tags": [
-                    "admision"
+                    "estado_inscripcion"
                 ],
-                "description": "get Admision by id",
-                "operationId": "AdmisionController.Get One",
+                "description": "get EstadoInscripcion by id",
+                "operationId": "EstadoInscripcionController.Get One",
                 "parameters": [
                     {
                         "in": "path",
@@ -119,20 +119,20 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Admision"
+                            "$ref": "#/definitions/models.EstadoInscripcion"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
             "put": {
                 "tags": [
-                    "admision"
+                    "estado_inscripcion"
                 ],
-                "description": "update the Admision",
-                "operationId": "AdmisionController.Put",
+                "description": "update the EstadoInscripcion",
+                "operationId": "EstadoInscripcionController.Put",
                 "parameters": [
                     {
                         "in": "path",
@@ -144,10 +144,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Admision content",
+                        "description": "body for EstadoInscripcion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Admision"
+                            "$ref": "#/definitions/models.EstadoInscripcion"
                         }
                     }
                 ],
@@ -155,20 +155,20 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Admision"
+                            "$ref": "#/definitions/models.EstadoInscripcion"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
             "delete": {
                 "tags": [
-                    "admision"
+                    "estado_inscripcion"
                 ],
-                "description": "delete the Admision",
-                "operationId": "AdmisionController.Delete",
+                "description": "delete the EstadoInscripcion",
+                "operationId": "EstadoInscripcionController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -182,19 +182,19 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
         },
-        "/enfasis/": {
+        "/inscripcion/": {
             "get": {
                 "tags": [
-                    "enfasis"
+                    "inscripcion"
                 ],
-                "description": "get Enfasis",
-                "operationId": "EnfasisController.Get All",
+                "description": "get Inscripcion",
+                "operationId": "InscripcionController.Get All",
                 "parameters": [
                     {
                         "in": "query",
@@ -237,48 +237,48 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Enfasis"
+                            "$ref": "#/definitions/models.Inscripcion"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
             "post": {
                 "tags": [
-                    "enfasis"
+                    "inscripcion"
                 ],
-                "description": "create Enfasis",
-                "operationId": "EnfasisController.Post",
+                "description": "create Inscripcion",
+                "operationId": "InscripcionController.Post",
                 "parameters": [
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Enfasis content",
+                        "description": "body for Inscripcion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Enfasis"
+                            "$ref": "#/definitions/models.Inscripcion"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "{int} models.Enfasis"
+                        "description": "{int} models.Inscripcion"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
         },
-        "/enfasis/{id}": {
+        "/inscripcion/{id}": {
             "get": {
                 "tags": [
-                    "enfasis"
+                    "inscripcion"
                 ],
-                "description": "get Enfasis by id",
-                "operationId": "EnfasisController.Get One",
+                "description": "get Inscripcion by id",
+                "operationId": "InscripcionController.Get One",
                 "parameters": [
                     {
                         "in": "path",
@@ -292,20 +292,20 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Enfasis"
+                            "$ref": "#/definitions/models.Inscripcion"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
             "put": {
                 "tags": [
-                    "enfasis"
+                    "inscripcion"
                 ],
-                "description": "update the Enfasis",
-                "operationId": "EnfasisController.Put",
+                "description": "update the Inscripcion",
+                "operationId": "InscripcionController.Put",
                 "parameters": [
                     {
                         "in": "path",
@@ -317,10 +317,10 @@
                     {
                         "in": "body",
                         "name": "body",
-                        "description": "body for Enfasis content",
+                        "description": "body for Inscripcion content",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.Enfasis"
+                            "$ref": "#/definitions/models.Inscripcion"
                         }
                     }
                 ],
@@ -328,20 +328,20 @@
                     "200": {
                         "description": "",
                         "schema": {
-                            "$ref": "#/definitions/models.Enfasis"
+                            "$ref": "#/definitions/models.Inscripcion"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
             "delete": {
                 "tags": [
-                    "enfasis"
+                    "inscripcion"
                 ],
-                "description": "delete the Enfasis",
-                "operationId": "EnfasisController.Delete",
+                "description": "delete the Inscripcion",
+                "operationId": "InscripcionController.Delete",
                 "parameters": [
                     {
                         "in": "path",
@@ -355,700 +355,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/estado_admision/": {
-            "get": {
-                "tags": [
-                    "estado_admision"
-                ],
-                "description": "get EstadoAdmision",
-                "operationId": "EstadoAdmisionController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.EstadoAdmision"
-                        }
-                    },
-                    "403": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "estado_admision"
-                ],
-                "description": "create EstadoAdmision",
-                "operationId": "EstadoAdmisionController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for EstadoAdmision content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.EstadoAdmision"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.EstadoAdmision"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/estado_admision/{id}": {
-            "get": {
-                "tags": [
-                    "estado_admision"
-                ],
-                "description": "get EstadoAdmision by id",
-                "operationId": "EstadoAdmisionController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.EstadoAdmision"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "estado_admision"
-                ],
-                "description": "update the EstadoAdmision",
-                "operationId": "EstadoAdmisionController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for EstadoAdmision content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.EstadoAdmision"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.EstadoAdmision"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "estado_admision"
-                ],
-                "description": "delete the EstadoAdmision",
-                "operationId": "EstadoAdmisionController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/grupo_investigacion/": {
-            "get": {
-                "tags": [
-                    "grupo_investigacion"
-                ],
-                "description": "get GrupoInvestigacion",
-                "operationId": "GrupoInvestigacionController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.GrupoInvestigacion"
-                        }
-                    },
-                    "403": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "grupo_investigacion"
-                ],
-                "description": "create GrupoInvestigacion",
-                "operationId": "GrupoInvestigacionController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for GrupoInvestigacion content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.GrupoInvestigacion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.GrupoInvestigacion"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/grupo_investigacion/{id}": {
-            "get": {
-                "tags": [
-                    "grupo_investigacion"
-                ],
-                "description": "get GrupoInvestigacion by id",
-                "operationId": "GrupoInvestigacionController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.GrupoInvestigacion"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "grupo_investigacion"
-                ],
-                "description": "update the GrupoInvestigacion",
-                "operationId": "GrupoInvestigacionController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for GrupoInvestigacion content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.GrupoInvestigacion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.GrupoInvestigacion"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "grupo_investigacion"
-                ],
-                "description": "delete the GrupoInvestigacion",
-                "operationId": "GrupoInvestigacionController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/linea_investigacion/": {
-            "get": {
-                "tags": [
-                    "linea_investigacion"
-                ],
-                "description": "get LineaInvestigacion",
-                "operationId": "LineaInvestigacionController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.LineaInvestigacion"
-                        }
-                    },
-                    "403": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "linea_investigacion"
-                ],
-                "description": "create LineaInvestigacion",
-                "operationId": "LineaInvestigacionController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for LineaInvestigacion content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.LineaInvestigacion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.LineaInvestigacion"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/linea_investigacion/{id}": {
-            "get": {
-                "tags": [
-                    "linea_investigacion"
-                ],
-                "description": "get LineaInvestigacion by id",
-                "operationId": "LineaInvestigacionController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.LineaInvestigacion"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "linea_investigacion"
-                ],
-                "description": "update the LineaInvestigacion",
-                "operationId": "LineaInvestigacionController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for LineaInvestigacion content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.LineaInvestigacion"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.LineaInvestigacion"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "linea_investigacion"
-                ],
-                "description": "delete the LineaInvestigacion",
-                "operationId": "LineaInvestigacionController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
-                    }
-                }
-            }
-        },
-        "/periodo_academico/": {
-            "get": {
-                "tags": [
-                    "periodo_academico"
-                ],
-                "description": "get PeriodoAcademico",
-                "operationId": "PeriodoAcademicoController.Get All",
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "query",
-                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "fields",
-                        "description": "Fields returned. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "sortby",
-                        "description": "Sorted-by fields. e.g. col1,col2 ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "order",
-                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "limit",
-                        "description": "Limit the size of result set. Must be an integer",
-                        "type": "string"
-                    },
-                    {
-                        "in": "query",
-                        "name": "offset",
-                        "description": "Start position of result set. Must be an integer",
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.PeriodoAcademico"
-                        }
-                    },
-                    "403": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "tags": [
-                    "periodo_academico"
-                ],
-                "description": "create PeriodoAcademico",
-                "operationId": "PeriodoAcademicoController.Post",
-                "parameters": [
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for PeriodoAcademico content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.PeriodoAcademico"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "{int} models.PeriodoAcademico"
-                    },
-                    "403": {
-                        "description": "body is empty"
-                    }
-                }
-            }
-        },
-        "/periodo_academico/{id}": {
-            "get": {
-                "tags": [
-                    "periodo_academico"
-                ],
-                "description": "get PeriodoAcademico by id",
-                "operationId": "PeriodoAcademicoController.Get One",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The key for staticblock",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.PeriodoAcademico"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is empty"
-                    }
-                }
-            },
-            "put": {
-                "tags": [
-                    "periodo_academico"
-                ],
-                "description": "update the PeriodoAcademico",
-                "operationId": "PeriodoAcademicoController.Put",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to update",
-                        "required": true,
-                        "type": "string"
-                    },
-                    {
-                        "in": "body",
-                        "name": "body",
-                        "description": "body for PeriodoAcademico content",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.PeriodoAcademico"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "",
-                        "schema": {
-                            "$ref": "#/definitions/models.PeriodoAcademico"
-                        }
-                    },
-                    "403": {
-                        "description": ":id is not int"
-                    }
-                }
-            },
-            "delete": {
-                "tags": [
-                    "periodo_academico"
-                ],
-                "description": "delete the PeriodoAcademico",
-                "operationId": "PeriodoAcademicoController.Delete",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "description": "The id you want to delete",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "{string} delete success!"
-                    },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1105,8 +413,8 @@
                             "$ref": "#/definitions/models.Propuesta"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1131,8 +439,8 @@
                     "201": {
                         "description": "{int} models.Propuesta"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -1160,8 +468,8 @@
                             "$ref": "#/definitions/models.Propuesta"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1196,8 +504,8 @@
                             "$ref": "#/definitions/models.Propuesta"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -1220,8 +528,181 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/tipo_inscripcion/": {
+            "get": {
+                "tags": [
+                    "tipo_inscripcion"
+                ],
+                "description": "get TipoInscripcion",
+                "operationId": "TipoInscripcionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInscripcion"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_inscripcion"
+                ],
+                "description": "create TipoInscripcion",
+                "operationId": "TipoInscripcionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoInscripcion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInscripcion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoInscripcion"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/tipo_inscripcion/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_inscripcion"
+                ],
+                "description": "get TipoInscripcion by id",
+                "operationId": "TipoInscripcionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInscripcion"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_inscripcion"
+                ],
+                "description": "update the TipoInscripcion",
+                "operationId": "TipoInscripcionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoInscripcion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInscripcion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoInscripcion"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_inscripcion"
+                ],
+                "description": "delete the TipoInscripcion",
+                "operationId": "TipoInscripcionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1278,8 +759,8 @@
                             "$ref": "#/definitions/models.TipoProyecto"
                         }
                     },
-                    "403": {
-                        "description": ""
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1304,8 +785,8 @@
                     "201": {
                         "description": "{int} models.TipoProyecto"
                     },
-                    "403": {
-                        "description": "body is empty"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             }
@@ -1333,8 +814,8 @@
                             "$ref": "#/definitions/models.TipoProyecto"
                         }
                     },
-                    "403": {
-                        "description": ":id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             },
@@ -1369,8 +850,8 @@
                             "$ref": "#/definitions/models.TipoProyecto"
                         }
                     },
-                    "403": {
-                        "description": ":id is not int"
+                    "400": {
+                        "description": "the request contains incorrect syntax"
                     }
                 }
             },
@@ -1393,8 +874,8 @@
                     "200": {
                         "description": "{string} delete success!"
                     },
-                    "403": {
-                        "description": "id is empty"
+                    "404": {
+                        "description": "not found resource"
                     }
                 }
             }
@@ -1422,17 +903,10 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "LineaInvestigacion": {
-                    "$ref": "#/definitions/models.LineaInvestigacion"
-                },
                 "Periodo": {
                     "$ref": "#/definitions/models.PeriodoAcademico"
                 },
                 "ProgramaAcademico": {
-                    "type": "integer",
-                    "format": "int64"
-                },
-                "Propuesta": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -1502,6 +976,40 @@
                 }
             }
         },
+        "models.EstadoInscripcion": {
+            "title": "EstadoInscripcion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "FechaCreacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaModificacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
         "models.GrupoInvestigacion": {
             "title": "GrupoInvestigacion",
             "type": "object",
@@ -1525,6 +1033,64 @@
                 },
                 "Sigla": {
                     "type": "string"
+                }
+            }
+        },
+        "models.Inscripcion": {
+            "title": "Inscripcion",
+            "type": "object",
+            "properties": {
+                "AceptaTerminos": {
+                    "type": "boolean"
+                },
+                "Activo": {
+                    "type": "boolean"
+                },
+                "Enfasis": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "EstadoInscripcionId": {
+                    "$ref": "#/definitions/models.EstadoInscripcion"
+                },
+                "FechaAceptaTerminos": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaCreacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaModificacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Periodo": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Persona": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ProgramaAcademico": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ReciboInscripcion": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ReciboMatricula": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TipoInscripcionId": {
+                    "$ref": "#/definitions/models.TipoInscripcion"
                 }
             }
         },
@@ -1616,6 +1182,40 @@
                 }
             }
         },
+        "models.TipoInscripcion": {
+            "title": "TipoInscripcion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "FechaCreacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "FechaModificacion": {
+                    "type": "string",
+                    "format": "datetime"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
+                }
+            }
+        },
         "models.TipoProyecto": {
             "title": "TipoProyecto",
             "type": "object",
@@ -1645,28 +1245,16 @@
     },
     "tags": [
         {
-            "name": "admision",
-            "description": "AdmisionController operations for Admision\n"
+            "name": "tipo_inscripcion",
+            "description": "TipoInscripcionController operations for TipoInscripcion\n"
         },
         {
-            "name": "enfasis",
-            "description": "EnfasisController operations for Enfasis\n"
+            "name": "inscripcion",
+            "description": "InscripcionController operations for Inscripcion\n"
         },
         {
-            "name": "estado_admision",
-            "description": "EstadoAdmisionController operations for EstadoAdmision\n"
-        },
-        {
-            "name": "grupo_investigacion",
-            "description": "GrupoInvestigacionController operations for GrupoInvestigacion\n"
-        },
-        {
-            "name": "linea_investigacion",
-            "description": "LineaInvestigacionController operations for LineaInvestigacion\n"
-        },
-        {
-            "name": "periodo_academico",
-            "description": "PeriodoAcademicoController operations for PeriodoAcademico\n"
+            "name": "estado_inscripcion",
+            "description": "EstadoInscripcionController operations for EstadoInscripcion\n"
         },
         {
             "name": "propuesta",

@@ -8,7 +8,7 @@
 package routers
 
 import (
-	"github.com/planesticud/admisiones_crud/controllers"
+	"github.com/planesticud/inscripcion_crud/controllers"
 
 	"github.com/astaxie/beego"
 )
@@ -16,39 +16,21 @@ import (
 func init() {
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/admision",
+		beego.NSNamespace("/tipo_inscripcion",
 			beego.NSInclude(
-				&controllers.AdmisionController{},
+				&controllers.TipoInscripcionController{},
 			),
 		),
 
-		beego.NSNamespace("/enfasis",
+		beego.NSNamespace("/inscripcion",
 			beego.NSInclude(
-				&controllers.EnfasisController{},
+				&controllers.InscripcionController{},
 			),
 		),
 
-		beego.NSNamespace("/estado_admision",
+		beego.NSNamespace("/estado_inscripcion",
 			beego.NSInclude(
-				&controllers.EstadoAdmisionController{},
-			),
-		),
-
-		beego.NSNamespace("/grupo_investigacion",
-			beego.NSInclude(
-				&controllers.GrupoInvestigacionController{},
-			),
-		),
-
-		beego.NSNamespace("/linea_investigacion",
-			beego.NSInclude(
-				&controllers.LineaInvestigacionController{},
-			),
-		),
-
-		beego.NSNamespace("/periodo_academico",
-			beego.NSInclude(
-				&controllers.PeriodoAcademicoController{},
+				&controllers.EstadoInscripcionController{},
 			),
 		),
 
@@ -63,36 +45,6 @@ func init() {
 				&controllers.TipoProyectoController{},
 			),
 		),
-
-		beego.NSNamespace("/entrevista",
-			beego.NSInclude(
-				&controllers.EntrevistaController{},
-			),
-		),
-
-		beego.NSNamespace("/entrevistador",
-			beego.NSInclude(
-				&controllers.EntrevistadorController{},
-			),
-		),
-
-		beego.NSNamespace("/estado_entrevista",
-			beego.NSInclude(
-				&controllers.EstadoEntrevistaController{},
-			),
-
-		),
-		beego.NSNamespace("/criterio_admision",
-			beego.NSInclude(
-				&controllers.CriterioAdmisionController{},
-			),
-		),
-		beego.NSNamespace("/tipo_criterio",
-			beego.NSInclude(
-				&controllers.TipoCriterioController{},
-			),
-		),
-		
 	)
 	beego.AddNamespace(ns)
 }

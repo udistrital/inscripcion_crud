@@ -12,13 +12,13 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
-// PropuestaController operations for Propuesta
-type PropuestaController struct {
+// TipoInscripcionController operations for TipoInscripcion
+type TipoInscripcionController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *PropuestaController) URLMapping() {
+func (c *TipoInscripcionController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -28,15 +28,15 @@ func (c *PropuestaController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Propuesta
-// @Param	body		body 	models.Propuesta	true		"body for Propuesta content"
-// @Success 201 {int} models.Propuesta
+// @Description create TipoInscripcion
+// @Param	body		body 	models.TipoInscripcion	true		"body for TipoInscripcion content"
+// @Success 201 {int} models.TipoInscripcion
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *PropuestaController) Post() {
-	var v models.Propuesta
+func (c *TipoInscripcionController) Post() {
+	var v models.TipoInscripcion
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddPropuesta(&v); err == nil {
+		if _, err := models.AddTipoInscripcion(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -56,15 +56,15 @@ func (c *PropuestaController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get Propuesta by id
+// @Description get TipoInscripcion by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Propuesta
+// @Success 200 {object} models.TipoInscripcion
 // @Failure 404 not found resource
 // @router /:id [get]
-func (c *PropuestaController) GetOne() {
+func (c *TipoInscripcionController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetPropuestaById(id)
+	v, err := models.GetTipoInscripcionById(id)
 	if err != nil {
 		logs.Error(err)
 		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
@@ -78,17 +78,17 @@ func (c *PropuestaController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Propuesta
+// @Description get TipoInscripcion
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Propuesta
+// @Success 200 {object} models.TipoInscripcion
 // @Failure 404 not found resource
 // @router / [get]
-func (c *PropuestaController) GetAll() {
+func (c *TipoInscripcionController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -130,7 +130,7 @@ func (c *PropuestaController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllPropuesta(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllTipoInscripcion(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
 		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
@@ -147,18 +147,18 @@ func (c *PropuestaController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Propuesta
+// @Description update the TipoInscripcion
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Propuesta	true		"body for Propuesta content"
-// @Success 200 {object} models.Propuesta
+// @Param	body		body 	models.TipoInscripcion	true		"body for TipoInscripcion content"
+// @Success 200 {object} models.TipoInscripcion
 // @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *PropuestaController) Put() {
+func (c *TipoInscripcionController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Propuesta{Id: id}
+	v := models.TipoInscripcion{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdatePropuestaById(&v); err == nil {
+		if err := models.UpdateTipoInscripcionById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)
@@ -177,15 +177,15 @@ func (c *PropuestaController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the Propuesta
+// @Description delete the TipoInscripcion
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 404 not found resource
 // @router /:id [delete]
-func (c *PropuestaController) Delete() {
+func (c *TipoInscripcionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeletePropuesta(id); err == nil {
+	if err := models.DeleteTipoInscripcion(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		logs.Error(err)

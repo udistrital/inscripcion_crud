@@ -3,20 +3,22 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/planesticud/admisiones_crud/models"
 	"strconv"
 	"strings"
 
+	"github.com/planesticud/inscripcion_crud/models"
+
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 )
 
-// CriterioAdmisionController operations for CriterioAdmision
-type CriterioAdmisionController struct {
+// InscripcionController operations for Inscripcion
+type InscripcionController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *CriterioAdmisionController) URLMapping() {
+func (c *InscripcionController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -26,39 +28,48 @@ func (c *CriterioAdmisionController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create CriterioAdmision
-// @Param	body		body 	models.CriterioAdmision	true		"body for CriterioAdmision content"
-// @Success 201 {int} models.CriterioAdmision
-// @Failure 403 body is empty
+// @Description create Inscripcion
+// @Param	body		body 	models.Inscripcion	true		"body for Inscripcion content"
+// @Success 201 {int} models.Inscripcion
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *CriterioAdmisionController) Post() {
-	var v models.CriterioAdmision
+func (c *InscripcionController) Post() {
+	var v models.Inscripcion
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddCriterioAdmision(&v); err == nil {
+		if _, err := models.AddInscripcion(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+			c.Data["system"] = err
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
 
 // GetOne ...
 // @Title Get One
-// @Description get CriterioAdmision by id
+// @Description get Inscripcion by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.CriterioAdmision
-// @Failure 403 :id is empty
+// @Success 200 {object} models.Inscripcion
+// @Failure 404 not found resource
 // @router /:id [get]
-func (c *CriterioAdmisionController) GetOne() {
+func (c *InscripcionController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetCriterioAdmisionById(id)
+	v, err := models.GetInscripcionById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("404")
 	} else {
 		c.Data["json"] = v
 	}
@@ -67,17 +78,17 @@ func (c *CriterioAdmisionController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get CriterioAdmision
+// @Description get Inscripcion
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.CriterioAdmision
-// @Failure 403
+// @Success 200 {object} models.Inscripcion
+// @Failure 404 not found resource
 // @router / [get]
-func (c *CriterioAdmisionController) GetAll() {
+func (c *InscripcionController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -119,10 +130,16 @@ func (c *CriterioAdmisionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllCriterioAdmision(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllInscripcion(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("404")
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
@@ -130,42 +147,51 @@ func (c *CriterioAdmisionController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the CriterioAdmision
+// @Description update the Inscripcion
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.CriterioAdmision	true		"body for CriterioAdmision content"
-// @Success 200 {object} models.CriterioAdmision
-// @Failure 403 :id is not int
+// @Param	body		body 	models.Inscripcion	true		"body for Inscripcion content"
+// @Success 200 {object} models.Inscripcion
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *CriterioAdmisionController) Put() {
+func (c *InscripcionController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.CriterioAdmision{Id: id}
+	v := models.Inscripcion{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateCriterioAdmisionById(&v); err == nil {
-			c.Data["json"] = "OK"
+		if err := models.UpdateInscripcionById(&v); err == nil {
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+			c.Data["system"] = err
+			c.Abort("400")
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("400")
 	}
 	c.ServeJSON()
 }
 
 // Delete ...
 // @Title Delete
-// @Description delete the CriterioAdmision
+// @Description delete the Inscripcion
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
-func (c *CriterioAdmisionController) Delete() {
+func (c *InscripcionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteCriterioAdmision(id); err == nil {
-		c.Data["json"] = "OK"
+	if err := models.DeleteInscripcion(id); err == nil {
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Abort("404")
 	}
 	c.ServeJSON()
 }

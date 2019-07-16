@@ -5,52 +5,55 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type EstadoEntrevista struct {
-	Id                int     `orm:"column(id);pk"`
-	Nombre            string  `orm:"column(nombre)"`
-	Descripcion       string  `orm:"column(descripcion);null"`
-	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
-	Activo            bool    `orm:"column(activo)"`
-	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+type EstadoInscripcion struct {
+	Id                int       `orm:"column(id);pk;auto"`
+	Nombre            string    `orm:"column(nombre)"`
+	Descripcion       string    `orm:"column(descripcion);null"`
+	CodigoAbreviacion string    `orm:"column(codigo_abreviacion)"`
+	Activo            bool      `orm:"column(activo)"`
+	NumeroOrden       float64   `orm:"column(numero_orden);null"`
+	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 }
 
-func (t *EstadoEntrevista) TableName() string {
-	return "estado_entrevista"
+func (t *EstadoInscripcion) TableName() string {
+	return "estado_inscripcion"
 }
 
 func init() {
-	orm.RegisterModel(new(EstadoEntrevista))
+	orm.RegisterModel(new(EstadoInscripcion))
 }
 
-// AddEstadoEntrevista insert a new EstadoEntrevista into database and returns
+// AddEstadoInscripcion insert a new EstadoInscripcion into database and returns
 // last inserted Id on success.
-func AddEstadoEntrevista(m *EstadoEntrevista) (id int64, err error) {
+func AddEstadoInscripcion(m *EstadoInscripcion) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetEstadoEntrevistaById retrieves EstadoEntrevista by Id. Returns error if
+// GetEstadoInscripcionById retrieves EstadoInscripcion by Id. Returns error if
 // Id doesn't exist
-func GetEstadoEntrevistaById(id int) (v *EstadoEntrevista, err error) {
+func GetEstadoInscripcionById(id int) (v *EstadoInscripcion, err error) {
 	o := orm.NewOrm()
-	v = &EstadoEntrevista{Id: id}
+	v = &EstadoInscripcion{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllEstadoEntrevista retrieves all EstadoEntrevista matches certain condition. Returns empty list if
+// GetAllEstadoInscripcion retrieves all EstadoInscripcion matches certain condition. Returns empty list if
 // no records exist
-func GetAllEstadoEntrevista(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllEstadoInscripcion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(EstadoEntrevista))
+	qs := o.QueryTable(new(EstadoInscripcion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -100,7 +103,7 @@ func GetAllEstadoEntrevista(query map[string]string, fields []string, sortby []s
 		}
 	}
 
-	var l []EstadoEntrevista
+	var l []EstadoInscripcion
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -123,11 +126,11 @@ func GetAllEstadoEntrevista(query map[string]string, fields []string, sortby []s
 	return nil, err
 }
 
-// UpdateEstadoEntrevista updates EstadoEntrevista by Id and returns error if
+// UpdateEstadoInscripcion updates EstadoInscripcion by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateEstadoEntrevistaById(m *EstadoEntrevista) (err error) {
+func UpdateEstadoInscripcionById(m *EstadoInscripcion) (err error) {
 	o := orm.NewOrm()
-	v := EstadoEntrevista{Id: m.Id}
+	v := EstadoInscripcion{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -138,15 +141,15 @@ func UpdateEstadoEntrevistaById(m *EstadoEntrevista) (err error) {
 	return
 }
 
-// DeleteEstadoEntrevista deletes EstadoEntrevista by Id and returns error if
+// DeleteEstadoInscripcion deletes EstadoInscripcion by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteEstadoEntrevista(id int) (err error) {
+func DeleteEstadoInscripcion(id int) (err error) {
 	o := orm.NewOrm()
-	v := EstadoEntrevista{Id: id}
+	v := EstadoInscripcion{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&EstadoEntrevista{Id: id}); err == nil {
+		if num, err = o.Delete(&EstadoInscripcion{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

@@ -11,12 +11,12 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
-  /admision/:
+  /estado_inscripcion/:
     get:
       tags:
-      - admision
-      description: get Admision
-      operationId: AdmisionController.Get All
+      - estado_inscripcion
+      description: get EstadoInscripcion
+      operationId: EstadoInscripcionController.Get All
       parameters:
       - in: query
         name: query
@@ -47,32 +47,32 @@ paths:
         "200":
           description: ""
           schema:
-            $ref: '#/definitions/models.Admision'
-        "403":
-          description: ""
+            $ref: '#/definitions/models.EstadoInscripcion'
+        "404":
+          description: not found resource
     post:
       tags:
-      - admision
-      description: create Admision
-      operationId: AdmisionController.Post
+      - estado_inscripcion
+      description: create EstadoInscripcion
+      operationId: EstadoInscripcionController.Post
       parameters:
       - in: body
         name: body
-        description: body for Admision content
+        description: body for EstadoInscripcion content
         required: true
         schema:
-          $ref: '#/definitions/models.Admision'
+          $ref: '#/definitions/models.EstadoInscripcion'
       responses:
         "201":
-          description: '{int} models.Admision'
-        "403":
-          description: body is empty
-  /admision/{id}:
+          description: '{int} models.EstadoInscripcion'
+        "400":
+          description: the request contains incorrect syntax
+  /estado_inscripcion/{id}:
     get:
       tags:
-      - admision
-      description: get Admision by id
-      operationId: AdmisionController.Get One
+      - estado_inscripcion
+      description: get EstadoInscripcion by id
+      operationId: EstadoInscripcionController.Get One
       parameters:
       - in: path
         name: id
@@ -83,14 +83,14 @@ paths:
         "200":
           description: ""
           schema:
-            $ref: '#/definitions/models.Admision'
-        "403":
-          description: :id is empty
+            $ref: '#/definitions/models.EstadoInscripcion'
+        "404":
+          description: not found resource
     put:
       tags:
-      - admision
-      description: update the Admision
-      operationId: AdmisionController.Put
+      - estado_inscripcion
+      description: update the EstadoInscripcion
+      operationId: EstadoInscripcionController.Put
       parameters:
       - in: path
         name: id
@@ -99,22 +99,22 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for Admision content
+        description: body for EstadoInscripcion content
         required: true
         schema:
-          $ref: '#/definitions/models.Admision'
+          $ref: '#/definitions/models.EstadoInscripcion'
       responses:
         "200":
           description: ""
           schema:
-            $ref: '#/definitions/models.Admision'
-        "403":
-          description: :id is not int
+            $ref: '#/definitions/models.EstadoInscripcion'
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
-      - admision
-      description: delete the Admision
-      operationId: AdmisionController.Delete
+      - estado_inscripcion
+      description: delete the EstadoInscripcion
+      operationId: EstadoInscripcionController.Delete
       parameters:
       - in: path
         name: id
@@ -124,14 +124,14 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /enfasis/:
+        "404":
+          description: not found resource
+  /inscripcion/:
     get:
       tags:
-      - enfasis
-      description: get Enfasis
-      operationId: EnfasisController.Get All
+      - inscripcion
+      description: get Inscripcion
+      operationId: InscripcionController.Get All
       parameters:
       - in: query
         name: query
@@ -162,32 +162,32 @@ paths:
         "200":
           description: ""
           schema:
-            $ref: '#/definitions/models.Enfasis'
-        "403":
-          description: ""
+            $ref: '#/definitions/models.Inscripcion'
+        "404":
+          description: not found resource
     post:
       tags:
-      - enfasis
-      description: create Enfasis
-      operationId: EnfasisController.Post
+      - inscripcion
+      description: create Inscripcion
+      operationId: InscripcionController.Post
       parameters:
       - in: body
         name: body
-        description: body for Enfasis content
+        description: body for Inscripcion content
         required: true
         schema:
-          $ref: '#/definitions/models.Enfasis'
+          $ref: '#/definitions/models.Inscripcion'
       responses:
         "201":
-          description: '{int} models.Enfasis'
-        "403":
-          description: body is empty
-  /enfasis/{id}:
+          description: '{int} models.Inscripcion'
+        "400":
+          description: the request contains incorrect syntax
+  /inscripcion/{id}:
     get:
       tags:
-      - enfasis
-      description: get Enfasis by id
-      operationId: EnfasisController.Get One
+      - inscripcion
+      description: get Inscripcion by id
+      operationId: InscripcionController.Get One
       parameters:
       - in: path
         name: id
@@ -198,14 +198,14 @@ paths:
         "200":
           description: ""
           schema:
-            $ref: '#/definitions/models.Enfasis'
-        "403":
-          description: :id is empty
+            $ref: '#/definitions/models.Inscripcion'
+        "404":
+          description: not found resource
     put:
       tags:
-      - enfasis
-      description: update the Enfasis
-      operationId: EnfasisController.Put
+      - inscripcion
+      description: update the Inscripcion
+      operationId: InscripcionController.Put
       parameters:
       - in: path
         name: id
@@ -214,22 +214,22 @@ paths:
         type: string
       - in: body
         name: body
-        description: body for Enfasis content
+        description: body for Inscripcion content
         required: true
         schema:
-          $ref: '#/definitions/models.Enfasis'
+          $ref: '#/definitions/models.Inscripcion'
       responses:
         "200":
           description: ""
           schema:
-            $ref: '#/definitions/models.Enfasis'
-        "403":
-          description: :id is not int
+            $ref: '#/definitions/models.Inscripcion'
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
-      - enfasis
-      description: delete the Enfasis
-      operationId: EnfasisController.Delete
+      - inscripcion
+      description: delete the Inscripcion
+      operationId: InscripcionController.Delete
       parameters:
       - in: path
         name: id
@@ -239,468 +239,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /estado_admision/:
-    get:
-      tags:
-      - estado_admision
-      description: get EstadoAdmision
-      operationId: EstadoAdmisionController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.EstadoAdmision'
-        "403":
-          description: ""
-    post:
-      tags:
-      - estado_admision
-      description: create EstadoAdmision
-      operationId: EstadoAdmisionController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for EstadoAdmision content
-        required: true
-        schema:
-          $ref: '#/definitions/models.EstadoAdmision'
-      responses:
-        "201":
-          description: '{int} models.EstadoAdmision'
-        "403":
-          description: body is empty
-  /estado_admision/{id}:
-    get:
-      tags:
-      - estado_admision
-      description: get EstadoAdmision by id
-      operationId: EstadoAdmisionController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.EstadoAdmision'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - estado_admision
-      description: update the EstadoAdmision
-      operationId: EstadoAdmisionController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for EstadoAdmision content
-        required: true
-        schema:
-          $ref: '#/definitions/models.EstadoAdmision'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.EstadoAdmision'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - estado_admision
-      description: delete the EstadoAdmision
-      operationId: EstadoAdmisionController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /grupo_investigacion/:
-    get:
-      tags:
-      - grupo_investigacion
-      description: get GrupoInvestigacion
-      operationId: GrupoInvestigacionController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.GrupoInvestigacion'
-        "403":
-          description: ""
-    post:
-      tags:
-      - grupo_investigacion
-      description: create GrupoInvestigacion
-      operationId: GrupoInvestigacionController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for GrupoInvestigacion content
-        required: true
-        schema:
-          $ref: '#/definitions/models.GrupoInvestigacion'
-      responses:
-        "201":
-          description: '{int} models.GrupoInvestigacion'
-        "403":
-          description: body is empty
-  /grupo_investigacion/{id}:
-    get:
-      tags:
-      - grupo_investigacion
-      description: get GrupoInvestigacion by id
-      operationId: GrupoInvestigacionController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.GrupoInvestigacion'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - grupo_investigacion
-      description: update the GrupoInvestigacion
-      operationId: GrupoInvestigacionController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for GrupoInvestigacion content
-        required: true
-        schema:
-          $ref: '#/definitions/models.GrupoInvestigacion'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.GrupoInvestigacion'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - grupo_investigacion
-      description: delete the GrupoInvestigacion
-      operationId: GrupoInvestigacionController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /linea_investigacion/:
-    get:
-      tags:
-      - linea_investigacion
-      description: get LineaInvestigacion
-      operationId: LineaInvestigacionController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.LineaInvestigacion'
-        "403":
-          description: ""
-    post:
-      tags:
-      - linea_investigacion
-      description: create LineaInvestigacion
-      operationId: LineaInvestigacionController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for LineaInvestigacion content
-        required: true
-        schema:
-          $ref: '#/definitions/models.LineaInvestigacion'
-      responses:
-        "201":
-          description: '{int} models.LineaInvestigacion'
-        "403":
-          description: body is empty
-  /linea_investigacion/{id}:
-    get:
-      tags:
-      - linea_investigacion
-      description: get LineaInvestigacion by id
-      operationId: LineaInvestigacionController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.LineaInvestigacion'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - linea_investigacion
-      description: update the LineaInvestigacion
-      operationId: LineaInvestigacionController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for LineaInvestigacion content
-        required: true
-        schema:
-          $ref: '#/definitions/models.LineaInvestigacion'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.LineaInvestigacion'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - linea_investigacion
-      description: delete the LineaInvestigacion
-      operationId: LineaInvestigacionController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
-  /periodo_academico/:
-    get:
-      tags:
-      - periodo_academico
-      description: get PeriodoAcademico
-      operationId: PeriodoAcademicoController.Get All
-      parameters:
-      - in: query
-        name: query
-        description: Filter. e.g. col1:v1,col2:v2 ...
-        type: string
-      - in: query
-        name: fields
-        description: Fields returned. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: sortby
-        description: Sorted-by fields. e.g. col1,col2 ...
-        type: string
-      - in: query
-        name: order
-        description: Order corresponding to each sortby field, if single value, apply
-          to all sortby fields. e.g. desc,asc ...
-        type: string
-      - in: query
-        name: limit
-        description: Limit the size of result set. Must be an integer
-        type: string
-      - in: query
-        name: offset
-        description: Start position of result set. Must be an integer
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.PeriodoAcademico'
-        "403":
-          description: ""
-    post:
-      tags:
-      - periodo_academico
-      description: create PeriodoAcademico
-      operationId: PeriodoAcademicoController.Post
-      parameters:
-      - in: body
-        name: body
-        description: body for PeriodoAcademico content
-        required: true
-        schema:
-          $ref: '#/definitions/models.PeriodoAcademico'
-      responses:
-        "201":
-          description: '{int} models.PeriodoAcademico'
-        "403":
-          description: body is empty
-  /periodo_academico/{id}:
-    get:
-      tags:
-      - periodo_academico
-      description: get PeriodoAcademico by id
-      operationId: PeriodoAcademicoController.Get One
-      parameters:
-      - in: path
-        name: id
-        description: The key for staticblock
-        required: true
-        type: string
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.PeriodoAcademico'
-        "403":
-          description: :id is empty
-    put:
-      tags:
-      - periodo_academico
-      description: update the PeriodoAcademico
-      operationId: PeriodoAcademicoController.Put
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to update
-        required: true
-        type: string
-      - in: body
-        name: body
-        description: body for PeriodoAcademico content
-        required: true
-        schema:
-          $ref: '#/definitions/models.PeriodoAcademico'
-      responses:
-        "200":
-          description: ""
-          schema:
-            $ref: '#/definitions/models.PeriodoAcademico'
-        "403":
-          description: :id is not int
-    delete:
-      tags:
-      - periodo_academico
-      description: delete the PeriodoAcademico
-      operationId: PeriodoAcademicoController.Delete
-      parameters:
-      - in: path
-        name: id
-        description: The id you want to delete
-        required: true
-        type: string
-      responses:
-        "200":
-          description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /propuesta/:
     get:
       tags:
@@ -738,8 +278,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Propuesta'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - propuesta
@@ -755,8 +295,8 @@ paths:
       responses:
         "201":
           description: '{int} models.Propuesta'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /propuesta/{id}:
     get:
       tags:
@@ -774,8 +314,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Propuesta'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - propuesta
@@ -798,8 +338,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.Propuesta'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - propuesta
@@ -814,8 +354,123 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
+  /tipo_inscripcion/:
+    get:
+      tags:
+      - tipo_inscripcion
+      description: get TipoInscripcion
+      operationId: TipoInscripcionController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoInscripcion'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - tipo_inscripcion
+      description: create TipoInscripcion
+      operationId: TipoInscripcionController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for TipoInscripcion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoInscripcion'
+      responses:
+        "201":
+          description: '{int} models.TipoInscripcion'
+        "400":
+          description: the request contains incorrect syntax
+  /tipo_inscripcion/{id}:
+    get:
+      tags:
+      - tipo_inscripcion
+      description: get TipoInscripcion by id
+      operationId: TipoInscripcionController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoInscripcion'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - tipo_inscripcion
+      description: update the TipoInscripcion
+      operationId: TipoInscripcionController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for TipoInscripcion content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TipoInscripcion'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.TipoInscripcion'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - tipo_inscripcion
+      description: delete the TipoInscripcion
+      operationId: TipoInscripcionController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
   /tipo_proyecto/:
     get:
       tags:
@@ -853,8 +508,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoProyecto'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_proyecto
@@ -870,8 +525,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoProyecto'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_proyecto/{id}:
     get:
       tags:
@@ -889,8 +544,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoProyecto'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_proyecto
@@ -913,8 +568,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoProyecto'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_proyecto
@@ -929,8 +584,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
 definitions:
   models.Admision:
     title: Admision
@@ -948,14 +603,9 @@ definitions:
       Id:
         type: integer
         format: int64
-      LineaInvestigacion:
-        $ref: '#/definitions/models.LineaInvestigacion'
       Periodo:
         $ref: '#/definitions/models.PeriodoAcademico'
       ProgramaAcademico:
-        type: integer
-        format: int64
-      Propuesta:
         type: integer
         format: int64
       ReciboInscripcion:
@@ -1003,6 +653,30 @@ definitions:
       NumeroOrden:
         type: number
         format: double
+  models.EstadoInscripcion:
+    title: EstadoInscripcion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      FechaCreacion:
+        type: string
+        format: datetime
+      FechaModificacion:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
   models.GrupoInvestigacion:
     title: GrupoInvestigacion
     type: object
@@ -1021,6 +695,48 @@ definitions:
         format: double
       Sigla:
         type: string
+  models.Inscripcion:
+    title: Inscripcion
+    type: object
+    properties:
+      AceptaTerminos:
+        type: boolean
+      Activo:
+        type: boolean
+      Enfasis:
+        type: integer
+        format: int64
+      EstadoInscripcionId:
+        $ref: '#/definitions/models.EstadoInscripcion'
+      FechaAceptaTerminos:
+        type: string
+        format: datetime
+      FechaCreacion:
+        type: string
+        format: datetime
+      FechaModificacion:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
+      Periodo:
+        type: integer
+        format: int64
+      Persona:
+        type: integer
+        format: int64
+      ProgramaAcademico:
+        type: integer
+        format: int64
+      ReciboInscripcion:
+        type: integer
+        format: int64
+      ReciboMatricula:
+        type: integer
+        format: int64
+      TipoInscripcionId:
+        $ref: '#/definitions/models.TipoInscripcion'
   models.LineaInvestigacion:
     title: LineaInvestigacion
     type: object
@@ -1082,6 +798,30 @@ definitions:
         type: string
       TipoProyecto:
         $ref: '#/definitions/models.TipoProyecto'
+  models.TipoInscripcion:
+    title: TipoInscripcion
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CodigoAbreviacion:
+        type: string
+      Descripcion:
+        type: string
+      FechaCreacion:
+        type: string
+        format: datetime
+      FechaModificacion:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
+      Nombre:
+        type: string
+      NumeroOrden:
+        type: number
+        format: double
   models.TipoProyecto:
     title: TipoProyecto
     type: object
@@ -1101,24 +841,15 @@ definitions:
         type: number
         format: double
 tags:
-- name: admision
+- name: tipo_inscripcion
   description: |
-    AdmisionController operations for Admision
-- name: enfasis
+    TipoInscripcionController operations for TipoInscripcion
+- name: inscripcion
   description: |
-    EnfasisController operations for Enfasis
-- name: estado_admision
+    InscripcionController operations for Inscripcion
+- name: estado_inscripcion
   description: |
-    EstadoAdmisionController operations for EstadoAdmision
-- name: grupo_investigacion
-  description: |
-    GrupoInvestigacionController operations for GrupoInvestigacion
-- name: linea_investigacion
-  description: |
-    LineaInvestigacionController operations for LineaInvestigacion
-- name: periodo_academico
-  description: |
-    PeriodoAcademicoController operations for PeriodoAcademico
+    EstadoInscripcionController operations for EstadoInscripcion
 - name: propuesta
   description: |
     PropuestaController operations for Propuesta
