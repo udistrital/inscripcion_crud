@@ -1,4 +1,4 @@
-# admisiones_crud
+# inscripcion_crud
 
 --Api de personas con CI--
 CI deploy with lambda - S3
@@ -10,7 +10,7 @@ Go version >= 1.8.
 
 ## Preparación:
     Para usar el API, usar el comando:
-        - go get github.com/udistrital/admisiones_crud
+        - go get github.com/udistrital/inscripcion_crud
 
 ## Run
 
