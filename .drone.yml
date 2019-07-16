@@ -1,5 +1,5 @@
 kind: pipeline
-name: admisiones_crud
+name: inscripcion_crud
 
 workspace:
   base: /go
