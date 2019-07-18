@@ -26,5 +26,5 @@ Definir los valores de las siguientes variables de entorno:
 Ejemplo: INSCRIPCION_CRUD_HTTP_PORT=8083 INSCRIPCION_CRUD__PGUSER=user INSCRIPCION_CRUD__PGPASS=password INSCRIPCION_CRUD__PGURLS=localhost INSCRIPCION_CRUD__PGDB=udistrital_core_db INSCRIPCION_CRUD__SCHEMA=core_new bee run
 
 ## MODELO
-![inscripcion](https://user-images.githubusercontent.com/14035745/61454725-4fd9c000-a927-11e9-9009-36701f500135.png)
+![inscripcion](https://user-images.githubusercontent.com/14035745/61455174-646a8800-a928-11e9-94a2-faa36aaa85e9.png)
 
