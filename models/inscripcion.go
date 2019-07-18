@@ -12,12 +12,12 @@ import (
 
 type Inscripcion struct {
 	Id                  int                `orm:"column(id);pk;auto"`
-	Persona             int                `orm:"column(persona)"`
-	ProgramaAcademico   int                `orm:"column(programa_academico)"`
-	ReciboMatricula     int                `orm:"column(recibo_matricula);null"`
-	ReciboInscripcion   int                `orm:"column(recibo_inscripcion);null"`
-	Periodo             int                `orm:"column(periodo)"`
-	Enfasis             int                `orm:"column(enfasis);null"`
+	PersonaId           int                `orm:"column(persona_id)"`
+	ProgramaAcademicoId int                `orm:"column(programa_academico_id)"`
+	ReciboMatriculaId   int                `orm:"column(recibo_matricula_id);null"`
+	ReciboInscripcionId int                `orm:"column(recibo_inscripcion_id);null"`
+	PeriodoId           int                `orm:"column(periodo_id)"`
+	EnfasisId           int                `orm:"column(enfasis_id);null"`
 	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`
 	FechaAceptaTerminos time.Time          `orm:"column(fecha_acepta_terminos);type(date)"`
 	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`

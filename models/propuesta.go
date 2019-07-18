@@ -11,17 +11,16 @@ import (
 )
 
 type Propuesta struct {
-	Id                   int           `orm:"column(id);pk;auto"`
-	Nombre               string        `orm:"column(nombre)"`
-	Resumen              string        `orm:"column(resumen);null"`
-	GrupoInvestigacionId int           `orm:"column(grupo_investigacion_id)"`
-	LineaInvestigacionId int           `orm:"column(linea_investigacion_id)"`
-	FormatoProyectoId    int           `orm:"column(formato_proyecto_id)"`
-	Activo               bool          `orm:"column(activo)"`
-	InscripcionId        *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
-	TipoProyectoId       *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
-	FechaCreacion        time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion    time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	Id                                     int           `orm:"column(id);pk;auto"`
+	Nombre                                 string        `orm:"column(nombre)"`
+	Resumen                                string        `orm:"column(resumen);null"`
+	GrupoInvestigacionLineaInvestigacionId int           `orm:"column(grupo_investigacion_linea_investigacion_id)"`
+	DocumentoId                            int           `orm:"column(documento_id)"`
+	Activo                                 bool          `orm:"column(activo)"`
+	InscripcionId                          *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
+	TipoProyectoId                         *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
+	FechaCreacion                          time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion                      time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 }
 
 func (t *Propuesta) TableName() string {

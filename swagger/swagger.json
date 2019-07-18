@@ -1046,7 +1046,7 @@
                 "Activo": {
                     "type": "boolean"
                 },
-                "Enfasis": {
+                "EnfasisId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -1069,23 +1069,23 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "Periodo": {
+                "PeriodoId": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "Persona": {
+                "PersonaId": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "ProgramaAcademico": {
+                "ProgramaAcademicoId": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "ReciboInscripcion": {
+                "ReciboInscripcionId": {
                     "type": "integer",
                     "format": "int64"
                 },
-                "ReciboMatricula": {
+                "ReciboMatriculaId": {
                     "type": "integer",
                     "format": "int64"
                 },
