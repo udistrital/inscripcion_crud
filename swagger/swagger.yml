@@ -11,6 +11,121 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
+  /cupos_por_dependencia/:
+    get:
+      tags:
+      - cupos_por_dependencia
+      description: get CuposPorDependencia
+      operationId: CuposPorDependenciaController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.CuposPorDependencia'
+        "403":
+          description: ""
+    post:
+      tags:
+      - cupos_por_dependencia
+      description: create CuposPorDependencia
+      operationId: CuposPorDependenciaController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for CuposPorDependencia content
+        required: true
+        schema:
+          $ref: '#/definitions/models.CuposPorDependencia'
+      responses:
+        "201":
+          description: '{int} models.CuposPorDependencia'
+        "403":
+          description: body is empty
+  /cupos_por_dependencia/{id}:
+    get:
+      tags:
+      - cupos_por_dependencia
+      description: get CuposPorDependencia by id
+      operationId: CuposPorDependenciaController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.CuposPorDependencia'
+        "403":
+          description: :id is empty
+    put:
+      tags:
+      - cupos_por_dependencia
+      description: update the CuposPorDependencia
+      operationId: CuposPorDependenciaController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for CuposPorDependencia content
+        required: true
+        schema:
+          $ref: '#/definitions/models.CuposPorDependencia'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.CuposPorDependencia'
+        "403":
+          description: :id is not int
+    delete:
+      tags:
+      - cupos_por_dependencia
+      description: delete the CuposPorDependencia
+      operationId: CuposPorDependenciaController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "403":
+          description: id is empty
   /estado_inscripcion/:
     get:
       tags:
@@ -614,6 +729,30 @@ definitions:
       ReciboMatricula:
         type: integer
         format: int64
+  models.CuposPorDependencia:
+    title: CuposPorDependencia
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      CuposHabilitados:
+        type: integer
+        format: int64
+      CuposOpcionados:
+        type: integer
+        format: int64
+      DependenciaId:
+        type: integer
+        format: int64
+      FechaCreacion:
+        type: string
+        format: datetime
+      FechaModificacion:
+        type: string
+        format: datetime
+      Id:
+        type: integer
+        format: int64
   models.Enfasis:
     title: Enfasis
     type: object
@@ -729,6 +868,9 @@ definitions:
       ProgramaAcademicoId:
         type: integer
         format: int64
+      PuntajeTotal:
+        type: number
+        format: double
       ReciboInscripcionId:
         type: integer
         format: int64
@@ -856,3 +998,6 @@ tags:
 - name: tipo_proyecto
   description: |
     TipoProyectoController operations for TipoProyecto
+- name: cupos_por_dependencia
+  description: |
+    CuposPorDependenciaController operations for CuposPorDependencia
