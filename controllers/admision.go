@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/udistrital/admisiones_crud/models"
+	"github.com/udistrital/inscripciones_crud/models"
 	"encoding/json"
 	"errors"
 	"strconv"
