@@ -3,12 +3,13 @@ package main
 import (
 	_ "github.com/udistrital/inscripciones_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
+	"github.com/udistrital/utils_oas/customerror"
 
-		"github.com/astaxie/beego"
-		"github.com/astaxie/beego/logs"
-		"github.com/astaxie/beego/orm"
-		"github.com/astaxie/beego/plugins/cors"
-		_ "github.com/lib/pq"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/plugins/cors"
+	_ "github.com/lib/pq"
 )
 
 func init() {
@@ -57,7 +58,7 @@ func main() {
 	logPath += "\"}"
 	logs.SetLogger(logs.AdapterFile, logPath)
 
-	// beego.ErrorController(&customerror.CustomErrorController{})
+	beego.ErrorController(&customerror.CustomErrorController{})
 
 	apistatus.Init()
 	beego.Run()
