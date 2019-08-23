@@ -16,21 +16,63 @@ import (
 func init() {
 	ns := beego.NewNamespace("/v1",
 
-		beego.NSNamespace("/admision",
+		beego.NSNamespace("/inscripcion_pregrado",
 			beego.NSInclude(
-				&controllers.AdmisionController{},
+				&controllers.InscripcionPregradoController{},
 			),
 		),
 
-		beego.NSNamespace("/estado_admision",
+		beego.NSNamespace("/inscripcion_posgrado",
 			beego.NSInclude(
-				&controllers.EstadoAdmisionController{},
+				&controllers.InscripcionPosgradoController{},
 			),
 		),
 
-		beego.NSNamespace("/linea_investigacion",
+		beego.NSNamespace("/reintegro",
 			beego.NSInclude(
-				&controllers.LineaInvestigacionController{},
+				&controllers.ReintegroController{},
+			),
+		),
+
+		beego.NSNamespace("/estado_inscripcion",
+			beego.NSInclude(
+				&controllers.EstadoInscripcionController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_proyecto",
+			beego.NSInclude(
+				&controllers.TipoProyectoController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_inscripcion",
+			beego.NSInclude(
+				&controllers.TipoInscripcionController{},
+			),
+		),
+
+		beego.NSNamespace("/inscripcion",
+			beego.NSInclude(
+				&controllers.InscripcionController{},
+			),
+		),
+
+		beego.NSNamespace("/transferencia",
+			beego.NSInclude(
+				&controllers.TransferenciaController{},
+			),
+		),
+
+		beego.NSNamespace("/propuesta",
+			beego.NSInclude(
+				&controllers.PropuestaController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_icfes",
+			beego.NSInclude(
+				&controllers.TipoIcfesController{},
 			),
 		),
 	)

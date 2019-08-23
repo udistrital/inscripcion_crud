@@ -1,22 +1,22 @@
 package controllers
 
 import (
-	"github.com/udistrital/inscripciones_crud/models"
 	"encoding/json"
 	"errors"
+	"github.com/udistrital/inscripciones_crud/models"
 	"strconv"
 	"strings"
 
 	"github.com/astaxie/beego"
 )
 
-// EstadoAdmisionController operations for EstadoAdmision
-type EstadoAdmisionController struct {
+// TipoInscripcionController operations for TipoInscripcion
+type TipoInscripcionController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *EstadoAdmisionController) URLMapping() {
+func (c *TipoInscripcionController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -26,15 +26,15 @@ func (c *EstadoAdmisionController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create EstadoAdmision
-// @Param	body		body 	models.EstadoAdmision	true		"body for EstadoAdmision content"
-// @Success 201 {int} models.EstadoAdmision
+// @Description create TipoInscripcion
+// @Param	body		body 	models.TipoInscripcion	true		"body for TipoInscripcion content"
+// @Success 201 {int} models.TipoInscripcion
 // @Failure 403 body is empty
 // @router / [post]
-func (c *EstadoAdmisionController) Post() {
-	var v models.EstadoAdmision
+func (c *TipoInscripcionController) Post() {
+	var v models.TipoInscripcion
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if _, err := models.AddEstadoAdmision(&v); err == nil {
+		if _, err := models.AddTipoInscripcion(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
@@ -48,15 +48,15 @@ func (c *EstadoAdmisionController) Post() {
 
 // GetOne ...
 // @Title Get One
-// @Description get EstadoAdmision by id
+// @Description get TipoInscripcion by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.EstadoAdmision
+// @Success 200 {object} models.TipoInscripcion
 // @Failure 403 :id is empty
 // @router /:id [get]
-func (c *EstadoAdmisionController) GetOne() {
+func (c *TipoInscripcionController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetEstadoAdmisionById(id)
+	v, err := models.GetTipoInscripcionById(id)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -67,17 +67,17 @@ func (c *EstadoAdmisionController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get EstadoAdmision
+// @Description get TipoInscripcion
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.EstadoAdmision
+// @Success 200 {object} models.TipoInscripcion
 // @Failure 403
 // @router / [get]
-func (c *EstadoAdmisionController) GetAll() {
+func (c *TipoInscripcionController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -119,7 +119,7 @@ func (c *EstadoAdmisionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllEstadoAdmision(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllTipoInscripcion(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		c.Data["json"] = err.Error()
 	} else {
@@ -130,18 +130,18 @@ func (c *EstadoAdmisionController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the EstadoAdmision
+// @Description update the TipoInscripcion
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.EstadoAdmision	true		"body for EstadoAdmision content"
-// @Success 200 {object} models.EstadoAdmision
+// @Param	body		body 	models.TipoInscripcion	true		"body for TipoInscripcion content"
+// @Success 200 {object} models.TipoInscripcion
 // @Failure 403 :id is not int
 // @router /:id [put]
-func (c *EstadoAdmisionController) Put() {
+func (c *TipoInscripcionController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.EstadoAdmision{Id: id}
+	v := models.TipoInscripcion{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		if err := models.UpdateEstadoAdmisionById(&v); err == nil {
+		if err := models.UpdateTipoInscripcionById(&v); err == nil {
 			c.Data["json"] = "OK"
 		} else {
 			c.Data["json"] = err.Error()
@@ -154,15 +154,15 @@ func (c *EstadoAdmisionController) Put() {
 
 // Delete ...
 // @Title Delete
-// @Description delete the EstadoAdmision
+// @Description delete the TipoInscripcion
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 403 id is empty
 // @router /:id [delete]
-func (c *EstadoAdmisionController) Delete() {
+func (c *TipoInscripcionController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteEstadoAdmision(id); err == nil {
+	if err := models.DeleteTipoInscripcion(id); err == nil {
 		c.Data["json"] = "OK"
 	} else {
 		c.Data["json"] = err.Error()
