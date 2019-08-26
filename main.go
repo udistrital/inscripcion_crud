@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/udistrital/inscripciones_crud/routers"
+	_ "github.com/udistrital/inscripcion_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
 	"github.com/udistrital/utils_oas/customerror"
 
