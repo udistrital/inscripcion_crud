@@ -10,49 +10,53 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type CuposPorDependencia struct {
-	Id                int       `orm:"column(id);pk"`
-	DependenciaId     int       `orm:"column(dependencia_id)"`
-	CuposHabilitados  int       `orm:"column(cupos_habilitados)"`
-	CuposOpcionados   int       `orm:"column(cupos_opcionados)"`
-	Activo            bool      `orm:"column(activo)"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+type Transferencia struct {
+	Id                         int          `orm:"column(id);pk"`
+	InscripcionId              *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
+	TransferenciaInterna       bool         `orm:"column(transferencia_interna)"`
+	CodigoEstudianteProviene   string       `orm:"column(codigo_estudiante_proviene);null"`
+	UniversidadProviene        string       `orm:"column(universidad_proviene)"`
+	ProyectoCurricularProviene string       `orm:"column(proyecto_curricular_proviene)"`
+	UltimoSemestreCursado      float64      `orm:"column(ultimo_semestre_cursado)"`
+	MotivoRetiro               string       `orm:"column(motivo_retiro)"`
+	Activo                     bool         `orm:"column(activo)"`
+	FechaCreacion              time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion          time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *CuposPorDependencia) TableName() string {
-	return "cupos_por_dependencia"
+func (t *Transferencia) TableName() string {
+	return "transferencia"
 }
 
 func init() {
-	orm.RegisterModel(new(CuposPorDependencia))
+	orm.RegisterModel(new(Transferencia))
 }
 
-// AddCuposPorDependencia insert a new CuposPorDependencia into database and returns
+// AddTransferencia insert a new Transferencia into database and returns
 // last inserted Id on success.
-func AddCuposPorDependencia(m *CuposPorDependencia) (id int64, err error) {
+func AddTransferencia(m *Transferencia) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetCuposPorDependenciaById retrieves CuposPorDependencia by Id. Returns error if
+// GetTransferenciaById retrieves Transferencia by Id. Returns error if
 // Id doesn't exist
-func GetCuposPorDependenciaById(id int) (v *CuposPorDependencia, err error) {
+func GetTransferenciaById(id int) (v *Transferencia, err error) {
 	o := orm.NewOrm()
-	v = &CuposPorDependencia{Id: id}
+	v = &Transferencia{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllCuposPorDependencia retrieves all CuposPorDependencia matches certain condition. Returns empty list if
+// GetAllTransferencia retrieves all Transferencia matches certain condition. Returns empty list if
 // no records exist
-func GetAllCuposPorDependencia(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTransferencia(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(CuposPorDependencia))
+	qs := o.QueryTable(new(Transferencia)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -102,7 +106,7 @@ func GetAllCuposPorDependencia(query map[string]string, fields []string, sortby 
 		}
 	}
 
-	var l []CuposPorDependencia
+	var l []Transferencia
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -125,11 +129,11 @@ func GetAllCuposPorDependencia(query map[string]string, fields []string, sortby 
 	return nil, err
 }
 
-// UpdateCuposPorDependencia updates CuposPorDependencia by Id and returns error if
+// UpdateTransferencia updates Transferencia by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateCuposPorDependenciaById(m *CuposPorDependencia) (err error) {
+func UpdateTransferenciaById(m *Transferencia) (err error) {
 	o := orm.NewOrm()
-	v := CuposPorDependencia{Id: m.Id}
+	v := Transferencia{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -140,15 +144,15 @@ func UpdateCuposPorDependenciaById(m *CuposPorDependencia) (err error) {
 	return
 }
 
-// DeleteCuposPorDependencia deletes CuposPorDependencia by Id and returns error if
+// DeleteTransferencia deletes Transferencia by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteCuposPorDependencia(id int) (err error) {
+func DeleteTransferencia(id int) (err error) {
 	o := orm.NewOrm()
-	v := CuposPorDependencia{Id: id}
+	v := Transferencia{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&CuposPorDependencia{Id: id}); err == nil {
+		if num, err = o.Delete(&Transferencia{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
