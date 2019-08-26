@@ -17,4 +17,4 @@ Go version >= 1.8.
  ## Example:
 API_PORT=8095 INSCRIPCION_CRUD__PGUSER=postgres INSCRIPCION_CRUD__PGPASS=password INSCRIPCION_CRUD__PGURLS=localhost INSCRIPCION_CRUD__PGDB=local INSCRIPCION_CRUD__SCHEMA=core_new bee run
  ## Model DB
-![image](https://github.com/udistrital/admisiones_crud/blob/dev/modelo_inscripcion_crud.png).
+![image](https://github.com/udistrital/inscripcion_crud/blob/dev/modelo_inscripcion_crud.png).
