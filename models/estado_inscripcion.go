@@ -5,20 +5,20 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type EstadoInscripcion struct {
-	Id                int       `orm:"column(id);pk;auto"`
-	Nombre            string    `orm:"column(nombre)"`
-	Descripcion       string    `orm:"column(descripcion);null"`
-	CodigoAbreviacion string    `orm:"column(codigo_abreviacion)"`
-	Activo            bool      `orm:"column(activo)"`
-	NumeroOrden       float64   `orm:"column(numero_orden);null"`
-	FechaCreacion     time.Time `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion time.Time `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	Id                int     `orm:"column(id);pk;auto"`
+	Nombre            string  `orm:"column(nombre)"`
+	Descripcion       string  `orm:"column(descripcion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion)"`
+	Activo            bool    `orm:"column(activo)"`
+	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	FechaCreacion     string  `orm:"column(fecha_creacion);null"`
+	FechaModificacion string  `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *EstadoInscripcion) TableName() string {
@@ -32,6 +32,8 @@ func init() {
 // AddEstadoInscripcion insert a new EstadoInscripcion into database and returns
 // last inserted Id on success.
 func AddEstadoInscripcion(m *EstadoInscripcion) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -131,6 +133,7 @@ func GetAllEstadoInscripcion(query map[string]string, fields []string, sortby []
 func UpdateEstadoInscripcionById(m *EstadoInscripcion) (err error) {
 	o := orm.NewOrm()
 	v := EstadoInscripcion{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64

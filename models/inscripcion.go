@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type Inscripcion struct {
@@ -24,8 +25,8 @@ type Inscripcion struct {
 	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	PuntajeTotal        float64            `orm:"column(puntaje_total);null"`
 	Activo              bool               `orm:"column(activo)"`
-	FechaCreacion       time.Time          `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion   time.Time          `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	FechaCreacion       string             `orm:"column(fecha_creacion);null"`
+	FechaModificacion   string             `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *Inscripcion) TableName() string {
@@ -39,6 +40,8 @@ func init() {
 // AddInscripcion insert a new Inscripcion into database and returns
 // last inserted Id on success.
 func AddInscripcion(m *Inscripcion) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -138,6 +141,7 @@ func GetAllInscripcion(query map[string]string, fields []string, sortby []string
 func UpdateInscripcionById(m *Inscripcion) (err error) {
 	o := orm.NewOrm()
 	v := Inscripcion{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64

@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type Reintegro struct {
@@ -16,9 +16,9 @@ type Reintegro struct {
 	CanceloSemestre   bool         `orm:"column(cancelo_semestre)"`
 	MotivoRetiro      string       `orm:"column(motivo_retiro)"`
 	Activo            bool         `orm:"column(activo)"`
-	FechaCreacion     time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
+	FechaCreacion     string       `orm:"column(fecha_creacion);null"`
+	FechaModificacion string       `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *Reintegro) TableName() string {
@@ -32,6 +32,8 @@ func init() {
 // AddReintegro insert a new Reintegro into database and returns
 // last inserted Id on success.
 func AddReintegro(m *Reintegro) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -131,6 +133,7 @@ func GetAllReintegro(query map[string]string, fields []string, sortby []string, 
 func UpdateReintegroById(m *Reintegro) (err error) {
 	o := orm.NewOrm()
 	v := Reintegro{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64

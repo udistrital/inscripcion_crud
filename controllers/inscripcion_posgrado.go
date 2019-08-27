@@ -6,10 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/planesticud/inscripcion_crud/models"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+	"github.com/planesticud/inscripcion_crud/models"
 )
 
 // InscripcionPosgradoController operations for InscripcionPosgrado
@@ -159,6 +158,7 @@ func (c *InscripcionPosgradoController) Put() {
 	v := models.InscripcionPosgrado{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateInscripcionPosgradoById(&v); err == nil {
+			c.Ctx.Output.SetStatus(200)
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)

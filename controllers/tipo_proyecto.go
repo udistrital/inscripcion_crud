@@ -6,10 +6,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/planesticud/inscripcion_crud/models"
-
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+	"github.com/planesticud/inscripcion_crud/models"
 )
 
 // TipoProyectoController operations for TipoProyecto
@@ -159,6 +158,7 @@ func (c *TipoProyectoController) Put() {
 	v := models.TipoProyecto{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if err := models.UpdateTipoProyectoById(&v); err == nil {
+			c.Ctx.Output.SetStatus(200)
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)

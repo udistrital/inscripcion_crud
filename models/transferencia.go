@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type Transferencia struct {
@@ -20,8 +20,8 @@ type Transferencia struct {
 	UltimoSemestreCursado      float64      `orm:"column(ultimo_semestre_cursado)"`
 	MotivoRetiro               string       `orm:"column(motivo_retiro)"`
 	Activo                     bool         `orm:"column(activo)"`
-	FechaCreacion              time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion          time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	FechaCreacion              string       `orm:"column(fecha_creacion);null"`
+	FechaModificacion          string       `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *Transferencia) TableName() string {
@@ -35,6 +35,8 @@ func init() {
 // AddTransferencia insert a new Transferencia into database and returns
 // last inserted Id on success.
 func AddTransferencia(m *Transferencia) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -134,6 +136,7 @@ func GetAllTransferencia(query map[string]string, fields []string, sortby []stri
 func UpdateTransferenciaById(m *Transferencia) (err error) {
 	o := orm.NewOrm()
 	v := Transferencia{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64

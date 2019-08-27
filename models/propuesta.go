@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type Propuesta struct {
@@ -19,8 +19,8 @@ type Propuesta struct {
 	Activo                                 bool          `orm:"column(activo)"`
 	InscripcionId                          *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
 	TipoProyectoId                         *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
-	FechaCreacion                          time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion                      time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	FechaCreacion                          string        `orm:"column(fecha_creacion);null"`
+	FechaModificacion                      string        `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *Propuesta) TableName() string {
@@ -34,6 +34,8 @@ func init() {
 // AddPropuesta insert a new Propuesta into database and returns
 // last inserted Id on success.
 func AddPropuesta(m *Propuesta) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -133,6 +135,7 @@ func GetAllPropuesta(query map[string]string, fields []string, sortby []string, 
 func UpdatePropuestaById(m *Propuesta) (err error) {
 	o := orm.NewOrm()
 	v := Propuesta{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
