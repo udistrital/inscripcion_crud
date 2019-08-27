@@ -53,10 +53,10 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	logPath := "{\"filename\":\""
-	logPath += beego.AppConfig.String("logPath")
-	logPath += "\"}"
-	logs.SetLogger(logs.AdapterFile, logPath)
+	// logPath := "{\"filename\":\""
+	// logPath += beego.AppConfig.String("logPath")
+	// logPath += "\"}"
+	// logs.SetLogger(logs.AdapterFile, logPath)
 
 	beego.ErrorController(&customerror.CustomErrorController{})
 
