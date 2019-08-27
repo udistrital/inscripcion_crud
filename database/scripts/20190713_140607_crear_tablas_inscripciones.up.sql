@@ -442,6 +442,6 @@ ALTER TABLE inscripcion.inscripcion_posgrado ADD CONSTRAINT uq_inscripcion_posgr
 -- ddl-end --
 
 -- Permisos de usuario
-GRANT USAGE ON SCHEMA inscripcion TO test;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA inscripcion TO test;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA inscripcion TO test;
+GRANT USAGE ON SCHEMA inscripcion TO desarrollooas;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA inscripcion TO desarrollooas;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA inscripcion TO desarrollooas;

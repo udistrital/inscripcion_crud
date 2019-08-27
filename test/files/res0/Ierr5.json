@@ -6,7 +6,7 @@
         "Value": "string",
         "Type": {},
         "Offset": 119,
-        "Struct": "TipoPeriodo",
+        "Struct": "TipoInscripcion",
         "Field": "NumeroOrden"
     }
 }

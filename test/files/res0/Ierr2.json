@@ -6,7 +6,7 @@
         "Value": "number",
         "Type": {},
         "Offset": 42,
-        "Struct": "TipoPeriodo",
+        "Struct": "TipoInscripcion",
         "Field": "Descripcion"
     }
 }
