@@ -77,6 +77,7 @@ func TestMain(m *testing.M) {
 
 //@init inicia la aplicacion para realizar los test
 func init() {
+	fmt.Println("Arranca Prueba")
 
 	gen_files()
 	run_bee()
