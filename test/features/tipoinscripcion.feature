@@ -29,6 +29,6 @@ Scenario Outline: To probe response route /tipo_periodo
     |POST   |/v1/tipo_inscripcion  |./files/req/Nt3.json   |400 Bad Request  |./files/res0/Ierr3.json   |
     |POST   |/v1/tipo_inscripcion  |./files/req/Nt4.json   |400 Bad Request  |./files/res0/Ierr4.json   |
     |POST   |/v1/tipo_inscripcion  |./files/req/Nt5.json   |400 Bad Request  |./files/res0/Ierr5.json   | 
-    |PUT    |/v1/tipo_inscripcion  |./files/req/Yt2.json   |400 Bad Request  |./files/res0/Vok1.json    |
+    |PUT    |/v1/tipo_inscripcion  |./files/req/Yt2.json   |200 OK           |./files/res0/Vok1.json    |
     |GETID  |/v1/tipo_inscripcion  |./files/req/Yt1.json   |200 OK           |./files/res0/Vok1.json    |
     |DELETE |/v1/tipo_inscripcion  |./files/req/Vacio.json |200 OK           |./files/res0/Ino.json     |
