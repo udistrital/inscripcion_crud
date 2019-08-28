@@ -77,7 +77,7 @@ func TestMain(m *testing.M) {
 
 //@init inicia la aplicacion para realizar los test
 func init() {
-	fmt.Println("Arranca Prueba")
+	fmt.Println("Inicio de pruebas Unitarias al API")
 
 	gen_files()
 	run_bee()
@@ -108,7 +108,6 @@ func gen_files() {
 //@run_bee activa el servicio de la api para realizar los test
 func run_bee() {
 	var resultado map[string]interface{}
-	fmt.Println("Entra a run bee")
 
 	parametros := "CORE_CRUD_HTTP_PORT=" + beego.AppConfig.String("httpport") + "CORE_CRUD__PGUSER=" + beego.AppConfig.String("PGuser") + " CORE_CRUD__PGPASS=" + beego.AppConfig.String("PGpass") + " CORE_CRUD__PGURLS=" + beego.AppConfig.String("PGurls") + " CORE_CRUD__PGDB=" + beego.AppConfig.String("PGdb") + " CORE_CRUD__SCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
 	file, err := os.Create("script.sh")
@@ -129,7 +128,6 @@ func run_bee() {
 	time.Sleep(18 * time.Second)
 
 	errApi := request.GetJson("http://"+beego.AppConfig.String("PGurls")+":"+beego.AppConfig.String("httpport"), &resultado)
-	fmt.Println("Revisa api")
 	if errApi == nil && resultado != nil {
 		fmt.Println("El API se Encuentra en Estado OK")
 	} else if IntentosAPI <= 3 {
