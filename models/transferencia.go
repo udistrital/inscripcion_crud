@@ -11,7 +11,7 @@ import (
 )
 
 type Transferencia struct {
-	Id                         int          `orm:"column(id);pk"`
+	Id                         int          `orm:"column(id);pk;auto"`
 	InscripcionId              *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
 	TransferenciaInterna       bool         `orm:"column(transferencia_interna)"`
 	CodigoEstudianteProviene   string       `orm:"column(codigo_estudiante_proviene);null"`

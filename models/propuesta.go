@@ -11,7 +11,7 @@ import (
 )
 
 type Propuesta struct {
-	Id                                    int           `orm:"column(id);pk"`
+	Id                                    int           `orm:"column(id);pk;auto"`
 	Nombre                                string        `orm:"column(nombre)"`
 	Resumen                               string        `orm:"column(resumen);null"`
 	GrupoInvestigacionLineaInvetigacionId int           `orm:"column(grupo_investigacion_linea_invetigacion_id)"`

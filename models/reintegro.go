@@ -11,7 +11,7 @@ import (
 )
 
 type Reintegro struct {
-	Id                int          `orm:"column(id);pk"`
+	Id                int          `orm:"column(id);pk;auto"`
 	CodigoEstudiante  float64      `orm:"column(codigo_estudiante)"`
 	CanceloSemestre   bool         `orm:"column(cancelo_semestre)"`
 	MotivoRetiro      string       `orm:"column(motivo_retiro)"`

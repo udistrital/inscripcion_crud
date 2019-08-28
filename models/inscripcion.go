@@ -11,7 +11,7 @@ import (
 )
 
 type Inscripcion struct {
-	Id                  int                `orm:"column(id);pk"`
+	Id                  int                `orm:"column(id);pk;auto"`
 	PersonaId           int                `orm:"column(persona_id)"`
 	ProgramaAcademicoId int                `orm:"column(programa_academico_id)"`
 	ReciboMatriculaId   int                `orm:"column(recibo_matricula_id);null"`

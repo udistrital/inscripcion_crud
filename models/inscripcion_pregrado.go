@@ -11,7 +11,7 @@ import (
 )
 
 type InscripcionPregrado struct {
-	Id                        int          `orm:"column(id);pk"`
+	Id                        int          `orm:"column(id);pk;auto"`
 	InscripcionId             *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
 	CodigoIcfes               string       `orm:"column(codigo_icfes)"`
 	TipoDocumentoIcfes        int          `orm:"column(tipo_documento_icfes)"`

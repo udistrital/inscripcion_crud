@@ -11,7 +11,7 @@ import (
 )
 
 type InscripcionPosgrado struct {
-	Id                int          `orm:"column(id);pk"`
+	Id                int          `orm:"column(id);pk;auto"`
 	Idioma            int          `orm:"column(idioma)"`
 	Activo            bool         `orm:"column(activo)"`
 	FechaCreacion     time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
