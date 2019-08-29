@@ -317,7 +317,7 @@ CREATE TABLE inscripcion.inscripcion_pregrado (
 	inscripcion_id integer NOT NULL,
 	codigo_icfes varchar(15) NOT NULL,
 	tipo_documento_icfes integer NOT NULL,
-	numero_identificacion_icfes numeric(10) NOT NULL,
+	numero_identificacion_icfes numeric(11) NOT NULL,
 	ano_icfes numeric(4) NOT NULL,
 	activo boolean NOT NULL,
 	fecha_creacion timestamp NOT NULL,
