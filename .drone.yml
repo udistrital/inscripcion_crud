@@ -40,14 +40,14 @@ pipeline:
       branch: [test]
 
    # Unit Test go 
-
-   beego_test:
+    beego_test:
       image: golang:1.9
       secrets: [  pg_academica_url, pg_academica_user, pg_academica_password, pg_academica_dbname]
     commands:
      - go get -t
      - go get github.com/DATA-DOG/godog/cmd/godog
      - go get github.com/xeipuuv/gojsonschema
+     - $${INSCRUD_HTTP_PORT} $${PG_ACADEMICA_USER} $${PG_ACADEMICA_PASSWORD} $${INS_CRUD__PGURLS} $${PG_ACADEMICA_DBNAME} $${INS_CRUD__PGSCHEMA} godog
      when: 
       branch: [test]
       event: [push, pull_request]
