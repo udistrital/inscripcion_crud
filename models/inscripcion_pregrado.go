@@ -18,8 +18,8 @@ type InscripcionPregrado struct {
 	NumeroIdentificacionIcfes float64      `orm:"column(numero_identificacion_icfes)"`
 	AnoIcfes                  float64      `orm:"column(ano_icfes)"`
 	Activo                    bool         `orm:"column(activo)"`
-	FechaCreacion             time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion         time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	FechaCreacion             time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion         time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 	TipoIcfesId               *TipoIcfes   `orm:"column(tipo_icfes_id);rel(fk)"`
 }
 

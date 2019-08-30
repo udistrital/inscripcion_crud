@@ -17,8 +17,8 @@ type Propuesta struct {
 	GrupoInvestigacionLineaInvetigacionId int           `orm:"column(grupo_investigacion_linea_invetigacion_id)"`
 	DocumentoId                           int           `orm:"column(documento_id)"`
 	Activo                                bool          `orm:"column(activo)"`
-	FechaCreacion                         time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion                     time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	FechaCreacion                         time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion                     time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 	InscripcionId                         *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
 	TipoProyectoId                        *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
 }
