@@ -1,0 +1,17 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "InscripcionId":	{ "type": "Inscripcion" },
+    "TransferenciaInterna": { "type": "boolean" },
+    "CodigoEstudianteProviene": { "type": "string" },
+    "UniversidadProviene": { "type": "string" },
+    "ProyectoCurricularProviene": { "type": "string" },
+    "UltimoSemestreCursado": { "type": "integer" },
+    "MotivoRetiro": { "type": "string" },
+    "Activo": { "type": "boolean" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

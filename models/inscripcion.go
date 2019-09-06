@@ -145,7 +145,7 @@ func UpdateInscripcionById(m *Inscripcion) (err error) {
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Update(m); err == nil {
+		if num, err = o.Update(m, "PersonaId", "ProgramaAcademicoId", "ReciboMatriculaId", "ReciboInscripcionId", "PeriodoId", "EnfasisId", "AceptaTerminos", "FechaAceptaTerminos", "TipoInscripcionId", "EstadoInscripcionId", "PuntajeTotal", "Activo", "FechaModificacion"); err == nil {
 			fmt.Println("Number of records updated in database:", num)
 		}
 	}
