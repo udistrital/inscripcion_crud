@@ -5,52 +5,61 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type EstadoAdmision struct {
-	Id                int     `orm:"column(id);pk;auto"`
-	Nombre            string  `orm:"column(nombre)"`
-	Descripcion       string  `orm:"column(descripcion);null"`
-	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
-	Activo            bool    `orm:"column(activo)"`
-	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+type Inscripcion struct {
+	Id                  int                `orm:"column(id);pk;auto"`
+	PersonaId           int                `orm:"column(persona_id)"`
+	ProgramaAcademicoId int                `orm:"column(programa_academico_id)"`
+	ReciboMatriculaId   int                `orm:"column(recibo_matricula_id);null"`
+	ReciboInscripcionId int                `orm:"column(recibo_inscripcion_id);null"`
+	PeriodoId           int                `orm:"column(periodo_id)"`
+	EnfasisId           int                `orm:"column(enfasis_id);null"`
+	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`
+	FechaAceptaTerminos time.Time          `orm:"column(fecha_acepta_terminos);type(date)"`
+	Activo              bool               `orm:"column(activo)"`
+	FechaCreacion       time.Time          `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion   time.Time          `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
+	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
 }
 
-func (t *EstadoAdmision) TableName() string {
-	return "estado_admision"
+func (t *Inscripcion) TableName() string {
+	return "inscripcion"
 }
 
 func init() {
-	orm.RegisterModel(new(EstadoAdmision))
+	orm.RegisterModel(new(Inscripcion))
 }
 
-// AddEstadoAdmision insert a new EstadoAdmision into database and returns
+// AddInscripcion insert a new Inscripcion into database and returns
 // last inserted Id on success.
-func AddEstadoAdmision(m *EstadoAdmision) (id int64, err error) {
+func AddInscripcion(m *Inscripcion) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetEstadoAdmisionById retrieves EstadoAdmision by Id. Returns error if
+// GetInscripcionById retrieves Inscripcion by Id. Returns error if
 // Id doesn't exist
-func GetEstadoAdmisionById(id int) (v *EstadoAdmision, err error) {
+func GetInscripcionById(id int) (v *Inscripcion, err error) {
 	o := orm.NewOrm()
-	v = &EstadoAdmision{Id: id}
+	v = &Inscripcion{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllEstadoAdmision retrieves all EstadoAdmision matches certain condition. Returns empty list if
+// GetAllInscripcion retrieves all Inscripcion matches certain condition. Returns empty list if
 // no records exist
-func GetAllEstadoAdmision(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllInscripcion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(EstadoAdmision)).RelatedSel()
+	qs := o.QueryTable(new(Inscripcion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -100,7 +109,7 @@ func GetAllEstadoAdmision(query map[string]string, fields []string, sortby []str
 		}
 	}
 
-	var l []EstadoAdmision
+	var l []Inscripcion
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -123,11 +132,11 @@ func GetAllEstadoAdmision(query map[string]string, fields []string, sortby []str
 	return nil, err
 }
 
-// UpdateEstadoAdmision updates EstadoAdmision by Id and returns error if
+// UpdateInscripcion updates Inscripcion by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateEstadoAdmisionById(m *EstadoAdmision) (err error) {
+func UpdateInscripcionById(m *Inscripcion) (err error) {
 	o := orm.NewOrm()
-	v := EstadoAdmision{Id: m.Id}
+	v := Inscripcion{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -138,15 +147,15 @@ func UpdateEstadoAdmisionById(m *EstadoAdmision) (err error) {
 	return
 }
 
-// DeleteEstadoAdmision deletes EstadoAdmision by Id and returns error if
+// DeleteInscripcion deletes Inscripcion by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteEstadoAdmision(id int) (err error) {
+func DeleteInscripcion(id int) (err error) {
 	o := orm.NewOrm()
-	v := EstadoAdmision{Id: id}
+	v := Inscripcion{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&EstadoAdmision{Id: id}); err == nil {
+		if num, err = o.Delete(&Inscripcion{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

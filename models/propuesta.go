@@ -5,56 +5,57 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Admision struct {
-	Id                 int                 `orm:"column(id);pk;auto"`
-	Aspirante          int                 `orm:"column(aspirante)"`
-	ProgramaAcademico  int                 `orm:"column(programa_academico)"`
-	ReciboMatricula    int                 `orm:"column(recibo_matricula);null"`
-	ReciboInscripcion  int                 `orm:"column(recibo_inscripcion)"`
-	Periodo            int                 `orm:"column(periodo)"`
-	Propuesta          int                 `orm:"column(propuesta);null"`
-	EstadoAdmision  *EstadoAdmision     `orm:"column(estado_admision);rel(fk)"`
-	LineaInvestigacion *LineaInvestigacion `orm:"column(linea_investigacion);rel(fk)"`
-	Enfasis            int                 `orm:"column(enfasis);null"`
+type Propuesta struct {
+	Id                                    int           `orm:"column(id);pk;auto"`
+	Nombre                                string        `orm:"column(nombre)"`
+	Resumen                               string        `orm:"column(resumen);null"`
+	GrupoInvestigacionLineaInvetigacionId int           `orm:"column(grupo_investigacion_linea_invetigacion_id)"`
+	DocumentoId                           int           `orm:"column(documento_id)"`
+	Activo                                bool          `orm:"column(activo)"`
+	FechaCreacion                         time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion                     time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	InscripcionId                         *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
+	TipoProyectoId                        *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
 }
 
-func (t *Admision) TableName() string {
-	return "admision"
+func (t *Propuesta) TableName() string {
+	return "propuesta"
 }
 
 func init() {
-	orm.RegisterModel(new(Admision))
+	orm.RegisterModel(new(Propuesta))
 }
 
-// AddAdmision insert a new Admision into database and returns
+// AddPropuesta insert a new Propuesta into database and returns
 // last inserted Id on success.
-func AddAdmision(m *Admision) (id int64, err error) {
+func AddPropuesta(m *Propuesta) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetAdmisionById retrieves Admision by Id. Returns error if
+// GetPropuestaById retrieves Propuesta by Id. Returns error if
 // Id doesn't exist
-func GetAdmisionById(id int) (v *Admision, err error) {
+func GetPropuestaById(id int) (v *Propuesta, err error) {
 	o := orm.NewOrm()
-	v = &Admision{Id: id}
+	v = &Propuesta{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllAdmision retrieves all Admision matches certain condition. Returns empty list if
+// GetAllPropuesta retrieves all Propuesta matches certain condition. Returns empty list if
 // no records exist
-func GetAllAdmision(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllPropuesta(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Admision)).RelatedSel()
+	qs := o.QueryTable(new(Propuesta)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -104,7 +105,7 @@ func GetAllAdmision(query map[string]string, fields []string, sortby []string, o
 		}
 	}
 
-	var l []Admision
+	var l []Propuesta
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -127,11 +128,11 @@ func GetAllAdmision(query map[string]string, fields []string, sortby []string, o
 	return nil, err
 }
 
-// UpdateAdmision updates Admision by Id and returns error if
+// UpdatePropuesta updates Propuesta by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateAdmisionById(m *Admision) (err error) {
+func UpdatePropuestaById(m *Propuesta) (err error) {
 	o := orm.NewOrm()
-	v := Admision{Id: m.Id}
+	v := Propuesta{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -142,15 +143,15 @@ func UpdateAdmisionById(m *Admision) (err error) {
 	return
 }
 
-// DeleteAdmision deletes Admision by Id and returns error if
+// DeletePropuesta deletes Propuesta by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteAdmision(id int) (err error) {
+func DeletePropuesta(id int) (err error) {
 	o := orm.NewOrm()
-	v := Admision{Id: id}
+	v := Propuesta{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Admision{Id: id}); err == nil {
+		if num, err = o.Delete(&Propuesta{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
