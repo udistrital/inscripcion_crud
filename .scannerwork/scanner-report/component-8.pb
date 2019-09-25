@@ -1,0 +1,1 @@
+models/tipo_inscripcion.go 2goX¡hrmodels/tipo_inscripcion.go

@@ -1,0 +1,1 @@
+models/inscripcion.go 2goX©hrmodels/inscripcion.go
