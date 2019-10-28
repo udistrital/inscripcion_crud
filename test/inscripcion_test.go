@@ -102,7 +102,7 @@ func run_bee() {
 	}
 
 	time.Sleep(20 * time.Second)
-	fmt.Println("Obteniendo respuesta de http://" + beego.AppConfig.String("appurl") + ":" + beego.AppConfig.String("httpport"))
+	fmt.Println("Obteniendo respuesta de http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport"))
 	errApi := request.GetJson("http://"+beego.AppConfig.String("PGurls")+":"+beego.AppConfig.String("httpport"), &resultado)
 	if errApi == nil && resultado != nil {
 		fmt.Println("El API se Encuentra en Estado OK")
