@@ -242,7 +242,7 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 		str := strconv.FormatFloat(Id, 'f', 0, 64)
 		url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint + "/" + str
 		resDelete = "{\"Id\":" + str + "}"
-		ioutil.WriteFile("./assets/res0/Ino.json", []byte(resDelete), 0644)
+		ioutil.WriteFile("./assets/responses/Ino.json", []byte(resDelete), 0644)
 
 	}
 
