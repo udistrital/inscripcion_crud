@@ -361,7 +361,7 @@ ALTER TABLE inscripcion.inscripcion_pregrado ADD CONSTRAINT uq_inscripcion_inscr
 -- object: inscripcion.tipo_icfes | type: TABLE --
 -- DROP TABLE IF EXISTS inscripcion.tipo_icfes CASCADE;
 CREATE TABLE inscripcion.tipo_icfes (
-	id integer NOT NULL,
+	id serial NOT NULL,
 	nombre character varying(50) NOT NULL,
 	descripcion character varying(250),
 	codigo_abreviacion character varying(20),
