@@ -1,9 +1,3 @@
--- Database generated with pgModeler (PostgreSQL Database Modeler).
--- pgModeler  version: 0.9.2-alpha1
--- PostgreSQL version: 11.0
--- Project Site: pgmodeler.io
--- Model Author: ---
-
 -- object: inscripcion | type: SCHEMA --
 DROP SCHEMA IF EXISTS inscripcion CASCADE;
 CREATE SCHEMA inscripcion;
@@ -442,6 +436,6 @@ ALTER TABLE inscripcion.inscripcion_posgrado ADD CONSTRAINT uq_inscripcion_posgr
 -- ddl-end --
 
 -- Permisos de usuario
-GRANT USAGE ON SCHEMA inscripcion TO test;
-GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA inscripcion TO test;
-GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA inscripcion TO test;
+GRANT USAGE ON SCHEMA inscripcion TO desarrollooas;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA inscripcion TO desarrollooas;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA inscripcion TO desarrollooas;
