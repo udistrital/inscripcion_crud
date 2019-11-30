@@ -1981,6 +1981,9 @@
                 },
                 "MotivoRetiro": {
                     "type": "string"
+                },
+                "SolicitudAcuerdo": {
+                    "type": "boolean"
                 }
             }
         },

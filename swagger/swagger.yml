@@ -1331,6 +1331,8 @@ definitions:
         $ref: '#/definitions/models.Inscripcion'
       MotivoRetiro:
         type: string
+      SolicitudAcuerdo:
+        type: boolean
   models.TipoIcfes:
     title: TipoIcfes
     type: object
