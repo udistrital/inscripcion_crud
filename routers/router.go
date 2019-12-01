@@ -75,6 +75,13 @@ func init() {
 				&controllers.TipoIcfesController{},
 			),
 		),
+
+		beego.NSNamespace("/tr_inscripcion",
+			beego.NSInclude(
+				&controllers.TrInscripcionController{},
+			),
+		),
+
 	)
 	beego.AddNamespace(ns)
 }

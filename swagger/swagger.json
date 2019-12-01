@@ -1572,6 +1572,34 @@
                 }
             }
         },
+        "/tr_inscripcion/reintegro": {
+            "post": {
+                "tags": [
+                    "tr_inscripcion"
+                ],
+                "description": "create TrInscripcionReintegro",
+                "operationId": "TrInscripcionController.PostReintegro",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TrInscripcionReintegro content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TrInscripcionReintegro"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TrInscripcionReintegro"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
         "/transferencia/": {
             "get": {
                 "tags": [
@@ -2089,6 +2117,18 @@
                 }
             }
         },
+        "models.TrInscripcionReintegro": {
+            "title": "TrInscripcionReintegro",
+            "type": "object",
+            "properties": {
+                "InscripcionEstudiante": {
+                    "$ref": "#/definitions/models.Inscripcion"
+                },
+                "ReintegroEstudiante": {
+                    "$ref": "#/definitions/models.Reintegro"
+                }
+            }
+        },
         "models.Transferencia": {
             "title": "Transferencia",
             "type": "object",
@@ -2173,6 +2213,10 @@
         {
             "name": "tipo_icfes",
             "description": "TipoIcfesController operations for TipoIcfes\n"
+        },
+        {
+            "name": "tr_inscripcion",
+            "description": "TrInscripcionController operations for TipoTercero\n"
         }
     ]
 }
