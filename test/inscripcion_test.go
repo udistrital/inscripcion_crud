@@ -5,11 +5,14 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"log"
+	"mime/multipart"
 	"net/http"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
@@ -25,6 +28,9 @@ import (
 	"github.com/xeipuuv/gojsonschema"
 )
 
+//@opt opciones de godog
+var opt = godog.Options{Output: colors.Colored(os.Stdout)}
+
 // @resStatus codigo de respuesta a las solicitudes a la api
 var resStatus string
 
@@ -33,6 +39,9 @@ var resDelete string
 
 //@resBody JSON de respuesta a las solicitudesde la api
 var resBody []byte
+
+//@especificacion estructura de la fecha
+const especificacion = "Jan 2, 2006 at 3:04pm (MST)"
 
 var savepostres map[string]interface{}
 
@@ -51,11 +60,79 @@ type Parametrica struct {
 	FechaModificacion time.Time
 }
 
-//@opt opciones de godog
-var opt = godog.Options{Output: colors.Colored(os.Stdout)}
+//@exe_cmd ejecuta comandos en la terminal
+func exe_cmd(cmd string, wg *sync.WaitGroup) {
 
-//@especificacion estructura de la fecha
-const especificacion = "Jan 2, 2006 at 3:04pm (MST)"
+	parts := strings.Fields(cmd)
+	out, err := exec.Command(parts[0], parts[1]).Output()
+
+	if err != nil {
+		fmt.Println("error occured")
+		fmt.Printf("%s", err)
+	}
+	fmt.Printf("%s", out)
+	wg.Done()
+}
+
+// @deleteFile Borrar archivos
+func deleteFile(path string) {
+	// delete file
+	err := os.Remove(path)
+	if err != nil {
+		fmt.Errorf("no se pudo eliminar el archivo")
+	}
+
+}
+
+//@run_bee activa el servicio de la api para realizar los test
+func run_bee() {
+	var resultado map[string]interface{}
+
+	parametros := "API_PORT=" + beego.AppConfig.String("httpport") + " INSCRIPCION_CRUD__PGUSER=" + beego.AppConfig.String("PGuser") + " INSCRIPCION_CRUD__PGPASS=" + beego.AppConfig.String("PGpass") + " INSCRIPCION_CRUD__PGURLS=" + beego.AppConfig.String("PGurls") + " INSCRIPCION_CRUD__PGDB=" + beego.AppConfig.String("PGdb") + " INSCRIPCION_CRUD__PGSCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
+	file, err := os.Create("script.sh")
+	if err != nil {
+		log.Fatal("Cannot create file", err)
+	}
+	defer file.Close()
+	fmt.Fprintln(file, "cd ..")
+	fmt.Fprintln(file, parametros)
+
+	wg := new(sync.WaitGroup)
+	commands := []string{"sh script.sh &"}
+	for _, str := range commands {
+		wg.Add(1)
+		go exe_cmd(str, wg)
+	}
+
+	time.Sleep(20 * time.Second)
+	fmt.Println("Obteniendo respuesta de http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport"))
+	errApi := request.GetJson("http://"+beego.AppConfig.String("PGurls")+":"+beego.AppConfig.String("httpport"), &resultado)
+	if errApi == nil && resultado != nil {
+		fmt.Println("El API se Encuentra en Estado OK")
+	} else if IntentosAPI <= 3 {
+
+		stri := strconv.Itoa(IntentosAPI)
+		fmt.Println("Intento de subir el API numero: " + stri)
+		IntentosAPI++
+		run_bee()
+	} else {
+		fmt.Println("Numero de intentos maximos alcanzados, revise por favor variables de entorno o si no esta ocupado el puerto")
+	}
+
+	deleteFile("script.sh")
+	wg.Done()
+}
+
+//@init inicia la aplicacion para realizar los test
+func init() {
+	fmt.Println("Inicio de pruebas Unitarias al API")
+
+	gen_files()
+	run_bee()
+	//pasa las banderas al comando godog
+	godog.BindFlags("godog.", flag.CommandLine, &opt)
+
+}
 
 //@TestMain para realizar la ejecucion con el comando go test ./test
 func TestMain(m *testing.M) {
@@ -75,20 +152,9 @@ func TestMain(m *testing.M) {
 
 }
 
-//@init inicia la aplicacion para realizar los test
-func init() {
-	fmt.Println("Inicio de pruebas Unitarias al API")
-
-	gen_files()
-	run_bee()
-	//pasa las banderas al comando godog
-	godog.BindFlags("godog.", flag.CommandLine, &opt)
-
-}
-
 //@gen_files genera los archivos de ejemplos
 func gen_files() {
-
+	fmt.Println("Genera los archivos")
 	t := time.Now()
 
 	nombre := t.Format(especificacion)
@@ -102,70 +168,13 @@ func gen_files() {
 		FechaModificacion: t,
 	}
 	rankingsJson, _ := json.Marshal(atributo)
-	ioutil.WriteFile("./files/req/Yt1.json", rankingsJson, 0644)
+	ioutil.WriteFile("./assets/requests/BodyGen1.json", rankingsJson, 0644)
+	ioutil.WriteFile("./assets/requests/BodyGen2.json", rankingsJson, 0644)
 }
 
-//@run_bee activa el servicio de la api para realizar los test
-func run_bee() {
-	var resultado map[string]interface{}
-
-	parametros := "CORE_CRUD_HTTP_PORT=" + beego.AppConfig.String("httpport") + "CORE_CRUD__PGUSER=" + beego.AppConfig.String("PGuser") + " CORE_CRUD__PGPASS=" + beego.AppConfig.String("PGpass") + " CORE_CRUD__PGURLS=" + beego.AppConfig.String("PGurls") + " CORE_CRUD__PGDB=" + beego.AppConfig.String("PGdb") + " CORE_CRUD__SCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
-	file, err := os.Create("script.sh")
-	if err != nil {
-		log.Fatal("Cannot create file", err)
-	}
-	defer file.Close()
-	fmt.Fprintln(file, "cd ..")
-	fmt.Fprintln(file, parametros)
-
-	wg := new(sync.WaitGroup)
-	commands := []string{"sh script.sh &"}
-	for _, str := range commands {
-		wg.Add(1)
-		go exe_cmd(str, wg)
-	}
-
-	time.Sleep(18 * time.Second)
-
-	errApi := request.GetJson("http://"+beego.AppConfig.String("PGurls")+":"+beego.AppConfig.String("httpport"), &resultado)
-	if errApi == nil && resultado != nil {
-		fmt.Println("El API se Encuentra en Estado OK")
-	} else if IntentosAPI <= 3 {
-
-		stri := strconv.Itoa(IntentosAPI)
-		fmt.Println("Intento de subir el API numero: " + stri)
-		IntentosAPI++
-		run_bee()
-	} else {
-		fmt.Println("Numero de intentos maximos alcanzados, revise por favor variables de entorno o si no esta ocupado el puerto")
-	}
-
-	deleteFile("script.sh")
-	wg.Done()
-}
-
-func deleteFile(path string) {
-	// delete file
-	err := os.Remove(path)
-	if err != nil {
-		fmt.Errorf("no se pudo eliminar el archivo")
-	}
-
-}
-
-//@exe_cmd ejecuta comandos en la terminal
-func exe_cmd(cmd string, wg *sync.WaitGroup) {
-
-	parts := strings.Fields(cmd)
-	out, err := exec.Command(parts[0], parts[1]).Output()
-
-	if err != nil {
-		fmt.Println("error occured")
-		fmt.Printf("%s", err)
-	}
-	fmt.Printf("%s", out)
-	wg.Done()
-}
+/*------------------------------
+  ---- Ejecución de pruebas ----
+  ------------------------------*/
 
 //@AreEqualJSON comparar dos JSON si son iguales retorna true de lo contrario false
 func AreEqualJSON(s1, s2 string) (bool, error) {
@@ -237,7 +246,7 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 		str := strconv.FormatFloat(Id, 'f', 0, 64)
 		url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint + "/" + str
 		resDelete = "{\"Id\":" + str + "}"
-		ioutil.WriteFile("./files/res0/Ino.json", []byte(resDelete), 0644)
+		ioutil.WriteFile("./assets/responses/Ino.json", []byte(resDelete), 0644)
 
 	}
 
@@ -259,7 +268,7 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 	resBody = bodyr
 
 	if method == "POST" && resStatus == "201 Created" {
-		ioutil.WriteFile("./files/req/Yt2.json", resBody, 0644)
+		ioutil.WriteFile("./assets/requests/BodyRec2.json", resBody, 0644)
 		json.Unmarshal([]byte(bodyr), &savepostres)
 		Id = savepostres["Id"].(float64)
 
@@ -310,7 +319,72 @@ func theResponseShouldMatchJson(arg1 string) error {
 	return nil
 }
 
+// @iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt realiza la solicitud a la API
+func iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt(method, endpoint, bodyreq string, filename string, bodyfile string) error {
+
+	var url string
+
+	if method == "GET" || method == "POST" {
+		url = "http://" + beego.AppConfig.String("appurl") + ":" + beego.AppConfig.String("httpport") + endpoint
+	} else {
+		if method == "PUT" || method == "DELETE" {
+			url = "http://" + beego.AppConfig.String("appurl") + ":" + beego.AppConfig.String("httpport") + endpoint
+		}
+	}
+
+	extraParams := getPages(bodyreq)
+	var params map[string]string
+	err := json.Unmarshal(extraParams, &params)
+	if err != nil {
+		return err
+	}
+
+	path, _ := os.Getwd()
+	path += "/"
+	path += bodyfile
+
+	file, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	body := &bytes.Buffer{}
+	writer := multipart.NewWriter(body)
+	part, err := writer.CreateFormFile(filename, filepath.Base(path))
+	if err != nil {
+		return err
+	}
+	_, err = io.Copy(part, file)
+
+	for key, val := range params {
+		_ = writer.WriteField(key, val)
+	}
+	err = writer.Close()
+	if err != nil {
+		return err
+	}
+
+	req, err := http.NewRequest(method, url, body)
+	req.Header.Set("Content-Type", writer.FormDataContentType())
+
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	bodyr, _ := ioutil.ReadAll(resp.Body)
+
+	resStatus = resp.Status
+	resBody = bodyr
+
+	return nil
+}
+
 func FeatureContext(s *godog.Suite) {
+	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is multipart\/form-data with this params "([^"]*)" and the file "([^"]*)" located at "([^"]*)"$`, iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt)
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
 	s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
 	s.Step(`^the response should match json "([^"]*)"$`, theResponseShouldMatchJson)
