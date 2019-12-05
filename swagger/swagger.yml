@@ -1064,6 +1064,24 @@ paths:
           description: '{int} models.TrInscripcionReintegro'
         "400":
           description: the request contains incorrect syntax
+  /tr_inscripcion/transferencia:
+    post:
+      tags:
+      - tr_inscripcion
+      description: create TrInscripcionTransferencia
+      operationId: TrInscripcionController.PostTransferencia
+      parameters:
+      - in: body
+        name: body
+        description: body for TrInscripcionTransferencia content
+        required: true
+        schema:
+          $ref: '#/definitions/models.TrInscripcionTransferencia'
+      responses:
+        "201":
+          description: '{int} models.TrInscripcionTransferencia'
+        "400":
+          description: the request contains incorrect syntax
   /transferencia/:
     get:
       tags:
@@ -1431,6 +1449,14 @@ definitions:
         $ref: '#/definitions/models.Inscripcion'
       ReintegroEstudiante:
         $ref: '#/definitions/models.Reintegro'
+  models.TrInscripcionTransferencia:
+    title: TrInscripcionTransferencia
+    type: object
+    properties:
+      InscripcionEstudiante:
+        $ref: '#/definitions/models.Inscripcion'
+      TransferenciaEstudiante:
+        $ref: '#/definitions/models.Transferencia'
   models.Transferencia:
     title: Transferencia
     type: object

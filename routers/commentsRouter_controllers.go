@@ -421,6 +421,15 @@ func init() {
             Filters: nil,
             Params: nil})
 
+    beego.GlobalControllerRouter["github.com/udistrital/inscripcion_crud/controllers:TrInscripcionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/inscripcion_crud/controllers:TrInscripcionController"],
+        beego.ControllerComments{
+            Method: "PostTransferencia",
+            Router: `/transferencia`,
+            AllowHTTPMethods: []string{"post"},
+            MethodParams: param.Make(),
+            Filters: nil,
+            Params: nil})
+
     beego.GlobalControllerRouter["github.com/udistrital/inscripcion_crud/controllers:TransferenciaController"] = append(beego.GlobalControllerRouter["github.com/udistrital/inscripcion_crud/controllers:TransferenciaController"],
         beego.ControllerComments{
             Method: "Post",
