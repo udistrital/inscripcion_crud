@@ -19,6 +19,7 @@ type Reintegro struct {
 	FechaCreacion     time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
 	FechaModificacion time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
+	SolicitudAcuerdo  bool         `orm:"column(solicitud_acuerdo)"`
 }
 
 func (t *Reintegro) TableName() string {
