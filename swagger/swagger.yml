@@ -1314,6 +1314,8 @@ definitions:
         format: int64
       TipoIcfesId:
         $ref: '#/definitions/models.TipoIcfes'
+      Valido:
+        type: boolean
   models.Propuesta:
     title: Propuesta
     type: object
