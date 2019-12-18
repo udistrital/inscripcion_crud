@@ -1962,6 +1962,9 @@
                 },
                 "TipoIcfesId": {
                     "$ref": "#/definitions/models.TipoIcfes"
+                },
+                "Valido": {
+                    "type": "boolean"
                 }
             }
         },
