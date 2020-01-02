@@ -14,7 +14,8 @@ type Propuesta struct {
 	Id                                    int           `orm:"column(id);pk;auto"`
 	Nombre                                string        `orm:"column(nombre)"`
 	Resumen                               string        `orm:"column(resumen);null"`
-	GrupoInvestigacionLineaInvetigacionId int           `orm:"column(grupo_investigacion_linea_invetigacion_id)"`
+	GrupoInvestigacionId 				  int           `orm:"column(grupo_investigacion_id)"`
+	LineaInvestigacionId 				  int           `orm:"column(linea_investigacion_id)"`
 	DocumentoId                           int           `orm:"column(documento_id)"`
 	Activo                                bool          `orm:"column(activo)"`
 	FechaCreacion                         time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
