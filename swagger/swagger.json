@@ -1987,7 +1987,7 @@
                     "type": "string",
                     "format": "datetime"
                 },
-                "GrupoInvestigacionLineaInvetigacionId": {
+                "GrupoInvestigacionId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -1997,6 +1997,10 @@
                 },
                 "InscripcionId": {
                     "$ref": "#/definitions/models.Inscripcion"
+                },
+                "LineaInvestigacionId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "Nombre": {
                     "type": "string"
