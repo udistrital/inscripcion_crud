@@ -1417,6 +1417,9 @@ definitions:
       Id:
         type: integer
         format: int64
+      NivelId:
+        type: integer
+        format: int64
       Nombre:
         type: string
       NumeroOrden:
