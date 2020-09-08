@@ -44,7 +44,7 @@ steps:
       - push      
 
   - name: beego_rollback
-    image: golang:1.9
+    image: golang:1.14
     environment:
       PG_MIGRATION_USER:
         from_secret: PG_MIGRATION_USER
