@@ -10,7 +10,7 @@ name: API_deploy
 
 steps: 
   - name: go
-    image: golang:1.9
+    image: golang:1.14
     commands:
      - go get -t
      - GOOS=linux GOARCH=amd64 go build -o main
