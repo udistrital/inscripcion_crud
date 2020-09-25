@@ -1,24 +1,43 @@
 package main
 
 import (
-	_ "github.com/udistrital/admisiones_crud/routers"
+	_ "github.com/udistrital/inscripcion_crud/routers"
 	apistatus "github.com/udistrital/utils_oas/apiStatusLib"
+	"github.com/udistrital/utils_oas/customerror"
 
-		"github.com/astaxie/beego"
-		"github.com/astaxie/beego/logs"
-		"github.com/astaxie/beego/orm"
-		"github.com/astaxie/beego/plugins/cors"
-		_ "github.com/lib/pq"
+	"github.com/astaxie/beego"
+	//"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/plugins/cors"
+	_ "github.com/lib/pq"
 )
 
 func init() {
 	orm.RegisterDataBase("default", "postgres", "postgres://"+beego.AppConfig.String("PGuser")+":"+beego.AppConfig.String("PGpass")+"@"+beego.AppConfig.String("PGurls")+"/"+beego.AppConfig.String("PGdb")+"?sslmode=disable&search_path="+beego.AppConfig.String("PGschemas")+"")
+	if beego.BConfig.RunMode == "dev" {
+		/*
+			// Database alias.
+			name := "default"
+
+			// Drop table and re-create.
+			force := false
+
+			// Print log.
+			verbose := true
+
+			// Error.
+			err := orm.RunSyncdb(name, force, verbose)
+			if err != nil {
+				fmt.Println(err)
+			}
+		*/
+	}
 }
 
 func main() {
-	//orm.Debug = true
 	if beego.BConfig.RunMode == "dev" {
 		beego.BConfig.WebConfig.DirectoryIndex = true
+		orm.Debug = true
 		beego.BConfig.WebConfig.StaticDir["/swagger"] = "swagger"
 	}
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{
@@ -34,10 +53,12 @@ func main() {
 		AllowCredentials: true,
 	}))
 
-	logPath := "{\"filename\":\""
-	logPath += beego.AppConfig.String("logPath")
-	logPath += "\"}"
-	logs.SetLogger(logs.AdapterFile, logPath)
+	// logPath := "{\"filename\":\""
+	// logPath += beego.AppConfig.String("logPath")
+	// logPath += "\"}"
+	// logs.SetLogger(logs.AdapterFile, logPath)
+
+	beego.ErrorController(&customerror.CustomErrorController{})
 
 	apistatus.Init()
 	beego.Run()

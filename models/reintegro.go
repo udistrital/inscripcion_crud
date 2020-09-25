@@ -5,53 +5,56 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type LineaInvestigacion struct {
-	Id                 int     `orm:"column(id);pk;auto"`
-	Nombre             string  `orm:"column(nombre)"`
-	Descripcion        string  `orm:"column(descripcion);null"`
-	CodigoAbreviacion  string  `orm:"column(codigo_abreviacion);null"`
-	Activo             bool    `orm:"column(activo)"`
-	NumeroOrden        float64 `orm:"column(numero_orden);null"`
-	GrupoInvestigacion int     `orm:"column(grupo_investigacion)"`
+type Reintegro struct {
+	Id                int          `orm:"column(id);pk;auto"`
+	CodigoEstudiante  float64      `orm:"column(codigo_estudiante)"`
+	CanceloSemestre   bool         `orm:"column(cancelo_semestre)"`
+	MotivoRetiro      string       `orm:"column(motivo_retiro)"`
+	Activo            bool         `orm:"column(activo)"`
+	FechaCreacion     time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
+	FechaModificacion time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
+	SolicitudAcuerdo  bool         `orm:"column(solicitud_acuerdo)"`
 }
 
-func (t *LineaInvestigacion) TableName() string {
-	return "linea_investigacion"
+func (t *Reintegro) TableName() string {
+	return "reintegro"
 }
 
 func init() {
-	orm.RegisterModel(new(LineaInvestigacion))
+	orm.RegisterModel(new(Reintegro))
 }
 
-// AddLineaInvestigacion insert a new LineaInvestigacion into database and returns
+// AddReintegro insert a new Reintegro into database and returns
 // last inserted Id on success.
-func AddLineaInvestigacion(m *LineaInvestigacion) (id int64, err error) {
+func AddReintegro(m *Reintegro) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetLineaInvestigacionById retrieves LineaInvestigacion by Id. Returns error if
+// GetReintegroById retrieves Reintegro by Id. Returns error if
 // Id doesn't exist
-func GetLineaInvestigacionById(id int) (v *LineaInvestigacion, err error) {
+func GetReintegroById(id int) (v *Reintegro, err error) {
 	o := orm.NewOrm()
-	v = &LineaInvestigacion{Id: id}
+	v = &Reintegro{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllLineaInvestigacion retrieves all LineaInvestigacion matches certain condition. Returns empty list if
+// GetAllReintegro retrieves all Reintegro matches certain condition. Returns empty list if
 // no records exist
-func GetAllLineaInvestigacion(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllReintegro(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(LineaInvestigacion)).RelatedSel()
+	qs := o.QueryTable(new(Reintegro)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -101,7 +104,7 @@ func GetAllLineaInvestigacion(query map[string]string, fields []string, sortby [
 		}
 	}
 
-	var l []LineaInvestigacion
+	var l []Reintegro
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -124,11 +127,11 @@ func GetAllLineaInvestigacion(query map[string]string, fields []string, sortby [
 	return nil, err
 }
 
-// UpdateLineaInvestigacion updates LineaInvestigacion by Id and returns error if
+// UpdateReintegro updates Reintegro by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateLineaInvestigacionById(m *LineaInvestigacion) (err error) {
+func UpdateReintegroById(m *Reintegro) (err error) {
 	o := orm.NewOrm()
-	v := LineaInvestigacion{Id: m.Id}
+	v := Reintegro{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -139,15 +142,15 @@ func UpdateLineaInvestigacionById(m *LineaInvestigacion) (err error) {
 	return
 }
 
-// DeleteLineaInvestigacion deletes LineaInvestigacion by Id and returns error if
+// DeleteReintegro deletes Reintegro by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteLineaInvestigacion(id int) (err error) {
+func DeleteReintegro(id int) (err error) {
 	o := orm.NewOrm()
-	v := LineaInvestigacion{Id: id}
+	v := Reintegro{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&LineaInvestigacion{Id: id}); err == nil {
+		if num, err = o.Delete(&Reintegro{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
