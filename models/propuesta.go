@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
@@ -18,8 +17,8 @@ type Propuesta struct {
 	LineaInvestigacionId 				  int           `orm:"column(linea_investigacion_id)"`
 	DocumentoId                           int           `orm:"column(documento_id)"`
 	Activo                                bool          `orm:"column(activo)"`
-	FechaCreacion                         time.Time     `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion                     time.Time     `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	FechaCreacion                         string        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion                     string        `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	InscripcionId                         *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
 	TipoProyectoId                        *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
 }
