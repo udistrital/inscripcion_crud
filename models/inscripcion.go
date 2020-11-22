@@ -21,8 +21,8 @@ type Inscripcion struct {
 	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`
 	FechaAceptaTerminos time.Time          `orm:"column(fecha_acepta_terminos);type(date)"`
 	Activo              bool               `orm:"column(activo)"`
-	FechaCreacion       time.Time          `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion   time.Time          `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	FechaCreacion       string             `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion   string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
 }
