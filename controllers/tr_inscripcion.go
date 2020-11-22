@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 
 	"github.com/udistrital/inscripcion_crud/models"
-	"github.com/udistrital/utils_oas/time_bogota"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -31,8 +30,6 @@ func (c *TrInscripcionController) URLMapping() {
 func (c *TrInscripcionController) PostReintegro() {
 	var v models.TrInscripcionReintegro
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
-		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.AddTrInscripcionReintegro(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
@@ -61,8 +58,6 @@ func (c *TrInscripcionController) PostReintegro() {
 func (c *TrInscripcionController) PostTransferencia() {
 	var v models.TrInscripcionTransferencia
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
-		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.AddTrInscripcionTransferencia(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
