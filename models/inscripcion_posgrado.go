@@ -11,7 +11,7 @@ import (
 )
 
 type InscripcionPosgrado struct {
-	Id                int          `orm:"column(id);pk"`
+	Id                int          `orm:"column(id);pk;auto"`
 	Idioma            int          `orm:"column(idioma)"`
 	Activo            bool         `orm:"column(activo)"`
 	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
