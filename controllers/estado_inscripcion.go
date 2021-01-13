@@ -7,7 +7,7 @@ import (
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
-	"github.com/planesticud/inscripcion_crud/models"
+	"github.com/udistrital/inscripcion_crud/models"
 )
 
 // EstadoInscripcionController operations for EstadoInscripcion
