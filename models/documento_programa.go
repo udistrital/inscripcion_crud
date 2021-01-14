@@ -5,60 +5,53 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Inscripcion struct {
-	Id                  int                `orm:"column(id);pk;auto"`
-	PersonaId           int                `orm:"column(persona_id)"`
-	ProgramaAcademicoId int                `orm:"column(programa_academico_id)"`
-	ReciboInscripcionId int                `orm:"column(recibo_inscripcion_id);null"`
-	PeriodoId           int                `orm:"column(periodo_id)"`
-	EnfasisId           int                `orm:"column(enfasis_id);null"`
-	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`
-	FechaAceptaTerminos time.Time          `orm:"column(fecha_acepta_terminos);type(date)"`
-	Activo              bool               `orm:"column(activo)"`
-	FechaCreacion       string             `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion   string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
-	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
+type DocumentoPrograma struct {
+	Id                      int                    `orm:"column(id);pk;auto"`
+	Activo                  bool                   `orm:"column(activo)"`
+	PeriodoId               int                    `orm:"column(periodo_id)"`
+	ProgramaId              int                    `orm:"column(programa_id);null"`
+	FechaCreacion           string                 `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion       string                 `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	TipoDocumentoProgramaId *TipoDocumentoPrograma `orm:"column(tipo_documento_programa_id);rel(fk)"`
 }
 
-func (t *Inscripcion) TableName() string {
-	return "inscripcion"
+func (t *DocumentoPrograma) TableName() string {
+	return "documento_programa"
 }
 
 func init() {
-	orm.RegisterModel(new(Inscripcion))
+	orm.RegisterModel(new(DocumentoPrograma))
 }
 
-// AddInscripcion insert a new Inscripcion into database and returns
+// AddDocumentoPrograma insert a new DocumentoPrograma into database and returns
 // last inserted Id on success.
-func AddInscripcion(m *Inscripcion) (id int64, err error) {
+func AddDocumentoPrograma(m *DocumentoPrograma) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetInscripcionById retrieves Inscripcion by Id. Returns error if
+// GetDocumentoProgramaById retrieves DocumentoPrograma by Id. Returns error if
 // Id doesn't exist
-func GetInscripcionById(id int) (v *Inscripcion, err error) {
+func GetDocumentoProgramaById(id int) (v *DocumentoPrograma, err error) {
 	o := orm.NewOrm()
-	v = &Inscripcion{Id: id}
+	v = &DocumentoPrograma{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllInscripcion retrieves all Inscripcion matches certain condition. Returns empty list if
+// GetAllDocumentoPrograma retrieves all DocumentoPrograma matches certain condition. Returns empty list if
 // no records exist
-func GetAllInscripcion(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllDocumentoPrograma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Inscripcion)).RelatedSel()
+	qs := o.QueryTable(new(DocumentoPrograma))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -108,7 +101,7 @@ func GetAllInscripcion(query map[string]string, fields []string, sortby []string
 		}
 	}
 
-	var l []Inscripcion
+	var l []DocumentoPrograma
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -131,11 +124,11 @@ func GetAllInscripcion(query map[string]string, fields []string, sortby []string
 	return nil, err
 }
 
-// UpdateInscripcion updates Inscripcion by Id and returns error if
+// UpdateDocumentoPrograma updates DocumentoPrograma by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateInscripcionById(m *Inscripcion) (err error) {
+func UpdateDocumentoProgramaById(m *DocumentoPrograma) (err error) {
 	o := orm.NewOrm()
-	v := Inscripcion{Id: m.Id}
+	v := DocumentoPrograma{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -146,15 +139,15 @@ func UpdateInscripcionById(m *Inscripcion) (err error) {
 	return
 }
 
-// DeleteInscripcion deletes Inscripcion by Id and returns error if
+// DeleteDocumentoPrograma deletes DocumentoPrograma by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteInscripcion(id int) (err error) {
+func DeleteDocumentoPrograma(id int) (err error) {
 	o := orm.NewOrm()
-	v := Inscripcion{Id: id}
+	v := DocumentoPrograma{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Inscripcion{Id: id}); err == nil {
+		if num, err = o.Delete(&DocumentoPrograma{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

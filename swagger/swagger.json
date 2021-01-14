@@ -15,6 +15,179 @@
     },
     "basePath": "/v1",
     "paths": {
+        "/documento_programa/": {
+            "get": {
+                "tags": [
+                    "documento_programa"
+                ],
+                "description": "get DocumentoPrograma",
+                "operationId": "DocumentoProgramaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "documento_programa"
+                ],
+                "description": "create DocumentoPrograma",
+                "operationId": "DocumentoProgramaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentoPrograma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoPrograma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DocumentoPrograma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/documento_programa/{id}": {
+            "get": {
+                "tags": [
+                    "documento_programa"
+                ],
+                "description": "get DocumentoPrograma by id",
+                "operationId": "DocumentoProgramaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "documento_programa"
+                ],
+                "description": "update the DocumentoPrograma",
+                "operationId": "DocumentoProgramaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentoPrograma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoPrograma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "documento_programa"
+                ],
+                "description": "delete the DocumentoPrograma",
+                "operationId": "DocumentoProgramaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
         "/estado_inscripcion/": {
             "get": {
                 "tags": [
@@ -1053,6 +1226,352 @@
                 }
             }
         },
+        "/soporte_documento_programa/": {
+            "get": {
+                "tags": [
+                    "soporte_documento_programa"
+                ],
+                "description": "get SoporteDocumentoPrograma",
+                "operationId": "SoporteDocumentoProgramaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SoporteDocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "soporte_documento_programa"
+                ],
+                "description": "create SoporteDocumentoPrograma",
+                "operationId": "SoporteDocumentoProgramaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for SoporteDocumentoPrograma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SoporteDocumentoPrograma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.SoporteDocumentoPrograma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/soporte_documento_programa/{id}": {
+            "get": {
+                "tags": [
+                    "soporte_documento_programa"
+                ],
+                "description": "get SoporteDocumentoPrograma by id",
+                "operationId": "SoporteDocumentoProgramaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SoporteDocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "soporte_documento_programa"
+                ],
+                "description": "update the SoporteDocumentoPrograma",
+                "operationId": "SoporteDocumentoProgramaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for SoporteDocumentoPrograma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.SoporteDocumentoPrograma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.SoporteDocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "soporte_documento_programa"
+                ],
+                "description": "delete the SoporteDocumentoPrograma",
+                "operationId": "SoporteDocumentoProgramaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_documento_programa/": {
+            "get": {
+                "tags": [
+                    "tipo_documento_programa"
+                ],
+                "description": "get TipoDocumentoPrograma",
+                "operationId": "TipoDocumentoProgramaController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tipo_documento_programa"
+                ],
+                "description": "create TipoDocumentoPrograma",
+                "operationId": "TipoDocumentoProgramaController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoDocumentoPrograma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.TipoDocumentoPrograma"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/tipo_documento_programa/{id}": {
+            "get": {
+                "tags": [
+                    "tipo_documento_programa"
+                ],
+                "description": "get TipoDocumentoPrograma by id",
+                "operationId": "TipoDocumentoProgramaController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tipo_documento_programa"
+                ],
+                "description": "update the TipoDocumentoPrograma",
+                "operationId": "TipoDocumentoProgramaController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for TipoDocumentoPrograma content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tipo_documento_programa"
+                ],
+                "description": "delete the TipoDocumentoPrograma",
+                "operationId": "TipoDocumentoProgramaController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
         "/tipo_icfes/": {
             "get": {
                 "tags": [
@@ -1803,6 +2322,36 @@
         }
     },
     "definitions": {
+        "models.DocumentoPrograma": {
+            "title": "DocumentoPrograma",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "FechaCreacion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "PeriodoId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ProgramaId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TipoDocumentoProgramaId": {
+                    "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                }
+            }
+        },
         "models.EstadoInscripcion": {
             "title": "EstadoInscripcion",
             "type": "object",
@@ -1817,12 +2366,10 @@
                     "type": "string"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -1859,12 +2406,10 @@
                     "format": "datetime"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -1886,10 +2431,6 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "ReciboMatriculaId": {
-                    "type": "integer",
-                    "format": "int64"
-                },
                 "TipoInscripcionId": {
                     "$ref": "#/definitions/models.TipoInscripcion"
                 }
@@ -1903,12 +2444,10 @@
                     "type": "boolean"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -1938,12 +2477,10 @@
                     "type": "string"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -1980,12 +2517,10 @@
                     "format": "int64"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "GrupoInvestigacionId": {
                     "type": "integer",
@@ -2028,12 +2563,10 @@
                     "format": "double"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -2047,6 +2580,64 @@
                 },
                 "SolicitudAcuerdo": {
                     "type": "boolean"
+                }
+            }
+        },
+        "models.SoporteDocumentoPrograma": {
+            "title": "SoporteDocumentoPrograma",
+            "type": "object",
+            "properties": {
+                "DocumentoId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "DocumentoProgramaId": {
+                    "$ref": "#/definitions/models.DocumentoPrograma"
+                },
+                "FechaCreacion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "InscripcionId": {
+                    "$ref": "#/definitions/models.Inscripcion"
+                }
+            }
+        },
+        "models.TipoDocumentoPrograma": {
+            "title": "TipoDocumentoPrograma",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CodigoAbreviacion": {
+                    "type": "string"
+                },
+                "Descripcion": {
+                    "type": "string"
+                },
+                "FechaCreacion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Nombre": {
+                    "type": "string"
+                },
+                "NumeroOrden": {
+                    "type": "number",
+                    "format": "double"
                 }
             }
         },
@@ -2064,12 +2655,10 @@
                     "type": "string"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -2097,13 +2686,14 @@
                 "Descripcion": {
                     "type": "string"
                 },
+                "Especial": {
+                    "type": "boolean"
+                },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -2136,12 +2726,10 @@
                     "type": "string"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -2191,12 +2779,10 @@
                     "type": "string"
                 },
                 "FechaCreacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "FechaModificacion": {
-                    "type": "string",
-                    "format": "datetime"
+                    "type": "string"
                 },
                 "Id": {
                     "type": "integer",
@@ -2268,6 +2854,18 @@
         {
             "name": "tr_inscripcion",
             "description": "TrInscripcionController operations for TipoTercero\n"
+        },
+        {
+            "name": "documento_programa",
+            "description": "DocumentoProgramaController operations for DocumentoPrograma\n"
+        },
+        {
+            "name": "soporte_documento_programa",
+            "description": "SoporteDocumentoProgramaController operations for SoporteDocumentoPrograma\n"
+        },
+        {
+            "name": "tipo_documento_programa",
+            "description": "TipoDocumentoProgramaController operations for TipoDocumentoPrograma\n"
         }
     ]
 }
