@@ -47,8 +47,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoPrograma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - documento_programa
@@ -64,8 +64,8 @@ paths:
       responses:
         "201":
           description: '{int} models.DocumentoPrograma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /documento_programa/{id}:
     get:
       tags:
@@ -83,8 +83,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoPrograma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - documento_programa
@@ -107,8 +107,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.DocumentoPrograma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - documento_programa
@@ -123,8 +123,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /estado_inscripcion/:
     get:
       tags:
@@ -851,8 +851,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SoporteDocumentoPrograma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - soporte_documento_programa
@@ -868,8 +868,8 @@ paths:
       responses:
         "201":
           description: '{int} models.SoporteDocumentoPrograma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /soporte_documento_programa/{id}:
     get:
       tags:
@@ -887,8 +887,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SoporteDocumentoPrograma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - soporte_documento_programa
@@ -911,8 +911,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.SoporteDocumentoPrograma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - soporte_documento_programa
@@ -927,8 +927,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /tipo_documento_programa/:
     get:
       tags:
@@ -965,8 +965,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoDocumentoPrograma'
-        "403":
-          description: ""
+        "404":
+          description: not found resource
     post:
       tags:
       - tipo_documento_programa
@@ -982,8 +982,8 @@ paths:
       responses:
         "201":
           description: '{int} models.TipoDocumentoPrograma'
-        "403":
-          description: body is empty
+        "400":
+          description: the request contains incorrect syntax
   /tipo_documento_programa/{id}:
     get:
       tags:
@@ -1001,8 +1001,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoDocumentoPrograma'
-        "403":
-          description: :id is empty
+        "404":
+          description: not found resource
     put:
       tags:
       - tipo_documento_programa
@@ -1025,8 +1025,8 @@ paths:
           description: ""
           schema:
             $ref: '#/definitions/models.TipoDocumentoPrograma'
-        "403":
-          description: :id is not int
+        "400":
+          description: the request contains incorrect syntax
     delete:
       tags:
       - tipo_documento_programa
@@ -1041,8 +1041,8 @@ paths:
       responses:
         "200":
           description: '{string} delete success!'
-        "403":
-          description: id is empty
+        "404":
+          description: not found resource
   /tipo_icfes/:
     get:
       tags:
