@@ -3,11 +3,14 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"github.com/udistrital/inscripcion_crud/models"
 	"strconv"
 	"strings"
 
+	"github.com/udistrital/inscripcion_crud/models"
+	"github.com/udistrital/utils_oas/time_bogota"
+
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/logs"
 )
 
 // SoporteDocumentoProgramaController operations for SoporteDocumentoPrograma
@@ -29,19 +32,27 @@ func (c *SoporteDocumentoProgramaController) URLMapping() {
 // @Description create SoporteDocumentoPrograma
 // @Param	body		body 	models.SoporteDocumentoPrograma	true		"body for SoporteDocumentoPrograma content"
 // @Success 201 {int} models.SoporteDocumentoPrograma
-// @Failure 403 body is empty
+// @Failure 400 the request contains incorrect syntax
 // @router / [post]
 func (c *SoporteDocumentoProgramaController) Post() {
 	var v models.SoporteDocumentoPrograma
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddSoporteDocumentoPrograma(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+			c.Data["system"] = err
+			c.Ctx.Output.SetStatus(400)
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Ctx.Output.SetStatus(400)
 	}
 	c.ServeJSON()
 }
@@ -51,14 +62,17 @@ func (c *SoporteDocumentoProgramaController) Post() {
 // @Description get SoporteDocumentoPrograma by id
 // @Param	id		path 	string	true		"The key for staticblock"
 // @Success 200 {object} models.SoporteDocumentoPrograma
-// @Failure 403 :id is empty
+// @Failure 404 not found resource
 // @router /:id [get]
 func (c *SoporteDocumentoProgramaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v, err := models.GetSoporteDocumentoProgramaById(id)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Ctx.Output.SetStatus(404)
 	} else {
 		c.Data["json"] = v
 	}
@@ -75,7 +89,7 @@ func (c *SoporteDocumentoProgramaController) GetOne() {
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
 // @Success 200 {object} models.SoporteDocumentoPrograma
-// @Failure 403
+// @Failure 404 not found resource
 // @router / [get]
 func (c *SoporteDocumentoProgramaController) GetAll() {
 	var fields []string
@@ -121,8 +135,14 @@ func (c *SoporteDocumentoProgramaController) GetAll() {
 
 	l, err := models.GetAllSoporteDocumentoPrograma(query, fields, sortby, order, offset, limit)
 	if err != nil {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Ctx.Output.SetStatus(404)
 	} else {
+		if l == nil {
+			l = append(l, map[string]interface{}{})
+		}
 		c.Data["json"] = l
 	}
 	c.ServeJSON()
@@ -134,20 +154,28 @@ func (c *SoporteDocumentoProgramaController) GetAll() {
 // @Param	id		path 	string	true		"The id you want to update"
 // @Param	body		body 	models.SoporteDocumentoPrograma	true		"body for SoporteDocumentoPrograma content"
 // @Success 200 {object} models.SoporteDocumentoPrograma
-// @Failure 403 :id is not int
+// @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
 func (c *SoporteDocumentoProgramaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	v := models.SoporteDocumentoPrograma{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.UpdateSoporteDocumentoProgramaById(&v); err == nil {
-			c.Data["json"] = "OK"
+			c.Data["json"] = v
 		} else {
-			c.Data["json"] = err.Error()
+			logs.Error(err)
+			c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+			c.Data["system"] = err
+			c.Ctx.Output.SetStatus(400)
 		}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Ctx.Output.SetStatus(400)
 	}
 	c.ServeJSON()
 }
@@ -157,15 +185,18 @@ func (c *SoporteDocumentoProgramaController) Put() {
 // @Description delete the SoporteDocumentoPrograma
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
-// @Failure 403 id is empty
+// @Failure 404 not found resource
 // @router /:id [delete]
 func (c *SoporteDocumentoProgramaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
 	if err := models.DeleteSoporteDocumentoPrograma(id); err == nil {
-		c.Data["json"] = "OK"
+		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
-		c.Data["json"] = err.Error()
+		logs.Error(err)
+		c.Data["json"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
+		c.Data["system"] = err
+		c.Ctx.Output.SetStatus(404)
 	}
 	c.ServeJSON()
 }
