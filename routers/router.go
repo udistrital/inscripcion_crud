@@ -82,6 +82,23 @@ func init() {
 			),
 		),
 
+		beego.NSNamespace("/documento_programa",
+			beego.NSInclude(
+				&controllers.DocumentoProgramaController{},
+			),
+		),
+
+		beego.NSNamespace("/soporte_documento_programa",
+			beego.NSInclude(
+				&controllers.SoporteDocumentoProgramaController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_documento_programa",
+			beego.NSInclude(
+				&controllers.TipoDocumentoProgramaController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }
