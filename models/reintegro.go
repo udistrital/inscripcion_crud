@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
@@ -16,8 +15,8 @@ type Reintegro struct {
 	CanceloSemestre   bool         `orm:"column(cancelo_semestre)"`
 	MotivoRetiro      string       `orm:"column(motivo_retiro)"`
 	Activo            bool         `orm:"column(activo)"`
-	FechaCreacion     time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
+	FechaCreacion     string       `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion string       `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
 	SolicitudAcuerdo  bool         `orm:"column(solicitud_acuerdo)"`
 }

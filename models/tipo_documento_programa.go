@@ -9,53 +9,50 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Propuesta struct {
-	Id                                    int           `orm:"column(id);pk;auto"`
-	Nombre                                string        `orm:"column(nombre)"`
-	Resumen                               string        `orm:"column(resumen);null"`
-	GrupoInvestigacionId 				  int           `orm:"column(grupo_investigacion_id)"`
-	LineaInvestigacionId 				  int           `orm:"column(linea_investigacion_id)"`
-	DocumentoId                           int           `orm:"column(documento_id)"`
-	Activo                                bool          `orm:"column(activo)"`
-	FechaCreacion                         string        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion                     string        `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	InscripcionId                         *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
-	TipoProyectoId                        *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
+type TipoDocumentoPrograma struct {
+	Id                int     `orm:"column(id);pk;auto"`
+	Nombre            string  `orm:"column(nombre)"`
+	Descripcion       string  `orm:"column(descripcion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion)"`
+	Activo            bool    `orm:"column(activo)"`
+	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	FechaCreacion     string  `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion string  `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *Propuesta) TableName() string {
-	return "propuesta"
+func (t *TipoDocumentoPrograma) TableName() string {
+	return "tipo_documento_programa"
 }
 
 func init() {
-	orm.RegisterModel(new(Propuesta))
+	orm.RegisterModel(new(TipoDocumentoPrograma))
 }
 
-// AddPropuesta insert a new Propuesta into database and returns
+// AddTipoDocumentoPrograma insert a new TipoDocumentoPrograma into database and returns
 // last inserted Id on success.
-func AddPropuesta(m *Propuesta) (id int64, err error) {
+func AddTipoDocumentoPrograma(m *TipoDocumentoPrograma) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetPropuestaById retrieves Propuesta by Id. Returns error if
+// GetTipoDocumentoProgramaById retrieves TipoDocumentoPrograma by Id. Returns error if
 // Id doesn't exist
-func GetPropuestaById(id int) (v *Propuesta, err error) {
+func GetTipoDocumentoProgramaById(id int) (v *TipoDocumentoPrograma, err error) {
 	o := orm.NewOrm()
-	v = &Propuesta{Id: id}
+	v = &TipoDocumentoPrograma{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllPropuesta retrieves all Propuesta matches certain condition. Returns empty list if
+// GetAllTipoDocumentoPrograma retrieves all TipoDocumentoPrograma matches certain condition. Returns empty list if
 // no records exist
-func GetAllPropuesta(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTipoDocumentoPrograma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Propuesta)).RelatedSel()
+	qs := o.QueryTable(new(TipoDocumentoPrograma))
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -105,7 +102,7 @@ func GetAllPropuesta(query map[string]string, fields []string, sortby []string, 
 		}
 	}
 
-	var l []Propuesta
+	var l []TipoDocumentoPrograma
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -128,11 +125,11 @@ func GetAllPropuesta(query map[string]string, fields []string, sortby []string, 
 	return nil, err
 }
 
-// UpdatePropuesta updates Propuesta by Id and returns error if
+// UpdateTipoDocumentoPrograma updates TipoDocumentoPrograma by Id and returns error if
 // the record to be updated doesn't exist
-func UpdatePropuestaById(m *Propuesta) (err error) {
+func UpdateTipoDocumentoProgramaById(m *TipoDocumentoPrograma) (err error) {
 	o := orm.NewOrm()
-	v := Propuesta{Id: m.Id}
+	v := TipoDocumentoPrograma{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -143,15 +140,15 @@ func UpdatePropuestaById(m *Propuesta) (err error) {
 	return
 }
 
-// DeletePropuesta deletes Propuesta by Id and returns error if
+// DeleteTipoDocumentoPrograma deletes TipoDocumentoPrograma by Id and returns error if
 // the record to be deleted doesn't exist
-func DeletePropuesta(id int) (err error) {
+func DeleteTipoDocumentoPrograma(id int) (err error) {
 	o := orm.NewOrm()
-	v := Propuesta{Id: id}
+	v := TipoDocumentoPrograma{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Propuesta{Id: id}); err == nil {
+		if num, err = o.Delete(&TipoDocumentoPrograma{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
