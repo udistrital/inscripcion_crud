@@ -14,7 +14,7 @@ type Inscripcion struct {
 	Id                  int                `orm:"column(id);pk;auto"`
 	PersonaId           int                `orm:"column(persona_id)"`
 	ProgramaAcademicoId int                `orm:"column(programa_academico_id)"`
-	ReciboInscripcionId int                `orm:"column(recibo_inscripcion_id);null"`
+	ReciboInscripcion   string             `orm:"column(recibo_inscripcion_id);null"`
 	PeriodoId           int                `orm:"column(periodo_id)"`
 	EnfasisId           int                `orm:"column(enfasis_id);null"`
 	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`

@@ -2427,9 +2427,8 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "ReciboInscripcionId": {
-                    "type": "integer",
-                    "format": "int64"
+                "ReciboInscripcion": {
+                    "type": "string"
                 },
                 "TipoInscripcionId": {
                     "$ref": "#/definitions/models.TipoInscripcion"
