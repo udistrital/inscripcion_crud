@@ -161,7 +161,7 @@ func (c *PropuestaController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Propuesta{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
 		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.UpdatePropuestaById(&v); err == nil {
 			c.Data["json"] = v
