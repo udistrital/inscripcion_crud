@@ -1,0 +1,1 @@
+DELETE FROM inscripcion.estado_inscripcion WHERE nombre ='INSCRITO';
