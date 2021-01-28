@@ -1,1 +1,0 @@
-2test/inscripcion_test.go 2goX¿hrtest/inscripcion_test.go

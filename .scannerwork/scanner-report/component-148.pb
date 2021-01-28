@@ -1,1 +1,0 @@
-”#controllers/inscripcion_pregrado.go 2goXÅhr#controllers/inscripcion_pregrado.go

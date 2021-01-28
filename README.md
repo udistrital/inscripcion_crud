@@ -30,4 +30,4 @@ Definir los valores de las siguientes variables de entorno:
 INSCRIPCION_CRUD_HTTP_PORT=8887 INSCRIPCION_CRUD__PGUSER=user INSCRIPCION_CRUD__PGPASS=password INSCRIPCION_CRUD__PGURLS=localhost INSCRIPCION_CRUD__PGDB=bd INSCRIPCION_CRUD__SCHEMA=schema_new bee run
 
 ## MODELO
-![image](https://github.com/planesticud/inscripcion_crud/blob/develop/modelo_inscripcion_crud.png).
+![image](https://github.com/udistrital/inscripcion_crud/blob/planestic/modelo_inscripcion_crud.png).

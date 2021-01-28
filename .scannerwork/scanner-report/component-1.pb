@@ -1,2 +1,0 @@
- :	
->Rinscripcion_crud

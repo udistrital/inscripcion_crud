@@ -1,1 +1,0 @@
-models/tipo_proyecto.go 2goX¡hrmodels/tipo_proyecto.go

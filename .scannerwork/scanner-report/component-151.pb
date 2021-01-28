@@ -1,1 +1,0 @@
-—!controllers/estado_inscripcion.go 2goXÅhr!controllers/estado_inscripcion.go

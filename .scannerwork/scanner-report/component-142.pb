@@ -1,1 +1,0 @@
-Žcontrollers/inscripcion.go 2goXÅhrcontrollers/inscripcion.go
