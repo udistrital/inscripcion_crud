@@ -1,0 +1,1 @@
+models/estado_inscripcion.go 2goX¡hrmodels/estado_inscripcion.go

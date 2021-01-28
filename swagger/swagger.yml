@@ -1046,42 +1046,6 @@ paths:
           description: '{string} delete success!'
         "404":
           description: not found resource
-  /tr_inscripcion/reintegro:
-    post:
-      tags:
-      - tr_inscripcion
-      description: create TrInscripcionReintegro
-      operationId: TrInscripcionController.PostReintegro
-      parameters:
-      - in: body
-        name: body
-        description: body for TrInscripcionReintegro content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TrInscripcionReintegro'
-      responses:
-        "201":
-          description: '{int} models.TrInscripcionReintegro'
-        "400":
-          description: the request contains incorrect syntax
-  /tr_inscripcion/transferencia:
-    post:
-      tags:
-      - tr_inscripcion
-      description: create TrInscripcionTransferencia
-      operationId: TrInscripcionController.PostTransferencia
-      parameters:
-      - in: body
-        name: body
-        description: body for TrInscripcionTransferencia content
-        required: true
-        schema:
-          $ref: '#/definitions/models.TrInscripcionTransferencia'
-      responses:
-        "201":
-          description: '{int} models.TrInscripcionTransferencia'
-        "400":
-          description: the request contains incorrect syntax
   /transferencia/:
     get:
       tags:
@@ -1210,10 +1174,8 @@ definitions:
         type: string
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1240,10 +1202,8 @@ definitions:
         format: datetime
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1256,6 +1216,9 @@ definitions:
       ProgramaAcademicoId:
         type: integer
         format: int64
+      PuntajeTotal:
+        type: number
+        format: double
       ReciboInscripcionId:
         type: integer
         format: int64
@@ -1272,10 +1235,8 @@ definitions:
         type: boolean
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1297,10 +1258,8 @@ definitions:
         type: string
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1314,8 +1273,6 @@ definitions:
         format: int64
       TipoIcfesId:
         $ref: '#/definitions/models.TipoIcfes'
-      Valido:
-        type: boolean
   models.Propuesta:
     title: Propuesta
     type: object
@@ -1327,11 +1284,9 @@ definitions:
         format: int64
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
-      GrupoInvestigacionId:
+      GrupoInvestigacionLineaInvestigacionId:
         type: integer
         format: int64
       Id:
@@ -1339,9 +1294,6 @@ definitions:
         format: int64
       InscripcionId:
         $ref: '#/definitions/models.Inscripcion'
-      LineaInvestigacionId:
-        type: integer
-        format: int64
       Nombre:
         type: string
       Resumen:
@@ -1361,10 +1313,8 @@ definitions:
         format: double
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1372,8 +1322,6 @@ definitions:
         $ref: '#/definitions/models.Inscripcion'
       MotivoRetiro:
         type: string
-      SolicitudAcuerdo:
-        type: boolean
   models.TipoIcfes:
     title: TipoIcfes
     type: object
@@ -1386,10 +1334,8 @@ definitions:
         type: string
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1410,14 +1356,9 @@ definitions:
         type: string
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
-        type: integer
-        format: int64
-      NivelId:
         type: integer
         format: int64
       Nombre:
@@ -1437,10 +1378,8 @@ definitions:
         type: string
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1449,22 +1388,6 @@ definitions:
       NumeroOrden:
         type: number
         format: double
-  models.TrInscripcionReintegro:
-    title: TrInscripcionReintegro
-    type: object
-    properties:
-      InscripcionEstudiante:
-        $ref: '#/definitions/models.Inscripcion'
-      ReintegroEstudiante:
-        $ref: '#/definitions/models.Reintegro'
-  models.TrInscripcionTransferencia:
-    title: TrInscripcionTransferencia
-    type: object
-    properties:
-      InscripcionEstudiante:
-        $ref: '#/definitions/models.Inscripcion'
-      TransferenciaEstudiante:
-        $ref: '#/definitions/models.Transferencia'
   models.Transferencia:
     title: Transferencia
     type: object
@@ -1475,10 +1398,8 @@ definitions:
         type: string
       FechaCreacion:
         type: string
-        format: datetime
       FechaModificacion:
         type: string
-        format: datetime
       Id:
         type: integer
         format: int64
@@ -1505,12 +1426,6 @@ tags:
 - name: reintegro
   description: |
     ReintegroController operations for Reintegro
-- name: estado_inscripcion
-  description: |
-    EstadoInscripcionController operations for EstadoInscripcion
-- name: tipo_proyecto
-  description: |
-    TipoProyectoController operations for TipoProyecto
 - name: tipo_inscripcion
   description: |
     TipoInscripcionController operations for TipoInscripcion
@@ -1520,12 +1435,15 @@ tags:
 - name: transferencia
   description: |
     TransferenciaController operations for Transferencia
-- name: propuesta
-  description: |
-    PropuestaController operations for Propuesta
 - name: tipo_icfes
   description: |
     TipoIcfesController operations for TipoIcfes
-- name: tr_inscripcion
+- name: estado_inscripcion
   description: |
-    TrInscripcionController operations for TipoTercero
+    EstadoInscripcionController operations for EstadoInscripcion
+- name: propuesta
+  description: |
+    PropuestaController operations for Propuesta
+- name: tipo_proyecto
+  description: |
+    TipoProyectoController operations for TipoProyecto

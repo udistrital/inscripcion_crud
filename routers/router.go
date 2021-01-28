@@ -34,18 +34,6 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/estado_inscripcion",
-			beego.NSInclude(
-				&controllers.EstadoInscripcionController{},
-			),
-		),
-
-		beego.NSNamespace("/tipo_proyecto",
-			beego.NSInclude(
-				&controllers.TipoProyectoController{},
-			),
-		),
-
 		beego.NSNamespace("/tipo_inscripcion",
 			beego.NSInclude(
 				&controllers.TipoInscripcionController{},
@@ -64,21 +52,27 @@ func init() {
 			),
 		),
 
-		beego.NSNamespace("/propuesta",
-			beego.NSInclude(
-				&controllers.PropuestaController{},
-			),
-		),
-
 		beego.NSNamespace("/tipo_icfes",
 			beego.NSInclude(
 				&controllers.TipoIcfesController{},
 			),
 		),
 
-		beego.NSNamespace("/tr_inscripcion",
+		beego.NSNamespace("/estado_inscripcion",
 			beego.NSInclude(
-				&controllers.TrInscripcionController{},
+				&controllers.EstadoInscripcionController{},
+			),
+		),
+
+		beego.NSNamespace("/propuesta",
+			beego.NSInclude(
+				&controllers.PropuestaController{},
+			),
+		),
+
+		beego.NSNamespace("/tipo_proyecto",
+			beego.NSInclude(
+				&controllers.TipoProyectoController{},
 			),
 		),
 	)

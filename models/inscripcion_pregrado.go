@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
+	"github.com/udistrital/utils_oas/time_bogota"
 )
 
 type InscripcionPregrado struct {
@@ -18,10 +18,9 @@ type InscripcionPregrado struct {
 	NumeroIdentificacionIcfes float64      `orm:"column(numero_identificacion_icfes)"`
 	AnoIcfes                  float64      `orm:"column(ano_icfes)"`
 	Activo                    bool         `orm:"column(activo)"`
-	FechaCreacion             time.Time    `orm:"column(fecha_creacion);type(timestamp without time zone);auto_now_add"`
-	FechaModificacion         time.Time    `orm:"column(fecha_modificacion);type(timestamp without time zone);auto_now"`
 	TipoIcfesId               *TipoIcfes   `orm:"column(tipo_icfes_id);rel(fk)"`
-	Valido                    bool         `orm:"column(valido)"`
+	FechaCreacion             string       `orm:"column(fecha_creacion);null"`
+	FechaModificacion         string       `orm:"column(fecha_modificacion);null"`
 }
 
 func (t *InscripcionPregrado) TableName() string {
@@ -35,6 +34,8 @@ func init() {
 // AddInscripcionPregrado insert a new InscripcionPregrado into database and returns
 // last inserted Id on success.
 func AddInscripcionPregrado(m *InscripcionPregrado) (id int64, err error) {
+	m.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
@@ -134,10 +135,11 @@ func GetAllInscripcionPregrado(query map[string]string, fields []string, sortby 
 func UpdateInscripcionPregradoById(m *InscripcionPregrado) (err error) {
 	o := orm.NewOrm()
 	v := InscripcionPregrado{Id: m.Id}
+	m.FechaModificacion = time_bogota.TiempoBogotaFormato()
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Update(m); err == nil {
+		if num, err = o.Update(m, "InscripcionId", "CodigoIcfes", "TipoDocumentoIcfes", "NumeroIdentificacionIcfes", "AnoIcfes", "Activo", "TipoIcfesId", "FechaModificacion"); err == nil {
 			fmt.Println("Number of records updated in database:", num)
 		}
 	}

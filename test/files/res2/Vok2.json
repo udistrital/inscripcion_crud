@@ -1,0 +1,12 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "Idioma": { "type": "integer" },
+    "Activo": { "type": "boolean" },
+    "InscripcionId":	{ "type": "Inscripcion" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

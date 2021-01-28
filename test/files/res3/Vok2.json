@@ -1,0 +1,16 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "InscripcionId":	{ "type": "Inscripcion" },
+    "CodigoIcfes": { "type": "string" },
+    "TipoDocumentoIcfes": { "type": "integer" },
+    "NumeroIdentificacionIcfes": { "type": "integer" },
+    "AnoIcfes": { "type": "integer" },
+    "Activo": { "type": "boolean" },
+    "TipoIcfesId":	{ "type": "TipoIcfes" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

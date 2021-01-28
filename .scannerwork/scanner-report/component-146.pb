@@ -1,0 +1,1 @@
+’controllers/tipo_inscripcion.go 2goXÅhrcontrollers/tipo_inscripcion.go

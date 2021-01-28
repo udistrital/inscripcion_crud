@@ -1,0 +1,14 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "CodigoEstudiante": { "type": "integer" },
+    "CanceloSemestre": { "type": "boolean" },
+    "MotivoRetiro": { "type": "string" },
+    "Activo": { "type": "boolean" },
+    "InscripcionId":	{ "type": "Inscripcion" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

@@ -1,0 +1,1 @@
+models/inscripcion_pregrado.go 2goX£hrmodels/inscripcion_pregrado.go

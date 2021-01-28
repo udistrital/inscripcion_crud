@@ -1,0 +1,21 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "PersonaId": { "type": "integer" },
+    "ProgramaAcademicoId": { "type": "integer" },
+    "ReciboMatriculaId": { "type": "integer" },
+    "ReciboInscripcionId": { "type": "integer" },
+    "PeriodoId": { "type": "integer" },
+    "EnfasisId": { "type": "integer" },
+    "AceptaTerminos": { "type": "boolean" },
+    "FechaAceptaTerminos": { "type": "string" },
+    "TipoInscripcionId":	{ "type": "TipoInscripcion" },
+    "EstadoInscripcionId":	{ "type": "EstadoInscripcion" },
+    "PuntajeTotal": { "type": "integer" },
+    "Activo": { "type": "boolean" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}

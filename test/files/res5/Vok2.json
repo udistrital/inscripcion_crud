@@ -1,0 +1,16 @@
+{
+  "title": "Example Schema",
+  "type": "object",
+  "properties": {
+    "Id": { "type": "integer" },
+    "Nombre": { "type": "string" },
+    "Resumen": { "type": "string" },
+    "GrupoInvestigacionLineaInvestigacionId": { "type": "integer" },
+    "DocumentoId": { "type": "integer" },
+    "Activo": { "type": "boolean" },
+    "InscripcionId":	{ "type": "Inscripcion" },
+    "TipoProyectoId":	{ "type": "TipoProyecto" },
+    "FechaCreacion": { "type": "string" },
+    "FechaModificacion": { "type": "string" }
+  }
+}
