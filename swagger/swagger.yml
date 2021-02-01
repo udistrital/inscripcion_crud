@@ -1596,6 +1596,9 @@ definitions:
       Id:
         type: integer
         format: int64
+      NotaFinal:
+        type: number
+        format: double
       PeriodoId:
         type: integer
         format: int64
