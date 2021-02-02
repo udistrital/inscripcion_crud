@@ -17,6 +17,7 @@ type Inscripcion struct {
 	ReciboInscripcion   string             `orm:"column(recibo_inscripcion);null"`
 	PeriodoId           int                `orm:"column(periodo_id)"`
 	EnfasisId           int                `orm:"column(enfasis_id);null"`
+	NotaFinal           float64            `orm:"column(nota_final);null"`
 	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`
 	FechaAceptaTerminos time.Time          `orm:"column(fecha_acepta_terminos);type(date)"`
 	Activo              bool               `orm:"column(activo)"`
