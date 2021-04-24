@@ -12,12 +12,12 @@ El API provee la gestion de las diferentes procesos que requiere una inscripció
 
 ### Variables de Entorno
 ```shell
-INSCRIPCION_CRUD__PGDB=[nombre de la base de datos]
-INSCRIPCION_CRUD__PGPASS=[password del usuario]
-INSCRIPCION_CRUD__PGURLS=[direccion de la base de datos]
-INSCRIPCION_CRUD__PGUSER=[usuario con acceso a la base de datos]
-INSCRIPCION_CRUD__PGSCHEMA=[esquema donde se ubican las tablas]
-API_PORT=[puerto de ejecucion] bee run
+INSCRIPCION_CRUD_PGDB=[nombre de la base de datos]
+INSCRIPCION_CRUD_PGPASS=[password del usuario]
+INSCRIPCION_CRUD_PGURLS=[direccion de la base de datos]
+INSCRIPCION_CRUD_PGUSER=[usuario con acceso a la base de datos]
+INSCRIPCION_CRUD_PGSCHEMA=[esquema donde se ubican las tablas]
+INSCRIPCION_CRUD_HTTP_PORT=[puerto de ejecucion] bee run
 ```
 
 **NOTA:** Las variables se pueden ver en el fichero conf/app.conf y están identificadas con INSCRIPCION_CRUD__...
@@ -34,7 +34,7 @@ cd $GOPATH/src/github.com/udistrital/inscripcion_crud
 git pull origin develop && git checkout develop
 
 # 4. alimentar todas las variables de entorno que utiliza el proyecto.
-API_PORT=8080 INSCRIPCION_CRUD__DB_HOST=127.0.0.1:27017 INSCRIPCION_CRUD__SOME_VARIABLE=some_value bee run
+INSCRIPCION_CRUD_HTTP_PORT=8080 INSCRIPCION_CRUD_PGHOST=127.0.0.1:27017 INSCRIPCION_CRUD_SOME_VARIABLE=some_value bee run
 ```
 
 ### Ejecución Dockerfile
