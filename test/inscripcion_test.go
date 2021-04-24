@@ -88,7 +88,7 @@ func deleteFile(path string) {
 func run_bee() {
 	var resultado map[string]interface{}
 
-	parametros := "API_PORT=" + beego.AppConfig.String("httpport") + " INSCRIPCION_CRUD__PGUSER=" + beego.AppConfig.String("PGuser") + " INSCRIPCION_CRUD__PGPASS=" + beego.AppConfig.String("PGpass") + " INSCRIPCION_CRUD__PGURLS=" + beego.AppConfig.String("PGurls") + " INSCRIPCION_CRUD__PGDB=" + beego.AppConfig.String("PGdb") + " INSCRIPCION_CRUD__PGSCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
+	parametros := "INSCRIPCION_CRUD_HTTP_PORT=" + beego.AppConfig.String("httpport") + " INSCRIPCION_CRUD_PGUSER=" + beego.AppConfig.String("PGuser") + " INSCRIPCION_CRUD_PGPASS=" + beego.AppConfig.String("PGpass") + " INSCRIPCION_CRUD_PGHOST=" + beego.AppConfig.String("PGurls") + " INSCRIPCION_CRUD_PGDB=" + beego.AppConfig.String("PGdb") + " INSCRIPCION_CRUD_PGSCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
 	file, err := os.Create("script.sh")
 	if err != nil {
 		log.Fatal("Cannot create file", err)
