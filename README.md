@@ -15,12 +15,13 @@ El API provee la gestion de las diferentes procesos que requiere una inscripció
 INSCRIPCION_CRUD_PGDB=[nombre de la base de datos]
 INSCRIPCION_CRUD_PGPASS=[password del usuario]
 INSCRIPCION_CRUD_PGURLS=[direccion de la base de datos]
+INSCRIPCION_CRUD_PGPORT=[Puerto de conexión con la base de datos]
 INSCRIPCION_CRUD_PGUSER=[usuario con acceso a la base de datos]
 INSCRIPCION_CRUD_PGSCHEMA=[esquema donde se ubican las tablas]
 INSCRIPCION_CRUD_HTTP_PORT=[puerto de ejecucion] bee run
 ```
 
-**NOTA:** Las variables se pueden ver en el fichero conf/app.conf y están identificadas con INSCRIPCION_CRUD__...
+**NOTA:** Las variables se pueden ver en el fichero conf/app.conf y están identificadas con INSCRIPCION_CRUD_...
 
 ### Ejecución del Proyecto
 ```shell
