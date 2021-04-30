@@ -609,7 +609,7 @@ func init() {
             MethodParams: param.Make(),
             Filters: nil,
             Params: nil})
-=======
+
 	beego.GlobalControllerRouter["github.com/udistrital/inscripcion_crud/controllers:EstadoInscripcionController"] = append(beego.GlobalControllerRouter["github.com/udistrital/inscripcion_crud/controllers:EstadoInscripcionController"],
 		beego.ControllerComments{
 			Method:           "Post",
