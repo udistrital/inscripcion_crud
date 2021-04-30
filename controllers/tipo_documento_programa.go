@@ -13,13 +13,13 @@ import (
 	"github.com/astaxie/beego/logs"
 )
 
-// InscripcionController operations for Inscripcion
-type InscripcionController struct {
+// TipoDocumentoProgramaController operations for TipoDocumentoPrograma
+type TipoDocumentoProgramaController struct {
 	beego.Controller
 }
 
 // URLMapping ...
-func (c *InscripcionController) URLMapping() {
+func (c *TipoDocumentoProgramaController) URLMapping() {
 	c.Mapping("Post", c.Post)
 	c.Mapping("GetOne", c.GetOne)
 	c.Mapping("GetAll", c.GetAll)
@@ -29,50 +29,50 @@ func (c *InscripcionController) URLMapping() {
 
 // Post ...
 // @Title Post
-// @Description create Inscripcion
-// @Param	body		body 	models.Inscripcion	true		"body for Inscripcion content"
-// @Success 201 {int} models.Inscripcion
+// @Description create TipoDocumentoPrograma
+// @Param	body		body 	models.TipoDocumentoPrograma	true		"body for TipoDocumentoPrograma content"
+// @Success 201 {int} models.TipoDocumentoPrograma
 // @Failure 400 the request contains incorrect syntax
 // @router / [post]
-func (c *InscripcionController) Post() {
-	var v models.Inscripcion
+func (c *TipoDocumentoProgramaController) Post() {
+	var v models.TipoDocumentoPrograma
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
 		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
-		if _, err := models.AddInscripcion(&v); err == nil {
+		if _, err := models.AddTipoDocumentoPrograma(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)
-			//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+			c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
 			c.Data["system"] = err
-			c.Abort("400")
+			c.Ctx.Output.SetStatus(400)
 		}
 	} else {
 		logs.Error(err)
-		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
 		c.Data["system"] = err
-		c.Abort("400")
+		c.Ctx.Output.SetStatus(400)
 	}
 	c.ServeJSON()
 }
 
 // GetOne ...
 // @Title Get One
-// @Description get Inscripcion by id
+// @Description get TipoDocumentoPrograma by id
 // @Param	id		path 	string	true		"The key for staticblock"
-// @Success 200 {object} models.Inscripcion
+// @Success 200 {object} models.TipoDocumentoPrograma
 // @Failure 404 not found resource
 // @router /:id [get]
-func (c *InscripcionController) GetOne() {
+func (c *TipoDocumentoProgramaController) GetOne() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v, err := models.GetInscripcionById(id)
+	v, err := models.GetTipoDocumentoProgramaById(id)
 	if err != nil {
 		logs.Error(err)
-		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["json"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
 		c.Data["system"] = err
-		c.Abort("404")
+		c.Ctx.Output.SetStatus(404)
 	} else {
 		c.Data["json"] = v
 	}
@@ -81,17 +81,17 @@ func (c *InscripcionController) GetOne() {
 
 // GetAll ...
 // @Title Get All
-// @Description get Inscripcion
+// @Description get TipoDocumentoPrograma
 // @Param	query	query	string	false	"Filter. e.g. col1:v1,col2:v2 ..."
 // @Param	fields	query	string	false	"Fields returned. e.g. col1,col2 ..."
 // @Param	sortby	query	string	false	"Sorted-by fields. e.g. col1,col2 ..."
 // @Param	order	query	string	false	"Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ..."
 // @Param	limit	query	string	false	"Limit the size of result set. Must be an integer"
 // @Param	offset	query	string	false	"Start position of result set. Must be an integer"
-// @Success 200 {object} models.Inscripcion
+// @Success 200 {object} models.TipoDocumentoPrograma
 // @Failure 404 not found resource
 // @router / [get]
-func (c *InscripcionController) GetAll() {
+func (c *TipoDocumentoProgramaController) GetAll() {
 	var fields []string
 	var sortby []string
 	var order []string
@@ -133,12 +133,12 @@ func (c *InscripcionController) GetAll() {
 		}
 	}
 
-	l, err := models.GetAllInscripcion(query, fields, sortby, order, offset, limit)
+	l, err := models.GetAllTipoDocumentoPrograma(query, fields, sortby, order, offset, limit)
 	if err != nil {
 		logs.Error(err)
-		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["json"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
 		c.Data["system"] = err
-		c.Abort("404")
+		c.Ctx.Output.SetStatus(404)
 	} else {
 		if l == nil {
 			l = append(l, map[string]interface{}{})
@@ -150,53 +150,53 @@ func (c *InscripcionController) GetAll() {
 
 // Put ...
 // @Title Put
-// @Description update the Inscripcion
+// @Description update the TipoDocumentoPrograma
 // @Param	id		path 	string	true		"The id you want to update"
-// @Param	body		body 	models.Inscripcion	true		"body for Inscripcion content"
-// @Success 200 {object} models.Inscripcion
+// @Param	body		body 	models.TipoDocumentoPrograma	true		"body for TipoDocumentoPrograma content"
+// @Success 200 {object} models.TipoDocumentoPrograma
 // @Failure 400 the request contains incorrect syntax
 // @router /:id [put]
-func (c *InscripcionController) Put() {
+func (c *TipoDocumentoProgramaController) Put() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	v := models.Inscripcion{Id: id}
+	v := models.TipoDocumentoPrograma{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
 		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
-		if err := models.UpdateInscripcionById(&v); err == nil {
+		if err := models.UpdateTipoDocumentoProgramaById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
 			logs.Error(err)
-			//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+			c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
 			c.Data["system"] = err
-			c.Abort("400")
+			c.Ctx.Output.SetStatus(400)
 		}
 	} else {
 		logs.Error(err)
-		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["json"] = map[string]interface{}{"Code": "400", "Body": err.Error(), "Type": "error"}
 		c.Data["system"] = err
-		c.Abort("400")
+		c.Ctx.Output.SetStatus(400)
 	}
 	c.ServeJSON()
 }
 
 // Delete ...
 // @Title Delete
-// @Description delete the Inscripcion
+// @Description delete the TipoDocumentoPrograma
 // @Param	id		path 	string	true		"The id you want to delete"
 // @Success 200 {string} delete success!
 // @Failure 404 not found resource
 // @router /:id [delete]
-func (c *InscripcionController) Delete() {
+func (c *TipoDocumentoProgramaController) Delete() {
 	idStr := c.Ctx.Input.Param(":id")
 	id, _ := strconv.Atoi(idStr)
-	if err := models.DeleteInscripcion(id); err == nil {
+	if err := models.DeleteTipoDocumentoPrograma(id); err == nil {
 		c.Data["json"] = map[string]interface{}{"Id": id}
 	} else {
 		logs.Error(err)
-		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
+		c.Data["json"] = map[string]interface{}{"Code": "404", "Body": err.Error(), "Type": "error"}
 		c.Data["system"] = err
-		c.Abort("404")
+		c.Ctx.Output.SetStatus(404)
 	}
 	c.ServeJSON()
 }

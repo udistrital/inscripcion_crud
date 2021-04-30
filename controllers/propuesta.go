@@ -2,10 +2,12 @@ package controllers
 
 import (
 	"encoding/json"
+	"errors"
 	"strconv"
 	"strings"
 
 	"github.com/udistrital/inscripcion_crud/models"
+	"github.com/udistrital/utils_oas/time_bogota"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -35,6 +37,8 @@ func (c *PropuestaController) URLMapping() {
 func (c *PropuestaController) Post() {
 	var v models.Propuesta
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddPropuesta(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
@@ -120,7 +124,7 @@ func (c *PropuestaController) GetAll() {
 		for _, cond := range strings.Split(v, ",") {
 			kv := strings.SplitN(cond, ":", 2)
 			if len(kv) != 2 {
-				c.Data["json"] = models.Alert{Type: "error", Code: "E_400", Body: "Error: invalid query key/value pair"}
+				c.Data["json"] = errors.New("Error: invalid query key/value pair")
 				c.ServeJSON()
 				return
 			}
@@ -157,6 +161,8 @@ func (c *PropuestaController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Propuesta{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.UpdatePropuestaById(&v); err == nil {
 			c.Data["json"] = v
 		} else {

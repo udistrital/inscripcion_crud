@@ -9,49 +9,50 @@ import (
 	"github.com/astaxie/beego/orm"
 )
 
-type Enfasis struct {
+type TipoDocumentoPrograma struct {
 	Id                int     `orm:"column(id);pk;auto"`
 	Nombre            string  `orm:"column(nombre)"`
-	ProgramaAcademico int     `orm:"column(programa_academico)"`
 	Descripcion       string  `orm:"column(descripcion);null"`
-	CodigoAbreviacion string  `orm:"column(codigo_abreviacion);null"`
+	CodigoAbreviacion string  `orm:"column(codigo_abreviacion)"`
 	Activo            bool    `orm:"column(activo)"`
 	NumeroOrden       float64 `orm:"column(numero_orden);null"`
+	FechaCreacion     string  `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion string  `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *Enfasis) TableName() string {
-	return "enfasis"
+func (t *TipoDocumentoPrograma) TableName() string {
+	return "tipo_documento_programa"
 }
 
 func init() {
-	orm.RegisterModel(new(Enfasis))
+	orm.RegisterModel(new(TipoDocumentoPrograma))
 }
 
-// AddEnfasis insert a new Enfasis into database and returns
+// AddTipoDocumentoPrograma insert a new TipoDocumentoPrograma into database and returns
 // last inserted Id on success.
-func AddEnfasis(m *Enfasis) (id int64, err error) {
+func AddTipoDocumentoPrograma(m *TipoDocumentoPrograma) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetEnfasisById retrieves Enfasis by Id. Returns error if
+// GetTipoDocumentoProgramaById retrieves TipoDocumentoPrograma by Id. Returns error if
 // Id doesn't exist
-func GetEnfasisById(id int) (v *Enfasis, err error) {
+func GetTipoDocumentoProgramaById(id int) (v *TipoDocumentoPrograma, err error) {
 	o := orm.NewOrm()
-	v = &Enfasis{Id: id}
+	v = &TipoDocumentoPrograma{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllEnfasis retrieves all Enfasis matches certain condition. Returns empty list if
+// GetAllTipoDocumentoPrograma retrieves all TipoDocumentoPrograma matches certain condition. Returns empty list if
 // no records exist
-func GetAllEnfasis(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllTipoDocumentoPrograma(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Enfasis)).RelatedSel()
+	qs := o.QueryTable(new(TipoDocumentoPrograma)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
@@ -101,7 +102,7 @@ func GetAllEnfasis(query map[string]string, fields []string, sortby []string, or
 		}
 	}
 
-	var l []Enfasis
+	var l []TipoDocumentoPrograma
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -124,11 +125,11 @@ func GetAllEnfasis(query map[string]string, fields []string, sortby []string, or
 	return nil, err
 }
 
-// UpdateEnfasis updates Enfasis by Id and returns error if
+// UpdateTipoDocumentoPrograma updates TipoDocumentoPrograma by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateEnfasisById(m *Enfasis) (err error) {
+func UpdateTipoDocumentoProgramaById(m *TipoDocumentoPrograma) (err error) {
 	o := orm.NewOrm()
-	v := Enfasis{Id: m.Id}
+	v := TipoDocumentoPrograma{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -139,15 +140,15 @@ func UpdateEnfasisById(m *Enfasis) (err error) {
 	return
 }
 
-// DeleteEnfasis deletes Enfasis by Id and returns error if
+// DeleteTipoDocumentoPrograma deletes TipoDocumentoPrograma by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteEnfasis(id int) (err error) {
+func DeleteTipoDocumentoPrograma(id int) (err error) {
 	o := orm.NewOrm()
-	v := Enfasis{Id: id}
+	v := TipoDocumentoPrograma{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Enfasis{Id: id}); err == nil {
+		if num, err = o.Delete(&TipoDocumentoPrograma{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}

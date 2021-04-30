@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/udistrital/inscripcion_crud/models"
+	"github.com/udistrital/utils_oas/time_bogota"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
@@ -36,6 +37,8 @@ func (c *TransferenciaController) URLMapping() {
 func (c *TransferenciaController) Post() {
 	var v models.Transferencia
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddTransferencia(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
@@ -158,6 +161,8 @@ func (c *TransferenciaController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Transferencia{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
+		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if err := models.UpdateTransferenciaById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
