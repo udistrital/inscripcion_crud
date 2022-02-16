@@ -19,6 +19,8 @@ type Reintegro struct {
 	FechaModificacion string       `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
 	SolicitudAcuerdo  bool         `orm:"column(solicitud_acuerdo)"`
+	CantidadCreditos  int          `orm:"column(cantidad_creditos)"`
+	DocumentoId       int          `orm:"column(documento_id)"`
 }
 
 func (t *Reintegro) TableName() string {
