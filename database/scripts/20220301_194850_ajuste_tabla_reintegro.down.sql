@@ -1,0 +1,1 @@
+ALTER TABLE inscripcion.reintegro DROP COLUMN ultimo_semestre_cursado;
