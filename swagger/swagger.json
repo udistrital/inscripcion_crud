@@ -2349,6 +2349,10 @@
                 },
                 "TipoDocumentoProgramaId": {
                     "$ref": "#/definitions/models.TipoDocumentoPrograma"
+                },
+                "TipoInscripcionId": {
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
@@ -2561,9 +2565,17 @@
                 "CanceloSemestre": {
                     "type": "boolean"
                 },
+                "CantidadCreditos": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "CodigoEstudiante": {
                     "type": "number",
                     "format": "double"
+                },
+                "DocumentoId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "FechaCreacion": {
                     "type": "string"
@@ -2583,6 +2595,10 @@
                 },
                 "SolicitudAcuerdo": {
                     "type": "boolean"
+                },
+                "UltimoSemestreCursado": {
+                    "type": "number",
+                    "format": "double"
                 }
             }
         },
@@ -2778,8 +2794,16 @@
                 "Activo": {
                     "type": "boolean"
                 },
+                "CantidadCreditos": {
+                    "type": "integer",
+                    "format": "int64"
+                },
                 "CodigoEstudianteProviene": {
                     "type": "string"
+                },
+                "DocumentoId": {
+                    "type": "integer",
+                    "format": "int64"
                 },
                 "FechaCreacion": {
                     "type": "string"

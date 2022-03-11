@@ -17,6 +17,7 @@ type DocumentoPrograma struct {
 	FechaCreacion           string                 `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion       string                 `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	TipoDocumentoProgramaId *TipoDocumentoPrograma `orm:"column(tipo_documento_programa_id);rel(fk)"`
+	TipoInscripcionId       int                    `orm:"column(tipo_inscripcion_id)"`
 }
 
 func (t *DocumentoPrograma) TableName() string {
