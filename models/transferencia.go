@@ -21,6 +21,8 @@ type Transferencia struct {
 	Activo                     bool         `orm:"column(activo)"`
 	FechaCreacion              string       `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion          string       `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	CantidadCreditos           int          `orm:"column(cantidad_creditos)"`
+	DocumentoId                int          `orm:"column(documento_id)"`
 }
 
 func (t *Transferencia) TableName() string {

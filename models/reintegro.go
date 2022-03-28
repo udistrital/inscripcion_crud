@@ -10,15 +10,18 @@ import (
 )
 
 type Reintegro struct {
-	Id                int          `orm:"column(id);pk;auto"`
-	CodigoEstudiante  float64      `orm:"column(codigo_estudiante)"`
-	CanceloSemestre   bool         `orm:"column(cancelo_semestre)"`
-	MotivoRetiro      string       `orm:"column(motivo_retiro)"`
-	Activo            bool         `orm:"column(activo)"`
-	FechaCreacion     string       `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion string       `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	InscripcionId     *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
-	SolicitudAcuerdo  bool         `orm:"column(solicitud_acuerdo)"`
+	Id                    int          `orm:"column(id);pk;auto"`
+	CodigoEstudiante      float64      `orm:"column(codigo_estudiante)"`
+	CanceloSemestre       bool         `orm:"column(cancelo_semestre)"`
+	MotivoRetiro          string       `orm:"column(motivo_retiro)"`
+	Activo                bool         `orm:"column(activo)"`
+	UltimoSemestreCursado float64      `orm:"column(ultimo_semestre_cursado)"`
+	FechaCreacion         string       `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion     string       `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	InscripcionId         *Inscripcion `orm:"column(inscripcion_id);rel(fk)"`
+	SolicitudAcuerdo      bool         `orm:"column(solicitud_acuerdo)"`
+	CantidadCreditos      int          `orm:"column(cantidad_creditos)"`
+	DocumentoId           int          `orm:"column(documento_id)"`
 }
 
 func (t *Reintegro) TableName() string {
