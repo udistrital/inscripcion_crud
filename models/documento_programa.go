@@ -18,6 +18,7 @@ type DocumentoPrograma struct {
 	FechaModificacion       string                 `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	TipoDocumentoProgramaId *TipoDocumentoPrograma `orm:"column(tipo_documento_programa_id);rel(fk)"`
 	TipoInscripcionId       int                    `orm:"column(tipo_inscripcion_id)"`
+	Obligatorio             bool                   `orm:"column(obligatorio)"`
 }
 
 func (t *DocumentoPrograma) TableName() string {
