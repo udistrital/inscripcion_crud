@@ -80,7 +80,7 @@ Pruebas unitarias
 
 
 ## Modelo de Datos
-[Modelo de Datos API CRUD Inscripcion](https://github.com/udistrital/inscripcion_crud/blob/develop/inscripcion_V_18.png)
+[Modelo de Datos API CRUD Inscripcion](https://github.com/udistrital/inscripcion_crud/blob/develop/inscripcion_V_19.png)
 
 
 ## Licencia
