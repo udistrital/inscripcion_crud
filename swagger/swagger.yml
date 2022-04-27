@@ -1556,6 +1556,8 @@ definitions:
       Id:
         type: integer
         format: int64
+      Obligatorio:
+        type: boolean
       PeriodoId:
         type: integer
         format: int64
