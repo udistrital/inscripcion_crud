@@ -1,0 +1,1 @@
+DELETE FROM inscripcion.estado_inscripcion WHERE nombre = 'INSCRITO con Observación' AND descripcion = 'Aspirante inscrito tiene documentos no aprobados' AND codigo_abreviacion = 'INSCOBS';

@@ -1,0 +1,2 @@
+insert into inscripcion.estado_inscripcion (nombre, descripcion, codigo_abreviacion, activo, numero_orden, fecha_creacion, fecha_modificacion) 
+	values ('INSCRITO con Observación', 'Aspirante inscrito tiene documentos no aprobados', 'INSCOBS', true, 6, now(), now());
