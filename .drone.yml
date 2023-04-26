@@ -48,7 +48,7 @@ steps:
     - push
 
 - name: go_build
-  image: golang:1.14
+  image: golang:1.15
   commands:
   - go mod init
   - go get -t
@@ -90,7 +90,7 @@ steps:
       from_secret: SONAR_TOKEN
 
 - name: beego_migrate
-  image: golang:1.14
+  image: golang:1.15
   environment:
     PG_MIGRATION_USER:
       from_secret: PG_MIGRATION_USER
@@ -102,7 +102,7 @@ steps:
       from_secret: PG_MIGRATION_DBNAME
   commands:
   - go get -t
-  - GO111MODULE=on go get -u github.com/beego/bee
+  - GO111MODULE=on go get github.com/beego/bee
   - bee migrate -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
   when:
     branch:
@@ -111,7 +111,7 @@ steps:
     - push
 
 - name: beego_rollback
-  image: golang:1.14
+  image: golang:1.15
   environment:
     PG_MIGRATION_USER:
       from_secret: PG_MIGRATION_USER
@@ -123,7 +123,7 @@ steps:
       from_secret: PG_MIGRATION_DBNAME
   commands:
   - go get -t
-  - GO111MODULE=on go get -u github.com/beego/bee
+  - GO111MODULE=on go get github.com/beego/bee
   - bee migrate rollback -driver=postgres -conn="postgres://$${PG_MIGRATION_USER}:$${PG_MIGRATION_PASS}@$${PG_MIGRATION_URL}:5432/$${PG_MIGRATION_DBNAME}?sslmode=disable"
   when:
     branch:
