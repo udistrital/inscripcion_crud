@@ -161,8 +161,10 @@ func (c *TipoDocumentoProgramaController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.TipoDocumentoPrograma{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
-		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+		if get, errGet := models.GetTipoDocumentoProgramaById(id); errGet == nil {
+			v.FechaCreacion = time_bogota.TiempoCorreccionFormato(get.FechaCreacion)
+			v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+		}
 		if err := models.UpdateTipoDocumentoProgramaById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
