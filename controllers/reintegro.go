@@ -161,8 +161,10 @@ func (c *ReintegroController) Put() {
 	id, _ := strconv.Atoi(idStr)
 	v := models.Reintegro{Id: id}
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoCorreccionFormato(v.FechaCreacion)
-		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+		if get, errGet := models.GetReintegroById(id); errGet == nil {
+			v.FechaCreacion = time_bogota.TiempoCorreccionFormato(get.FechaCreacion)
+			v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+		}
 		if err := models.UpdateReintegroById(&v); err == nil {
 			c.Data["json"] = v
 		} else {
