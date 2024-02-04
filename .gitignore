@@ -15,3 +15,5 @@ swagger/images/
 swagger/lang/
 swagger/lib/
 *.exe
+go.mod
+go.sum
