@@ -10,20 +10,20 @@ import (
 )
 
 type CupoInscripcion struct {
-	Id                   int              `orm:"column(id);pk;auto"`
-	Activo               bool             `orm:"column(activo)"`
-	CuposHabilitados     int              `orm:"column(cupos_habilitados)"`
-	CuposOpcionados      int              `orm:"column(cupos_opcionados)"`
-	PeriodoId            int              `orm:"column(cupos_opcionados)"`
-	ProgramaAcaademicoId int              `orm:"column(cupos_opcionados)"`
-	TipoInscripcionId    *TipoInscripcion `orm:"column(cupos_opcionados);rel(fk)"`
-	CupoId               int              `orm:"column(cupos_opcionados)"`
-	FechaCreacion        string           `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion    string           `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	Id                  int              `orm:"column(id);pk;auto"`
+	Activo              bool             `orm:"column(activo)"`
+	CuposHabilitados    int              `orm:"column(cupos_habilitados)"`
+	CuposOpcionados     int              `orm:"column(cupos_opcionados)"`
+	PeriodoId           int              `orm:"column(periodo_id)"`
+	ProgramaAcademicoId int              `orm:"column(programa_academico_id)"`
+	TipoInscripcionId   *TipoInscripcion `orm:"column(tipo_inscripcion_id);rel(fk)"`
+	CupoId              int              `orm:"column(cupo_id)"`
+	FechaCreacion       string           `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion   string           `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
 func (t *CupoInscripcion) TableName() string {
-	return "documento_programa"
+	return "cupo_inscripcion"
 }
 
 func init() {

@@ -103,7 +103,7 @@ func init() {
 				&controllers.DocumentoCupoController{},
 			),
 		),
-		beego.NSNamespace("/cupos_inscripcion",
+		beego.NSNamespace("/cupo_inscripcion",
 			beego.NSInclude(
 				&controllers.CupoInscripcionController{},
 			),
