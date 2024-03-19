@@ -11,10 +11,10 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
 basePath: /v1
 paths:
-  /cupos_inscripcion/:
+  /cupo_inscripcion/:
     get:
       tags:
-      - cupos_inscripcion
+      - cupo_inscripcion
       description: get CupoInscripcion
       operationId: CupoInscripcionController.Get All
       parameters:
@@ -51,7 +51,7 @@ paths:
           description: not found resource
     post:
       tags:
-      - cupos_inscripcion
+      - cupo_inscripcion
       description: create CupoInscripcion
       operationId: CupoInscripcionController.Post
       parameters:
@@ -66,10 +66,10 @@ paths:
           description: '{int} models.CupoInscripcion'
         "400":
           description: the request contains incorrect syntax
-  /cupos_inscripcion/{id}:
+  /cupo_inscripcion/{id}:
     get:
       tags:
-      - cupos_inscripcion
+      - cupo_inscripcion
       description: get CupoInscripcion by id
       operationId: CupoInscripcionController.Get One
       parameters:
@@ -87,7 +87,7 @@ paths:
           description: not found resource
     put:
       tags:
-      - cupos_inscripcion
+      - cupo_inscripcion
       description: update the CupoInscripcion
       operationId: CupoInscripcionController.Put
       parameters:
@@ -111,7 +111,7 @@ paths:
           description: the request contains incorrect syntax
     delete:
       tags:
-      - cupos_inscripcion
+      - cupo_inscripcion
       description: delete the CupoInscripcion
       operationId: CupoInscripcionController.Delete
       parameters:
@@ -1783,7 +1783,7 @@ definitions:
       PeriodoId:
         type: integer
         format: int64
-      ProgramaAcaademicoId:
+      ProgramaAcademicoId:
         type: integer
         format: int64
       TipoInscripcionId:
@@ -1805,7 +1805,7 @@ definitions:
       Id:
         type: integer
         format: int64
-      uid:
+      Uid:
         type: integer
         format: int64
   models.DocumentoPrograma:
@@ -2213,6 +2213,6 @@ tags:
 - name: documento_cupo
   description: |
     DocumentoCupoController operations for DocumentoCupo
-- name: cupos_inscripcion
+- name: cupo_inscripcion
   description: |
     CupoInscripcionController operations for CupoInscripcion

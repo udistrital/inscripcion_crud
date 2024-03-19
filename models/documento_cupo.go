@@ -12,7 +12,7 @@ import (
 type DocumentoCupo struct {
 	Id                int              `orm:"column(id);pk;auto"`
 	Activo            bool             `orm:"column(activo)"`
-	uid               int              `orm:"column(uid)"`
+	Uid               int              `orm:"column(uid)"`
 	Comentario        string           `orm:"column(comentario)"`
 	FechaCreacion     string           `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion string           `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
@@ -20,7 +20,7 @@ type DocumentoCupo struct {
 }
 
 func (t *DocumentoCupo) TableName() string {
-	return "documento_programa"
+	return "documento_cupo"
 }
 
 func init() {

@@ -15,10 +15,10 @@
     },
     "basePath": "/v1",
     "paths": {
-        "/cupos_inscripcion/": {
+        "/cupo_inscripcion/": {
             "get": {
                 "tags": [
-                    "cupos_inscripcion"
+                    "cupo_inscripcion"
                 ],
                 "description": "get CupoInscripcion",
                 "operationId": "CupoInscripcionController.Get All",
@@ -74,7 +74,7 @@
             },
             "post": {
                 "tags": [
-                    "cupos_inscripcion"
+                    "cupo_inscripcion"
                 ],
                 "description": "create CupoInscripcion",
                 "operationId": "CupoInscripcionController.Post",
@@ -99,10 +99,10 @@
                 }
             }
         },
-        "/cupos_inscripcion/{id}": {
+        "/cupo_inscripcion/{id}": {
             "get": {
                 "tags": [
-                    "cupos_inscripcion"
+                    "cupo_inscripcion"
                 ],
                 "description": "get CupoInscripcion by id",
                 "operationId": "CupoInscripcionController.Get One",
@@ -129,7 +129,7 @@
             },
             "put": {
                 "tags": [
-                    "cupos_inscripcion"
+                    "cupo_inscripcion"
                 ],
                 "description": "update the CupoInscripcion",
                 "operationId": "CupoInscripcionController.Put",
@@ -165,7 +165,7 @@
             },
             "delete": {
                 "tags": [
-                    "cupos_inscripcion"
+                    "cupo_inscripcion"
                 ],
                 "description": "delete the CupoInscripcion",
                 "operationId": "CupoInscripcionController.Delete",
@@ -2701,7 +2701,7 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "ProgramaAcaademicoId": {
+                "ProgramaAcademicoId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -2733,7 +2733,7 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "uid": {
+                "Uid": {
                     "type": "integer",
                     "format": "int64"
                 }
@@ -3319,7 +3319,7 @@
             "description": "DocumentoCupoController operations for DocumentoCupo\n"
         },
         {
-            "name": "cupos_inscripcion",
+            "name": "cupo_inscripcion",
             "description": "CupoInscripcionController operations for CupoInscripcion\n"
         }
     ]
