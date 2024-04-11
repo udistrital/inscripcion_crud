@@ -37,6 +37,7 @@ func (c *InscripcionController) URLMapping() {
 func (c *InscripcionController) Post() {
 	var v models.Inscripcion
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
+		v.ProgramaAcademicoId = nil
 		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
 		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddInscripcion(&v); err == nil {
