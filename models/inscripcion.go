@@ -23,6 +23,7 @@ type Inscripcion struct {
 	Activo              bool               `orm:"column(activo)"`
 	FechaCreacion       string             `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion   string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	Credencial          int                `orm:"column(credencial);null"`
 	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
 }
