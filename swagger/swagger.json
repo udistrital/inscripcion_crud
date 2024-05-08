@@ -15,6 +15,352 @@
     },
     "basePath": "/v1",
     "paths": {
+        "/cupo_inscripcion/": {
+            "get": {
+                "tags": [
+                    "cupo_inscripcion"
+                ],
+                "description": "get CupoInscripcion",
+                "operationId": "CupoInscripcionController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.CupoInscripcion"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "cupo_inscripcion"
+                ],
+                "description": "create CupoInscripcion",
+                "operationId": "CupoInscripcionController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CupoInscripcioncontent",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CupoInscripcion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.CupoInscripcion"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/cupo_inscripcion/{id}": {
+            "get": {
+                "tags": [
+                    "cupo_inscripcion"
+                ],
+                "description": "get CupoInscripcion by id",
+                "operationId": "CupoInscripcionController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.CupoInscripcion"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "cupo_inscripcion"
+                ],
+                "description": "update the CupoInscripcion",
+                "operationId": "CupoInscripcionController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for CupoInscripcion content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CupoInscripcion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.CupoInscripcion"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "cupo_inscripcion"
+                ],
+                "description": "delete the CupoInscripcion",
+                "operationId": "CupoInscripcionController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
+        "/documento_cupo/": {
+            "get": {
+                "tags": [
+                    "documento_cupo"
+                ],
+                "description": "get DocumentoCupo",
+                "operationId": "DocumentoCupoController.Get All",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "query",
+                        "description": "Filter. e.g. col1:v1,col2:v2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "fields",
+                        "description": "Fields returned. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "sortby",
+                        "description": "Sorted-by fields. e.g. col1,col2 ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "order",
+                        "description": "Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "limit",
+                        "description": "Limit the size of result set. Must be an integer",
+                        "type": "string"
+                    },
+                    {
+                        "in": "query",
+                        "name": "offset",
+                        "description": "Start position of result set. Must be an integer",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoCupo"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "documento_cupo"
+                ],
+                "description": "create DocumentoCupo",
+                "operationId": "DocumentoCupoController.Post",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentoCupocontent",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoCupo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "{int} models.DocumentoCupo"
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            }
+        },
+        "/documento_cupo/{id}": {
+            "get": {
+                "tags": [
+                    "documento_cupo"
+                ],
+                "description": "get DocumentoCupo by id",
+                "operationId": "DocumentoCupoController.Get One",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoCupo"
+                        }
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "documento_cupo"
+                ],
+                "description": "update the DocumentoCupo",
+                "operationId": "DocumentoCupoController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for DocumentoCupo content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoCupo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.DocumentoCupo"
+                        }
+                    },
+                    "400": {
+                        "description": "the request contains incorrect syntax"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "documento_cupo"
+                ],
+                "description": "delete the DocumentoCupo",
+                "operationId": "DocumentoCupoController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "404": {
+                        "description": "not found resource"
+                    }
+                }
+            }
+        },
         "/documento_programa/": {
             "get": {
                 "tags": [
@@ -2322,6 +2668,77 @@
         }
     },
     "definitions": {
+        "models.CupoInscripcion": {
+            "title": "CupoInscripcion",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "CupoId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "CuposHabilitados": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "CuposOpcionados": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "FechaCreacion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "PeriodoId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ProgramaAcademicoId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TipoInscripcionId": {
+                    "$ref": "#/definitions/models.TipoInscripcion"
+                }
+            }
+        },
+        "models.DocumentoCupo": {
+            "title": "DocumentoCupo",
+            "type": "object",
+            "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
+                "Comentario": {
+                    "type": "string"
+                },
+                "CupoInscripcionId": {
+                    "$ref": "#/definitions/models.CupoInscripcion"
+                },
+                "FechaCreacion": {
+                    "type": "string"
+                },
+                "FechaModificacion": {
+                    "type": "string"
+                },
+                "Id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "Uid": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
         "models.DocumentoPrograma": {
             "title": "DocumentoPrograma",
             "type": "object",
@@ -2900,6 +3317,14 @@
         {
             "name": "tipo_documento_programa",
             "description": "TipoDocumentoProgramaController operations for TipoDocumentoPrograma\n"
+        },
+        {
+            "name": "documento_cupo",
+            "description": "DocumentoCupoController operations for DocumentoCupo\n"
+        },
+        {
+            "name": "cupo_inscripcion",
+            "description": "CupoInscripcionController operations for CupoInscripcion\n"
         }
     ]
 }

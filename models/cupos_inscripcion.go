@@ -5,71 +5,62 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
-	"time"
 
 	"github.com/astaxie/beego/orm"
 )
 
-type Inscripcion struct {
-	Id                  int                `orm:"column(id);pk;auto"`
-	PersonaId           int                `orm:"column(persona_id)"`
-	ProgramaAcademicoId int                `orm:"column(programa_academico_id);null"`
-	ReciboInscripcion   string             `orm:"column(recibo_inscripcion);null"`
-	PeriodoId           int                `orm:"column(periodo_id)"`
-	EnfasisId           int                `orm:"column(enfasis_id);null"`
-	NotaFinal           float64            `orm:"column(nota_final);null"`
-	AceptaTerminos      bool               `orm:"column(acepta_terminos)"`
-	FechaAceptaTerminos time.Time          `orm:"column(fecha_acepta_terminos);type(date)"`
-	Activo              bool               `orm:"column(activo)"`
-	FechaCreacion       string             `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion   string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	Credencial          int                `orm:"column(credencial);null"`
-	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
-	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
+type CupoInscripcion struct {
+	Id                  int              `orm:"column(id);pk;auto"`
+	Activo              bool             `orm:"column(activo)"`
+	CuposHabilitados    int              `orm:"column(cupos_habilitados)"`
+	CuposOpcionados     int              `orm:"column(cupos_opcionados)"`
+	PeriodoId           int              `orm:"column(periodo_id)"`
+	ProgramaAcademicoId int              `orm:"column(programa_academico_id)"`
+	TipoInscripcionId   *TipoInscripcion `orm:"column(tipo_inscripcion_id);rel(fk)"`
+	CupoId              int              `orm:"column(cupo_id)"`
+	FechaCreacion       string           `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion   string           `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 }
 
-func (t *Inscripcion) TableName() string {
-	return "inscripcion"
+func (t *CupoInscripcion) TableName() string {
+	return "cupo_inscripcion"
 }
 
 func init() {
-	orm.RegisterModel(new(Inscripcion))
+	orm.RegisterModel(new(CupoInscripcion))
 }
 
-// AddInscripcion insert a new Inscripcion into database and returns
+// AddCupoInscripcion insert a new CupoInscripcion into database and returns
 // last inserted Id on success.
-func AddInscripcion(m *Inscripcion) (id int64, err error) {
+func AddCupoInscripcion(m *CupoInscripcion) (id int64, err error) {
 	o := orm.NewOrm()
 	id, err = o.Insert(m)
 	return
 }
 
-// GetInscripcionById retrieves Inscripcion by Id. Returns error if
+// GetCupoInscripcionById retrieves CupoInscripcion by Id. Returns error if
 // Id doesn't exist
-func GetInscripcionById(id int) (v *Inscripcion, err error) {
+func GetCupoInscripcionById(id int) (v *CupoInscripcion, err error) {
 	o := orm.NewOrm()
-	v = &Inscripcion{Id: id}
+	v = &CupoInscripcion{Id: id}
 	if err = o.Read(v); err == nil {
 		return v, nil
 	}
 	return nil, err
 }
 
-// GetAllInscripcion retrieves all Inscripcion matches certain condition. Returns empty list if
+// GetAllCupoInscripcion retrieves all CupoInscripcion matches certain condition. Returns empty list if
 // no records exist
-func GetAllInscripcion(query map[string]string, fields []string, sortby []string, order []string,
+func GetAllCupoInscripcion(query map[string]string, fields []string, sortby []string, order []string,
 	offset int64, limit int64) (ml []interface{}, err error) {
 	o := orm.NewOrm()
-	qs := o.QueryTable(new(Inscripcion)).RelatedSel()
+	qs := o.QueryTable(new(CupoInscripcion)).RelatedSel()
 	// query k=v
 	for k, v := range query {
 		// rewrite dot-notation to Object__Attribute
 		k = strings.Replace(k, ".", "__", -1)
 		if strings.Contains(k, "isnull") {
 			qs = qs.Filter(k, (v == "true" || v == "1"))
-		} else if strings.HasSuffix(k, "__in") {
-			arr := strings.Split(v, "|")
-			qs = qs.Filter(k, arr)
 		} else {
 			qs = qs.Filter(k, v)
 		}
@@ -113,7 +104,7 @@ func GetAllInscripcion(query map[string]string, fields []string, sortby []string
 		}
 	}
 
-	var l []Inscripcion
+	var l []CupoInscripcion
 	qs = qs.OrderBy(sortFields...)
 	if _, err = qs.Limit(limit, offset).All(&l, fields...); err == nil {
 		if len(fields) == 0 {
@@ -136,11 +127,11 @@ func GetAllInscripcion(query map[string]string, fields []string, sortby []string
 	return nil, err
 }
 
-// UpdateInscripcion updates Inscripcion by Id and returns error if
+// UpdateCupoInscripcion updates CupoInscripcion by Id and returns error if
 // the record to be updated doesn't exist
-func UpdateInscripcionById(m *Inscripcion) (err error) {
+func UpdateCupoInscripcionById(m *CupoInscripcion) (err error) {
 	o := orm.NewOrm()
-	v := Inscripcion{Id: m.Id}
+	v := CupoInscripcion{Id: m.Id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
@@ -151,15 +142,15 @@ func UpdateInscripcionById(m *Inscripcion) (err error) {
 	return
 }
 
-// DeleteInscripcion deletes Inscripcion by Id and returns error if
+// DeleteCupoInscripcion deletes CupoInscripcion by Id and returns error if
 // the record to be deleted doesn't exist
-func DeleteInscripcion(id int) (err error) {
+func DeleteCupoInscripcion(id int) (err error) {
 	o := orm.NewOrm()
-	v := Inscripcion{Id: id}
+	v := CupoInscripcion{Id: id}
 	// ascertain id exists in the database
 	if err = o.Read(&v); err == nil {
 		var num int64
-		if num, err = o.Delete(&Inscripcion{Id: id}); err == nil {
+		if num, err = o.Delete(&CupoInscripcion{Id: id}); err == nil {
 			fmt.Println("Number of records deleted in database:", num)
 		}
 	}
