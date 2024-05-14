@@ -1864,6 +1864,9 @@ definitions:
         type: boolean
       Activo:
         type: boolean
+      Credencial:
+        type: integer
+        format: int64
       EnfasisId:
         type: integer
         format: int64
