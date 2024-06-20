@@ -3056,9 +3056,6 @@
                 "FechaCreacion": {
                     "type": "string"
                 },
-                "FechaModificacion": {
-                    "type": "string"
-                },
                 "Id": {
                     "type": "integer",
                     "format": "int64"

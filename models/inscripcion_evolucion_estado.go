@@ -16,7 +16,6 @@ type InscripcionEvolucionEstado struct {
 	EstadoInscripcionIdAnterior *EstadoInscripcion `orm:"column(estado_inscripcion_id_anterior);rel(fk);null"`
 	EstadoInscripcionId         *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	FechaCreacion               string             `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion           string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	Activo                      bool               `orm:"column(activo)"`
 }
 
