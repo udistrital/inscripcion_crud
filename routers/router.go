@@ -21,7 +21,6 @@ func init() {
 				&controllers.InscripcionPregradoController{},
 			),
 		),
-
 		beego.NSNamespace("/inscripcion_posgrado",
 			beego.NSInclude(
 				&controllers.InscripcionPosgradoController{},
@@ -97,6 +96,21 @@ func init() {
 		beego.NSNamespace("/tipo_documento_programa",
 			beego.NSInclude(
 				&controllers.TipoDocumentoProgramaController{},
+			),
+		),
+		beego.NSNamespace("/documento_cupo",
+			beego.NSInclude(
+				&controllers.DocumentoCupoController{},
+			),
+		),
+		beego.NSNamespace("/cupo_inscripcion",
+			beego.NSInclude(
+				&controllers.CupoInscripcionController{},
+			),
+		),
+		beego.NSNamespace("/inscripcion_evolucion_estado",
+			beego.NSInclude(
+				&controllers.InscripcionEvolucionEstadoController{},
 			),
 		),
 	)
