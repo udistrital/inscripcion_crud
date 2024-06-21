@@ -581,6 +581,120 @@ paths:
           description: '{string} delete success!'
         "404":
           description: not found resource
+  /inscripcion_evolucion_estado/:
+    get:
+      tags:
+      - inscripcion_evolucion_estado
+      description: get InscripcionEvolucionEstado
+      operationId: InscripcionEvolucionEstadoController.Get All
+      parameters:
+      - in: query
+        name: query
+        description: Filter. e.g. col1:v1,col2:v2 ...
+        type: string
+      - in: query
+        name: fields
+        description: Fields returned. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: sortby
+        description: Sorted-by fields. e.g. col1,col2 ...
+        type: string
+      - in: query
+        name: order
+        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        type: string
+      - in: query
+        name: limit
+        description: Limit the size of result set. Must be an integer
+        type: string
+      - in: query
+        name: offset
+        description: Start position of result set. Must be an integer
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.InscripcionEvolucionEstado'
+        "404":
+          description: not found resource
+    post:
+      tags:
+      - inscripcion_evolucion_estado
+      description: create InscripcionEvolucionEstado
+      operationId: InscripcionEvolucionEstadoController.Post
+      parameters:
+      - in: body
+        name: body
+        description: body for InscripcionEvolucionEstado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.InscripcionEvolucionEstado'
+      responses:
+        "201":
+          description: '{int} models.InscripcionEvolucionEstado'
+        "400":
+          description: the request contains incorrect syntax
+  /inscripcion_evolucion_estado/{id}:
+    get:
+      tags:
+      - inscripcion_evolucion_estado
+      description: get InscripcionEvolucionEstado by id
+      operationId: InscripcionEvolucionEstadoController.Get One
+      parameters:
+      - in: path
+        name: id
+        description: The key for staticblock
+        required: true
+        type: string
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.InscripcionEvolucionEstado'
+        "404":
+          description: not found resource
+    put:
+      tags:
+      - inscripcion_evolucion_estado
+      description: update the InscripcionEvolucionEstado
+      operationId: InscripcionEvolucionEstadoController.Put
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to update
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: body for InscripcionEvolucionEstado content
+        required: true
+        schema:
+          $ref: '#/definitions/models.InscripcionEvolucionEstado'
+      responses:
+        "200":
+          description: ""
+          schema:
+            $ref: '#/definitions/models.InscripcionEvolucionEstado'
+        "400":
+          description: the request contains incorrect syntax
+    delete:
+      tags:
+      - inscripcion_evolucion_estado
+      description: delete the InscripcionEvolucionEstado
+      operationId: InscripcionEvolucionEstadoController.Delete
+      parameters:
+      - in: path
+        name: id
+        description: The id you want to delete
+        required: true
+        type: string
+      responses:
+        "200":
+          description: '{string} delete success!'
+        "404":
+          description: not found resource
   /inscripcion_posgrado/:
     get:
       tags:
@@ -1898,6 +2012,26 @@ definitions:
         type: string
       TipoInscripcionId:
         $ref: '#/definitions/models.TipoInscripcion'
+  models.InscripcionEvolucionEstado:
+    title: InscripcionEvolucionEstado
+    type: object
+    properties:
+      Activo:
+        type: boolean
+      EstadoInscripcionId:
+        $ref: '#/definitions/models.EstadoInscripcion'
+      EstadoInscripcionIdAnterior:
+        $ref: '#/definitions/models.EstadoInscripcion'
+      FechaCreacion:
+        type: string
+      Id:
+        type: integer
+        format: int64
+      InscripcionId:
+        $ref: '#/definitions/models.Inscripcion'
+      TerceroId:
+        type: integer
+        format: int64
   models.InscripcionPosgrado:
     title: InscripcionPosgrado
     type: object
@@ -2219,3 +2353,6 @@ tags:
 - name: cupo_inscripcion
   description: |
     CupoInscripcionController operations for CupoInscripcion
+- name: inscripcion_evolucion_estado
+  description: |
+    InscripcionEvolucionEstadoController operations for InscripcionEvolucionEstado

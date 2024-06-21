@@ -108,6 +108,11 @@ func init() {
 				&controllers.CupoInscripcionController{},
 			),
 		),
+		beego.NSNamespace("/inscripcion_evolucion_estado",
+			beego.NSInclude(
+				&controllers.InscripcionEvolucionEstadoController{},
+			),
+		),
 	)
 	beego.AddNamespace(ns)
 }

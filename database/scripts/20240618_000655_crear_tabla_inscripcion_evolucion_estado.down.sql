@@ -1,0 +1,1 @@
+DROP TABLE IF EXISTS inscripcion.inscripcion_evolucion_estado CASCADE;
