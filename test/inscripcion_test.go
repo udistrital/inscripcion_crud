@@ -283,7 +283,7 @@ func theResponseShouldMatchJson(arg1 string) error {
 		if sameStructure(string(pages), string(resBody)) {
 			return nil
 		} else {
-			return fmt.Errorf("Errores: La estructura del objeto recibiod no es la que se esperaba")
+			return fmt.Errorf("Errores: La estructura del objeto recibido no es la que se esperaba %s != %s", string(pages), string(resBody))
 		}
 	}
 	if strings.HasPrefix(div[3], "I") {

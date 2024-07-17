@@ -29,6 +29,6 @@ Feature: tipo_inscripcion controller
     |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create5.json|201 Created    |./files/res/tipo_inscripcion_create5.json|
     |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create6.json|201 Created    |./files/res/tipo_inscripcion_create6.json|
     |PUT   |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_update.json |400 Bad Request|./files/res/tipo_inscripcion_update.json |
-    |GETID |/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vok2.json                    |
-    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vok2.json                    |
+    |GETID |/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vtipo_inscripcion_single.json|
+    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vtipo_inscripcion_single.json|
     |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                   |404 Not Found  |./files/res/Inot_found.json              |
