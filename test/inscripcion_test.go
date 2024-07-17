@@ -137,31 +137,44 @@ func AreEqualJSON(s1, s2 string) (bool, error) {
 	return reflect.DeepEqual(o1, o2), nil
 }
 
-// @sameStructure comparar dos JSON si su estructura es igual retorna true de lo contrario false
-func sameStructure(json1, json2 string) bool {
-	var data1, data2 interface{}
-
-	if err := json.Unmarshal([]byte(json1), &data1); err != nil {
-		fmt.Println("Error unmarshalling JSON1:", err)
-		return false
+func extractKeysTypes(data interface{}) map[string]reflect.Type {
+	keysTypes := make(map[string]reflect.Type)
+	value := reflect.ValueOf(data)
+	if value.Kind() == reflect.Map {
+		for _, key := range value.MapKeys() {
+			keysTypes[key.String()] = value.MapIndex(key).Elem().Type()
+		}
 	}
+	return keysTypes
+}
 
-	if err := json.Unmarshal([]byte(json2), &data2); err != nil {
-		fmt.Println("Error unmarshalling JSON2:", err)
+// @sameStructure comparar dos JSON si su estructura es igual retorna true de lo contrario false
+func sameStructure(data1, data2 interface{}) bool {
+	if data1 == nil || data2 == nil {
 		return false
 	}
 
 	type1 := reflect.TypeOf(data1)
 	type2 := reflect.TypeOf(data2)
 
-	if type1.Kind() == reflect.Slice && type2.Kind() == reflect.Slice {
-		if reflect.ValueOf(data1).Len() == 0 || reflect.ValueOf(data2).Len() == 0 {
-			return false
-		}
-		return reflect.DeepEqual(reflect.TypeOf(reflect.ValueOf(data1).Index(0).Interface()), reflect.TypeOf(reflect.ValueOf(data2).Index(0).Interface()))
+	if type1.Kind() != type2.Kind() {
+		return false
 	}
 
-	return reflect.DeepEqual(type1, type2)
+	if type1.Kind() == reflect.Slice {
+		v1 := reflect.ValueOf(data1)
+		v2 := reflect.ValueOf(data2)
+		if v1.Len() == 0 || v2.Len() == 0 {
+			return false
+		}
+		return sameStructure(v1.Index(0).Interface(), v2.Index(0).Interface())
+	} else if type1.Kind() == reflect.Map {
+		keysTypes1 := extractKeysTypes(data1)
+		keysTypes2 := extractKeysTypes(data2)
+		return reflect.DeepEqual(keysTypes1, keysTypes2)
+	}
+
+	return false
 }
 
 // @getPages convierte en un tipo el json
@@ -260,19 +273,35 @@ func theResponseShouldMatchJson(arg1 string) error {
 
 	div := strings.Split(arg1, "/")
 	pages := getPages(arg1)
+
+	pages_s := string(pages)
+	body_s := string(resBody)
+
+	var data1, data2 interface{}
+
+	if err := json.Unmarshal([]byte(pages_s), &data1); err != nil {
+		fmt.Println("Error unmarshalling JSON1:", err)
+		return err
+	}
+
+	if err := json.Unmarshal([]byte(body_s), &data2); err != nil {
+		fmt.Println("Error unmarshalling JSON2:", err)
+		return err
+	}
+
 	if strings.HasPrefix(div[3], "V") {
-		if sameStructure(string(pages), string(resBody)) {
+		if sameStructure(data1, data2) {
 			return nil
 		} else {
-			return fmt.Errorf("Errores: La estructura del objeto recibido no es la que se esperaba %s != %s", string(pages), string(resBody))
+			return fmt.Errorf("Errores: La estructura del objeto recibido no es la que se esperaba %s != %s", pages_s, body_s)
 		}
 	}
 	if strings.HasPrefix(div[3], "I") {
-		areEqual, _ := AreEqualJSON(string(pages), string(resBody))
+		areEqual, _ := AreEqualJSON(pages_s, body_s)
 		if areEqual {
 			return nil
 		} else {
-			return fmt.Errorf(" se esperaba el body de respuesta %s y se obtuvo %s", string(pages), resBody)
+			return fmt.Errorf(" se esperaba el body de respuesta %s y se obtuvo %s", pages_s, resBody)
 		}
 
 	}
