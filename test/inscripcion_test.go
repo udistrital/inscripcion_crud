@@ -25,32 +25,16 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// @opt opciones de godog
-var opt = godog.Options{Output: colors.Colored(os.Stdout)}
-
-// @resStatus codigo de respuesta a las solicitudes a la api
-var resStatus string
-
-// @resBody JSON repuesta Delete
-var resDelete string
-
-// @resBody JSON de respuesta a las solicitudesde la api
-var resBody []byte
-
-var savepostres map[string]interface{}
-
-var IntentosAPI = 1
-
-var Id float64
-
-type BadRequest struct {
-	Development string
-	Message     string
-	Status      string
-	System      any
-}
-
-var debug = false
+var (
+	opt         = godog.Options{Output: colors.Colored(os.Stdout)}
+	resStatus   string
+	resDelete   string
+	resBody     []byte
+	savepostres map[string]interface{}
+	IntentosAPI = 1
+	Id          float64
+	debug       = false
+)
 
 // @exe_cmd ejecuta comandos en la terminal
 func exe_cmd(cmd string, wg *sync.WaitGroup) {
@@ -135,10 +119,6 @@ func TestMain(m *testing.M) {
 
 }
 
-/*------------------------------
-  ---- Ejecución de pruebas ----
-  ------------------------------*/
-
 // @AreEqualJSON comparar dos JSON si son iguales retorna true de lo contrario false
 func AreEqualJSON(s1, s2 string) (bool, error) {
 	var o1 interface{}
@@ -157,6 +137,7 @@ func AreEqualJSON(s1, s2 string) (bool, error) {
 	return reflect.DeepEqual(o1, o2), nil
 }
 
+// @sameStructure comparar dos JSON si su estructura es igual retorna true de lo contrario false
 func sameStructure(json1, json2 string) bool {
 	var data1, data2 interface{}
 
@@ -207,7 +188,7 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 
 	} else {
 		if method == "PUT" || method == "DELETE" {
-			str := strconv.FormatFloat(Id, 'f', 5, 64)
+			str := strconv.FormatFloat(Id, 'f', 0, 64)
 			url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint + "/" + str
 
 		}
@@ -374,6 +355,7 @@ func iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt
 	return nil
 }
 
+// @FeatureContext Define los steps de los escenarios a ejecutar
 func FeatureContext(s *godog.ScenarioContext) {
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is multipart\/form-data with this params "([^"]*)" and the file "([^"]*)" located at "([^"]*)"$`, iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt)
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
