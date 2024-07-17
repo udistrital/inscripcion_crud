@@ -20,15 +20,15 @@ Feature: tipo_inscripcion controller
 
     Examples: 
     |method|route               |bodyreq                                  |codres         |bodyres                                  |
-    |GET   |/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vtipo_inscripcion_get.json   |
+    |GET   |/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vtipo_inscripcion_list.json  |
     |POST  |/v1/tipo_inscripcion|./files/req/Vacio.json                   |400 Bad Request|./files/res/Ibad_request.json            |
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create1.json|201 Created    |./files/res/tipo_inscripcion_create1.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create2.json|201 Created    |./files/res/tipo_inscripcion_create2.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create3.json|201 Created    |./files/res/tipo_inscripcion_create3.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create4.json|201 Created    |./files/res/tipo_inscripcion_create4.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create5.json|201 Created    |./files/res/tipo_inscripcion_create5.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create6.json|201 Created    |./files/res/tipo_inscripcion_create6.json|
-    |PUT   |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_update.json |200 OK         |./files/res/tipo_inscripcion_update.json |
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create1.json|201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create2.json|201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create3.json|201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create4.json|201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create5.json|201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create6.json|201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |PUT   |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_update.json |200 OK         |./files/res/Vtipo_inscripcion_single.json|
     |GETID |/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vtipo_inscripcion_single.json|
     |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                   |200 OK         |./files/res/Vtipo_inscripcion_single.json|
     |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                   |404 Not Found  |./files/res/Inot_found.json              |
