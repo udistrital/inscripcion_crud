@@ -2,94 +2,43 @@ package main
 
 import (
 	"bytes"
+	"database/sql"
 	"encoding/json"
 	"flag"
 	"fmt"
 	"io"
 	"log"
 	"net/http"
+	"net/http/httptest"
 	"os"
-	"os/exec"
 	"reflect"
 	"strconv"
 	"strings"
-	"sync"
 	"testing"
-	"time"
 
+	"github.com/DATA-DOG/go-sqlmock"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 	"github.com/cucumber/godog"
 	"github.com/cucumber/godog/colors"
-
-	"github.com/astaxie/beego"
+	"github.com/udistrital/inscripcion_crud/controllers"
 )
 
 var (
 	opt         = godog.Options{Output: colors.Colored(os.Stdout)}
-	resStatus   string
+	resStatus   int
 	resBody     []byte
 	savepostres map[string]interface{}
 	IntentosAPI = 1
 	Id          float64
-	debug       = false
+	debug       = true
+	db          *sql.DB
+	mock        sqlmock.Sqlmock
 )
-
-// @exe_cmd ejecuta comandos en la terminal
-func exe_cmd(cmd string, wg *sync.WaitGroup) {
-	parts := strings.Fields(cmd)
-	out, err := exec.Command(parts[0], parts[1]).Output()
-
-	if err != nil {
-		fmt.Println("error occured")
-		fmt.Printf("%s", err)
-	}
-	fmt.Printf("%s", out)
-	wg.Done()
-}
-
-// @deleteFile Borrar archivos
-func deleteFile(path string) {
-	// delete file
-	err := os.Remove(path)
-	if err != nil {
-		err := fmt.Errorf("no se pudo eliminar el archivo")
-		fmt.Println(err.Error())
-	}
-}
-
-// @run_bee activa el servicio de la api para realizar los test
-func run_bee() {
-	parametros := "INSCRIPCION_CRUD_HTTP_PORT=" + beego.AppConfig.String("httpport") +
-		" INSCRIPCION_CRUD_PGUSER=" + beego.AppConfig.String("PGuser") +
-		" INSCRIPCION_CRUD_PGPASS=" + beego.AppConfig.String("PGpass") +
-		" INSCRIPCION_CRUD_PGHOST=" + beego.AppConfig.String("PGurls") +
-		" INSCRIPCION_CRUD_PGPORT=" + beego.AppConfig.String("PGport") +
-		" INSCRIPCION_CRUD_PGDB=" + beego.AppConfig.String("PGdb") +
-		" INSCRIPCION_CRUD_PGSCHEMA=" + beego.AppConfig.String("PGschemas") + " bee run"
-
-	file, err := os.Create("script.sh")
-	if err != nil {
-		log.Fatal("Cannot create file", err)
-	}
-	defer file.Close()
-	fmt.Fprintln(file, "cd ..")
-	fmt.Fprintln(file, parametros)
-
-	wg := new(sync.WaitGroup)
-	commands := []string{"sh script.sh &"}
-	for _, str := range commands {
-		wg.Add(1)
-		go exe_cmd(str, wg)
-	}
-	time.Sleep(5 * time.Second)
-	deleteFile("script.sh")
-	wg.Done()
-}
 
 // @init inicia la aplicacion para realizar los test
 func init() {
 	fmt.Println("Inicio de pruebas de aceptación al API")
-
-	run_bee()
 
 	//pasa las banderas al comando godog
 	godog.BindFlags("godog.", flag.CommandLine, &opt)
@@ -202,7 +151,7 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 
 	var url string
 
-	baseURL := "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint
+	baseURL := endpoint
 
 	switch method {
 	case "GET", "POST":
@@ -229,19 +178,16 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 	}
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return err
-	}
-	defer resp.Body.Close()
+	// Crear un ResponseRecorder para grabar la respuesta
+	resp := httptest.NewRecorder()
+	beego.BeeApp.Handlers.ServeHTTP(resp, req)
 
 	bodyr, _ := io.ReadAll(resp.Body)
 
-	resStatus = resp.Status
+	resStatus = resp.Code
 	resBody = bodyr
 
-	if method == "POST" && resStatus == "201 Created" {
+	if method == "POST" && resStatus == 201 {
 		json.Unmarshal([]byte(bodyr), &savepostres)
 		Id = savepostres["Id"].(float64)
 
@@ -251,13 +197,13 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 }
 
 // @theResponseCodeShouldBe valida el codigo de respuesta
-func theResponseCodeShouldBe(arg1 string) error {
+func theResponseCodeShouldBe(arg1 int) error {
 	if debug {
 		fmt.Println("Step: theResponseCodeShouldBe")
 	}
 
 	if resStatus != arg1 {
-		return fmt.Errorf("se esperaba el codigo de respuesta .. %s .. y se obtuvo el codigo de respuesta .. %s .. ", arg1, resStatus)
+		return fmt.Errorf("se esperaba el codigo de respuesta .. %d .. y se obtuvo el codigo de respuesta .. %d .. ", arg1, resStatus)
 	}
 	return nil
 }
@@ -310,6 +256,43 @@ func theResponseShouldMatchJson(arg1 string) error {
 
 // @FeatureContext Define los steps de los escenarios a ejecutar
 func FeatureContext(s *godog.ScenarioContext) {
+	var err error
+	db, mock, err = sqlmock.New()
+	if err != nil {
+		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+	}
+	//defer db.Close()
+
+	//mock.ExpectExec("INSERT INTO \"tipo_inscripcion\" (\"nombre\", \"descripcion\", \"codigo_abreviacion\", \"activo\", \"numero_orden\", \"nivel_id\", \"fecha_creacion\", \"fecha_modificacion\", \"especial\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING \"id\"").WithArgs("string", "string", "string", true, 1, 0, true).WillReturnResult(sqlmock.NewResult(1, 1))
+
+	columns := []string{"Id",
+		"Nombre",
+		"Descripcion",
+		"CodigoAbreviacion",
+		"Activo",
+		"NumeroOrden",
+		"NivelId",
+		"FechaCreacion",
+		"FechaModificacion",
+		"Especial"}
+	mock.ExpectQuery("SELECT T0.\"id\", T0.\"nombre\", T0.\"descripcion\", T0.\"codigo_abreviacion\", T0.\"activo\", T0.\"numero_orden\", T0.\"nivel_id\", T0.\"fecha_creacion\", T0.\"fecha_modificacion\", T0.\"especial\" FROM \"tipo_inscripcion\" T0 LIMIT 10").
+		WillReturnRows(sqlmock.NewRows(columns).AddRow(1,
+			"Pregrado",
+			"Inscripción de pregrado",
+			"PREG",
+			true,
+			1,
+			1,
+			"2024-06-18 21:58:23.831499 +0000 +0000",
+			"2024-06-18 21:58:23.831499 +0000 +0000",
+			false))
+
+	orm.RegisterDriver("postgres", orm.DRPostgres)
+	orm.AddAliasWthDB("default", "postgres", db)
+
+	//beego.Router("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "post:Post")
+	beego.Router("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "get:GetAll")
+
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
 	s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
 	s.Step(`^the response should match json "([^"]*)"$`, theResponseShouldMatchJson)
