@@ -265,33 +265,36 @@ func FeatureContext(s *godog.ScenarioContext) {
 
 	//mock.ExpectExec("INSERT INTO \"tipo_inscripcion\" (\"nombre\", \"descripcion\", \"codigo_abreviacion\", \"activo\", \"numero_orden\", \"nivel_id\", \"fecha_creacion\", \"fecha_modificacion\", \"especial\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING \"id\"").WithArgs("string", "string", "string", true, 1, 0, true).WillReturnResult(sqlmock.NewResult(1, 1))
 
-	columns := []string{"Id",
-		"Nombre",
-		"Descripcion",
-		"CodigoAbreviacion",
-		"Activo",
-		"NumeroOrden",
-		"NivelId",
-		"FechaCreacion",
-		"FechaModificacion",
-		"Especial"}
-	mock.ExpectQuery("SELECT T0.\"id\", T0.\"nombre\", T0.\"descripcion\", T0.\"codigo_abreviacion\", T0.\"activo\", T0.\"numero_orden\", T0.\"nivel_id\", T0.\"fecha_creacion\", T0.\"fecha_modificacion\", T0.\"especial\" FROM \"tipo_inscripcion\" T0 LIMIT 10").
-		WillReturnRows(sqlmock.NewRows(columns).AddRow(1,
-			"Pregrado",
-			"Inscripción de pregrado",
-			"PREG",
-			true,
-			1,
-			1,
-			"2024-06-18 21:58:23.831499 +0000 +0000",
-			"2024-06-18 21:58:23.831499 +0000 +0000",
-			false))
+	mock.ExpectQuery("SELECT.*tipo_inscripcion.*").
+		WillReturnRows(sqlmock.NewRows(
+			[]string{"Id",
+				"Nombre",
+				"Descripcion",
+				"CodigoAbreviacion",
+				"Activo",
+				"NumeroOrden",
+				"NivelId",
+				"FechaCreacion",
+				"FechaModificacion",
+				"Especial"}).
+			AddRow(1,
+				"Pregrado",
+				"Inscripción de pregrado",
+				"PREG",
+				true,
+				1,
+				1,
+				"2024-06-18 21:58:23.831499 +0000 +0000",
+				"2024-06-18 21:58:23.831499 +0000 +0000",
+				false))
+
+	mock.ExpectQuery("INSERT INTO tipo_inscripcion")
 
 	orm.RegisterDriver("postgres", orm.DRPostgres)
 	orm.AddAliasWthDB("default", "postgres", db)
 
-	//beego.Router("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "post:Post")
-	beego.Router("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "get:GetAll")
+	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "post:Post")
+	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "get:GetAll")
 
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
 	s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
