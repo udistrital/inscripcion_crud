@@ -7,11 +7,9 @@ import (
 	"fmt"
 	"io"
 	"log"
-	"mime/multipart"
 	"net/http"
 	"os"
 	"os/exec"
-	"path/filepath"
 	"reflect"
 	"strconv"
 	"strings"
@@ -28,7 +26,6 @@ import (
 var (
 	opt         = godog.Options{Output: colors.Colored(os.Stdout)}
 	resStatus   string
-	resDelete   string
 	resBody     []byte
 	savepostres map[string]interface{}
 	IntentosAPI = 1
@@ -38,7 +35,6 @@ var (
 
 // @exe_cmd ejecuta comandos en la terminal
 func exe_cmd(cmd string, wg *sync.WaitGroup) {
-
 	parts := strings.Fields(cmd)
 	out, err := exec.Command(parts[0], parts[1]).Output()
 
@@ -94,6 +90,7 @@ func init() {
 	fmt.Println("Inicio de pruebas de aceptación al API")
 
 	run_bee()
+
 	//pasa las banderas al comando godog
 	godog.BindFlags("godog.", flag.CommandLine, &opt)
 }
@@ -115,8 +112,8 @@ func TestMain(m *testing.M) {
 	if st := m.Run(); st > status {
 		status = st
 	}
-	os.Exit(status)
 
+	os.Exit(status)
 }
 
 // @AreEqualJSON comparar dos JSON si son iguales retorna true de lo contrario false
@@ -137,12 +134,21 @@ func AreEqualJSON(s1, s2 string) (bool, error) {
 	return reflect.DeepEqual(o1, o2), nil
 }
 
+// @extractKeysTypes Extraer las llaves de un json
 func extractKeysTypes(data interface{}) map[string]reflect.Type {
 	keysTypes := make(map[string]reflect.Type)
 	value := reflect.ValueOf(data)
 	if value.Kind() == reflect.Map {
 		for _, key := range value.MapKeys() {
-			keysTypes[key.String()] = value.MapIndex(key).Elem().Type()
+			val := value.MapIndex(key).Interface()
+			if val == nil {
+				keysTypes[key.String()] = nil
+			} else if reflect.TypeOf(val).Kind() == reflect.Map {
+				// Recursively check nested objects
+				keysTypes[key.String()] = reflect.TypeOf(extractKeysTypes(val))
+			} else {
+				keysTypes[key.String()] = reflect.TypeOf(val)
+			}
 		}
 	}
 	return keysTypes
@@ -196,27 +202,19 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 
 	var url string
 
-	if method == "GET" || method == "POST" {
-		url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint
+	baseURL := "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint
 
-	} else {
-		if method == "PUT" || method == "DELETE" {
-			str := strconv.FormatFloat(Id, 'f', 0, 64)
-			url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint + "/" + str
+	switch method {
+	case "GET", "POST":
+		url = baseURL
 
+	case "PUT", "DELETE", "GETID":
+		str := strconv.FormatFloat(Id, 'f', 0, 64)
+		url = baseURL + "/" + str
+
+		if method == "GETID" {
+			method = "GET"
 		}
-	}
-	if method == "GETID" {
-		method = "GET"
-		str := strconv.FormatFloat(Id, 'f', 0, 64)
-		url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint + "/" + str
-
-	}
-	if method == "DELETE" {
-		str := strconv.FormatFloat(Id, 'f', 0, 64)
-		url = "http://" + beego.AppConfig.String("PGurls") + ":" + beego.AppConfig.String("httpport") + endpoint + "/" + str
-		resDelete = "{\"Id\":" + str + "}"
-		os.WriteFile("./assets/responses/Ino.json", []byte(resDelete), 0644)
 	}
 
 	if debug {
@@ -244,7 +242,6 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 	resBody = bodyr
 
 	if method == "POST" && resStatus == "201 Created" {
-		os.WriteFile("./assets/requests/BodyRec2.json", resBody, 0644)
 		json.Unmarshal([]byte(bodyr), &savepostres)
 		Id = savepostres["Id"].(float64)
 
@@ -289,104 +286,30 @@ func theResponseShouldMatchJson(arg1 string) error {
 		return err
 	}
 
-	if strings.HasPrefix(div[3], "V") {
+	prefix := div[3]
+
+	switch {
+	case strings.HasPrefix(prefix, "V"):
 		if sameStructure(data1, data2) {
 			return nil
 		} else {
 			return fmt.Errorf("Errores: La estructura del objeto recibido no es la que se esperaba %s != %s", pages_s, body_s)
 		}
-	}
-	if strings.HasPrefix(div[3], "I") {
+
+	case strings.HasPrefix(prefix, "I"):
 		areEqual, _ := AreEqualJSON(pages_s, body_s)
 		if areEqual {
 			return nil
 		} else {
-			return fmt.Errorf(" se esperaba el body de respuesta %s y se obtuvo %s", pages_s, resBody)
-		}
-
-	}
-	return nil
-}
-
-// @iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt realiza la solicitud a la API
-func iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt(method, endpoint, bodyreq string, filename string, bodyfile string) error {
-	if debug {
-		fmt.Println("Step: iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt")
-	}
-
-	var url string
-
-	if method == "GET" || method == "POST" {
-		url = "http://" + beego.AppConfig.String("appurl") + ":" + beego.AppConfig.String("httpport") + endpoint
-	} else {
-		if method == "PUT" || method == "DELETE" {
-			url = "http://" + beego.AppConfig.String("appurl") + ":" + beego.AppConfig.String("httpport") + endpoint
+			return fmt.Errorf("Se esperaba el body de respuesta %s y se obtuvo %s", pages_s, resBody)
 		}
 	}
 
-	extraParams := getPages(bodyreq)
-	var params map[string]string
-	err := json.Unmarshal(extraParams, &params)
-	if err != nil {
-		return err
-	}
-
-	path, _ := os.Getwd()
-	path += "/"
-	path += bodyfile
-
-	file, err := os.Open(path)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-
-	body := &bytes.Buffer{}
-	writer := multipart.NewWriter(body)
-	part, err := writer.CreateFormFile(filename, filepath.Base(path))
-	if err != nil {
-		return err
-	}
-
-	_, err = io.Copy(part, file)
-	if err != nil {
-		return err
-	}
-
-	for key, val := range params {
-		_ = writer.WriteField(key, val)
-	}
-	err = writer.Close()
-	if err != nil {
-		return err
-	}
-
-	req, err := http.NewRequest(method, url, body)
-	if err != nil {
-		return err
-	}
-
-	req.Header.Set("Content-Type", writer.FormDataContentType())
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		return err
-	}
-
-	defer resp.Body.Close()
-
-	bodyr, _ := io.ReadAll(resp.Body)
-
-	resStatus = resp.Status
-	resBody = bodyr
-
-	return nil
+	return fmt.Errorf("Respuesta no validada")
 }
 
 // @FeatureContext Define los steps de los escenarios a ejecutar
 func FeatureContext(s *godog.ScenarioContext) {
-	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is multipart\/form-data with this params "([^"]*)" and the file "([^"]*)" located at "([^"]*)"$`, iSendRequestToWhereBodyIsMultipartformdataWithThisParamsAndTheFileLocatedAt)
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
 	s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
 	s.Step(`^the response should match json "([^"]*)"$`, theResponseShouldMatchJson)
