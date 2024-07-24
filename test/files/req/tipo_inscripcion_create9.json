@@ -1,0 +1,9 @@
+{
+    "Nombre": "string",
+    "Descripcion": "string",
+    "CodigoAbreviacion": "string",
+    "Activo": "activo",
+    "NumeroOrden": 1,
+    "NivelId": 0,
+    "Especial": true
+}
