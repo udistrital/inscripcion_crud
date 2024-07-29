@@ -6,12 +6,12 @@ Feature: tipo_inscripcion controller
     Then the response code should be "<codres>"
 
     Examples:
-    |method|route               |bodyreq               |codres       |
-    |GET   |/v1/tipo_inscripcion|./files/req/Vacio.json|200 OK       |
-    |GET   |/v1/tipo_inscripcio |./files/req/Vacio.json|404 Not Found|
-    |POST  |/v1/tipo_inscripcio |./files/req/Vacio.json|404 Not Found|
-    |PUT   |/v1/tipo_inscripcio |./files/req/Vacio.json|404 Not Found|
-    |DELETE|/v1/tipo_inscripcio |./files/req/Vacio.json|404 Not Found|
+    |method|route               |bodyreq               |codres|
+    |GET   |/v1/tipo_inscripcion|./files/req/Vacio.json|200   |
+    |GET   |/v1/tipo_inscripcio |./files/req/Vacio.json|404   |
+    |POST  |/v1/tipo_inscripcio |./files/req/Vacio.json|404   |
+    |PUT   |/v1/tipo_inscripcio |./files/req/Vacio.json|404   |
+    |DELETE|/v1/tipo_inscripcio |./files/req/Vacio.json|404   |
 
   Scenario Outline: To probe response route /tipo_inscripcion       
     When I send "<method>" request to "<route>" where body is json "<bodyreq>"
@@ -19,23 +19,23 @@ Feature: tipo_inscripcion controller
     And the response should match json "<bodyres>"
 
     Examples: 
-    |method|route               |bodyreq                                   |codres         |bodyres                                  |
-    |GET   |/v1/tipo_inscripcion|./files/req/Vacio.json                    |200 OK         |./files/res/Vtipo_inscripcion_list.json  |
-    |POST  |/v1/tipo_inscripcion|./files/req/Vacio.json                    |400 Bad Request|./files/res/Ibad_request.json            |
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create1.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create2.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create3.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create4.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create5.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create6.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create7.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create8.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create9.json |400 Bad Request|./files/res/Vbad_request_activo.json     |
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create10.json|400 Bad Request|./files/res/Vbad_request_activo.json     |
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create11.json|400 Bad Request|./files/res/Vbad_request_activo.json     |
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create12.json|400 Bad Request|./files/res/Vbad_request_activo.json     |
-    |PUT   |/v1/tipo_inscripcion|./files/req/Vacio.json                    |400 Bad Request|./files/res/Ibad_request.json            |
-    |PUT   |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_update.json  |200 OK         |./files/res/Vtipo_inscripcion_single.json|
-    |GETID |/v1/tipo_inscripcion|./files/req/Vacio.json                    |200 OK         |./files/res/Vtipo_inscripcion_single.json|
-    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                    |200 OK         |./files/res/Vtipo_inscripcion_id.json    |
-    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                    |404 Not Found  |./files/res/Inot_found.json              |
+    |method|route               |bodyreq                                   |codres|bodyres                                  |
+    |GET   |/v1/tipo_inscripcion|./files/req/Vacio.json                    |200   |./files/res/Vtipo_inscripcion_list.json  |
+    |POST  |/v1/tipo_inscripcion|./files/req/Vacio.json                    |400   |./files/res/Ibad_request.json            |
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create1.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create2.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create3.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create4.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create5.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create6.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create7.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create8.json |201   |./files/res/Vtipo_inscripcion_single.json|
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create9.json |400   |./files/res/Vbad_request_activo.json     |
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create10.json|400   |./files/res/Vbad_request_activo.json     |
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create11.json|400   |./files/res/Vbad_request_activo.json     |
+    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create12.json|400   |./files/res/Vbad_request_activo.json     |
+    |PUT   |/v1/tipo_inscripcion|./files/req/Vacio.json                    |400   |./files/res/Ibad_request.json            |
+    |PUT   |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_update.json  |200   |./files/res/Vtipo_inscripcion_single.json|
+    |GETID |/v1/tipo_inscripcion|./files/req/Vacio.json                    |200   |./files/res/Vtipo_inscripcion_single.json|
+    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                    |200   |./files/res/Vtipo_inscripcion_id.json    |
+    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                    |404   |./files/res/Inot_found.json              |
