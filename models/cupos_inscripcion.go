@@ -15,7 +15,7 @@ type CupoInscripcion struct {
 	CuposHabilitados    int              `orm:"column(cupos_habilitados)"`
 	CuposOpcionados     int              `orm:"column(cupos_opcionados)"`
 	PeriodoId           int              `orm:"column(periodo_id)"`
-	ProgramaAcademicoId int              `orm:"column(programa_academico_id)"`
+	ProyectoAcademicoId int              `orm:"column(proyecto_academico_id)"`
 	TipoInscripcionId   *TipoInscripcion `orm:"column(tipo_inscripcion_id);rel(fk)"`
 	CupoId              int              `orm:"column(cupo_id)"`
 	FechaCreacion       string           `orm:"column(fecha_creacion);type(timestamp without time zone)"`
