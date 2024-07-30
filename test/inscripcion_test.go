@@ -1,4 +1,4 @@
-package main
+package test
 
 import (
 	"bytes"
@@ -73,11 +73,11 @@ func AreEqualJSON(s1, s2 string) (bool, error) {
 	var err error
 	err = json.Unmarshal([]byte(s1), &o1)
 	if err != nil {
-		return false, fmt.Errorf("Error mashalling string 1 :: %s", err.Error())
+		return false, fmt.Errorf("Error marshaling string 1 :: %s", err.Error())
 	}
 	err = json.Unmarshal([]byte(s2), &o2)
 	if err != nil {
-		return false, fmt.Errorf("Error mashalling string 2 :: %s", err.Error())
+		return false, fmt.Errorf("Error marshaling string 2 :: %s", err.Error())
 	}
 
 	return reflect.DeepEqual(o1, o2), nil
@@ -256,47 +256,49 @@ func theResponseShouldMatchJson(arg1 string) error {
 
 // @FeatureContext Define los steps de los escenarios a ejecutar
 func FeatureContext(s *godog.ScenarioContext) {
-	var err error
-	db, mock, err = sqlmock.New()
-	if err != nil {
-		log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
-	}
-	//defer db.Close()
+    var err error
+    db, mock, err := sqlmock.New()
+    if err != nil {
+        log.Fatalf("an error '%s' was not expected when opening a stub database connection", err)
+    }
+    defer db.Close()
 
-	//mock.ExpectExec("INSERT INTO \"tipo_inscripcion\" (\"nombre\", \"descripcion\", \"codigo_abreviacion\", \"activo\", \"numero_orden\", \"nivel_id\", \"fecha_creacion\", \"fecha_modificacion\", \"especial\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING \"id\"").WithArgs("string", "string", "string", true, 1, 0, true).WillReturnResult(sqlmock.NewResult(1, 1))
+    mock.ExpectExec("INSERT INTO \"tipo_inscripcion\" (\"nombre\", \"descripcion\", \"codigo_abreviacion\", \"activo\", \"numero_orden\", \"nivel_id\", \"fecha_creacion\", \"fecha_modificacion\", \"especial\") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING \"id\"").
+        WithArgs("string", "string", "string", true, 1, 0, true).
+        WillReturnResult(sqlmock.NewResult(1, 1))
 
-	mock.ExpectQuery("SELECT.*tipo_inscripcion.*").
-		WillReturnRows(sqlmock.NewRows(
-			[]string{"Id",
-				"Nombre",
-				"Descripcion",
-				"CodigoAbreviacion",
-				"Activo",
-				"NumeroOrden",
-				"NivelId",
-				"FechaCreacion",
-				"FechaModificacion",
-				"Especial"}).
-			AddRow(1,
-				"Pregrado",
-				"Inscripción de pregrado",
-				"PREG",
-				true,
-				1,
-				1,
-				"2024-06-18 21:58:23.831499 +0000 +0000",
-				"2024-06-18 21:58:23.831499 +0000 +0000",
-				false))
+    mock.ExpectQuery("SELECT.*tipo_inscripcion.*").
+        WillReturnRows(sqlmock.NewRows(
+            []string{"Id",
+                "Nombre",
+                "Descripcion",
+                "CodigoAbreviacion",
+                "Activo",
+                "NumeroOrden",
+                "NivelId",
+                "FechaCreacion",
+                "FechaModificacion",
+                "Especial"}).
+            AddRow(1,
+                "Pregrado",
+                "Inscripción de pregrado",
+                "PREG",
+                true,
+                1,
+                1,
+                "2024-06-18 21:58:23.831499 +0000 +0000",
+                "2024-06-18 21:58:23.831499 +0000 +0000",
+                false))
 
-	mock.ExpectQuery("INSERT INTO tipo_inscripcion")
+    orm.RegisterDriver("postgres", orm.DRPostgres)
+    // Usar una cadena de conexión para sqlmock
+    //sqlmockDB, _, _ := sqlmock.NewWithDSN("sqlmock_db_0")
+    orm.RegisterDataBase("default", "postgres", "sqlmock_db_0")
 
-	orm.RegisterDriver("postgres", orm.DRPostgres)
-	orm.AddAliasWthDB("default", "postgres", db)
+    beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "post:Post")
+    beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "get:GetAll")
 
-	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "post:Post")
-	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "get:GetAll")
-
-	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
-	s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
-	s.Step(`^the response should match json "([^"]*)"$`, theResponseShouldMatchJson)
+    s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
+    s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
+    s.Step(`^the response should match json "([^"]*)"$`, theResponseShouldMatchJson)
 }
