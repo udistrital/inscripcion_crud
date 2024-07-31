@@ -3,7 +3,7 @@ CREATE TABLE inscripcion.cupo_inscripcion (
 	cupos_habilitados integer NOT NULL,
 	cupos_opcionados integer NOT NULL,
 	periodo_id integer NOT NULL,
-	programa_academico_id integer NOT NULL,
+	proyecto_academico_id integer NOT NULL,
 	tipo_inscripcion_id integer NOT NULL,
 	cupo_id integer NOT NULL,
 	activo boolean NOT NULL,
