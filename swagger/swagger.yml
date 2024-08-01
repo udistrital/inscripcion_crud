@@ -1999,6 +1999,9 @@ definitions:
       NotaFinal:
         type: number
         format: double
+      Opcion:
+        type: integer
+        format: int64
       PeriodoId:
         type: integer
         format: int64
@@ -2010,6 +2013,9 @@ definitions:
         format: int64
       ReciboInscripcion:
         type: string
+      TipoCupo:
+        type: integer
+        format: int64
       TipoInscripcionId:
         $ref: '#/definitions/models.TipoInscripcion'
   models.InscripcionEvolucionEstado:
