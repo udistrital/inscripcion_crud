@@ -1,8 +1,11 @@
 {
-    "Descripcion": "string",
-    "CodigoAbreviacion": "string",
+    "Nombre": "Nombre",
+    "Descripcion": "Descripcion",
+    "CodigoAbreviacion": "Abreviacion",
     "Activo": true,
-    "NumeroOrden": 1,
-    "NivelId": 0,
+    "NumeroOrden": 1.0,
+    "NivelId": 1,
+    "FechaCreacion": "2024-08-09T10:57:41.965807-05:00",
+    "FechaModificacion": "2024-08-09T10:57:41.965807-05:00",
     "Especial": true
 }

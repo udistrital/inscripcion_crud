@@ -3,6 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -37,8 +38,8 @@ func (c *TipoInscripcionController) URLMapping() {
 func (c *TipoInscripcionController) Post() {
 	var v models.TipoInscripcion
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
-		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+		//v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+		//v.FechaModificacion = time_bogota.TiempoBogotaFormato()
 		if _, err := models.AddTipoInscripcion(&v); err == nil {
 			c.Ctx.Output.SetStatus(201)
 			c.Data["json"] = v
