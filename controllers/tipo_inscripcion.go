@@ -3,7 +3,6 @@ package controllers
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"strconv"
 	"strings"
 
@@ -164,7 +163,7 @@ func (c *TipoInscripcionController) Put() {
 	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
 		if get, errGet := models.GetTipoInscripcionById(id); errGet == nil {
 			v.FechaCreacion = time_bogota.TiempoCorreccionFormato(get.FechaCreacion)
-			v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+			v.FechaModificacion = time_bogota.TiempoCorreccionFormato(get.FechaModificacion)
 		}
 		if err := models.UpdateTipoInscripcionById(&v); err == nil {
 			c.Data["json"] = v

@@ -8,6 +8,6 @@ Feature: tipo_inscripcion controller
 
     Examples: 
     |method|route               |bodyreq                                   |codres         |bodyres                                  |
-    |POST  |/v1/tipo_inscripcion|./files/req/tipo_inscripcion_create2.json |201 Created    |./files/res/Vtipo_inscripcion_single.json|
+    |DELETE|/v1/tipo_inscripcion|./files/req/Vacio.json                    |200 OK         |./files/res/Vtipo_inscripcion_id.json    |
 
     

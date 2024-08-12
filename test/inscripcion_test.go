@@ -24,8 +24,9 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/cucumber/godog"
 	"github.com/cucumber/godog/colors"
-	"github.com/udistrital/inscripciones/inscripcion_crud/controllers"
-	//"github.com/udistrital/utils_oas/time_bogota"
+	"github.com/udistrital/inscripcion_crud/controllers"
+
+	//"github.com/udistrital/inscripcion_crud/test/files/mocks"
 
 	"github.com/astaxie/beego"
 )
@@ -36,8 +37,8 @@ var (
 	resBody     []byte
 	savepostres map[string]interface{}
 	IntentosAPI = 1
-	Id          float64
-	debug       = false
+	Id          = 1.0
+	debug       = true
 	response    *httptest.ResponseRecorder
 	db          *sql.DB
 	mock        sqlmock.Sqlmock
@@ -233,14 +234,18 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 		fmt.Println("Test: " + method + " to " + url)
 	}
 
+	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "get:GetAll")
+	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion/:id", &controllers.TipoInscripcionController{}, "get:GetOne")
 	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion", &controllers.TipoInscripcionController{}, "post:Post")
+	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion/:id", &controllers.TipoInscripcionController{}, "put:Put")
+	beego.BeeApp.Handlers.Add("/v1/tipo_inscripcion/:id", &controllers.TipoInscripcionController{}, "delete:Delete")
 
 	pages := getPages(bodyreq)
 
 	fmt.Println("Buffer Bytes")
 	fmt.Println(bytes.NewBuffer(pages))
 	// Crear la solicitud usando httptest y la ruta en Beego
-	req, err := http.NewRequest("POST", url, bytes.NewBuffer(pages))
+	req, err := http.NewRequest(method, url, bytes.NewBuffer(pages))
 	if err != nil {
 		return err
 	}
@@ -258,10 +263,12 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 	fmt.Println(response.Body.Bytes())
 	resBody = response.Body.Bytes()
 
-	/*if method == "POST" && resStatus == "201 Created" {
+	if method == "POST" && resStatus == "201 Created" {
 		json.Unmarshal(resBody, &savepostres)
+		fmt.Println("ResBody")
+		fmt.Println(savepostres)
 		Id = savepostres["Id"].(float64)
-	}*/
+	}
 
 	return nil
 
@@ -334,7 +341,17 @@ func FeatureContext(s *godog.ScenarioContext) {
 		fmt.Errorf("an error '%s' was not expected when opening a stub database connection", err)
 	}
 
-	mock.ExpectPrepare(`INSERT INTO "tipo_inscripcion".*RETURNING "id"`).
+	//mocks.GetAllTipoInscripcionMock(mock)
+
+	/*
+		//SELECT ALL MOCK
+		mock.ExpectPrepare(`SELECT .* FROM "tipo_inscripcion" .* LIMIT 10`).
+			ExpectQuery().
+			WillReturnRows(sqlmock.NewRows([]string{"id", "nombre", "descripcion", "codigo_abreviacion", "activo", "numero_orden", "nivel_id", "fecha_creacion", "fecha_modificacion", "especial"}).
+				AddRow(1, "Nombre1", "Descripción1", "Abreviación1", true, 1.0, 1, "2024-08-09T10:57:41.965807-05:00", "2024-08-09T10:57:41.9662181-05:00", true))
+
+		//POST MOCK
+		mock.ExpectPrepare(`INSERT INTO "tipo_inscripcion".*RETURNING "id"`).
 		ExpectQuery().
 		WithArgs(
 			"Nombre",
@@ -347,6 +364,34 @@ func FeatureContext(s *godog.ScenarioContext) {
 			"2024-08-09T10:57:41.965807-05:00",
 			true,
 		).
+		WillReturnRows(sqlmock.NewRows([]string{"id"}).AddRow(1))*/
+
+	// GET BY ID MOCK
+	mock.ExpectPrepare(`SELECT .* FROM "tipo_inscripcion" WHERE "id" = \$1$`).
+		ExpectQuery().
+		WithArgs(1). // Aquí defines el valor del parámetro que esperas
+		WillReturnRows(sqlmock.NewRows([]string{"id", "nombre", "descripcion", "codigo_abreviacion", "activo", "numero_orden", "nivel_id", "fecha_creacion", "fecha_modificacion", "especial"}).
+			AddRow(1, "NombreExistente", "DescripciónExistente", "AbreviaciónExistente", true, 1, 1, "2024-08-09T10:57:41.965807-05:00", "2024-08-09T10:57:41.9662181-05:00", true))
+
+		// PUT MOCK
+		/*mock.ExpectQuery(`SELECT .* FROM "tipo_inscripcion" WHERE "id" = \$1$`).
+			WithArgs(1). // Asegúrate de que el ID que estás usando aquí coincide con el que se pasa en la solicitud
+			WillReturnRows(sqlmock.NewRows([]string{"id", "nombre", "descripcion", "codigo_abreviacion", "activo", "numero_orden", "nivel_id", "fecha_creacion", "fecha_modificacion", "especial"}).
+				AddRow(1, "NombreExistente", "DescripciónExistente", "AbreviaciónExistente", true, 1, 1, "2024-08-09T10:57:41.965807-05:00", "2024-08-09T10:57:41.9662181-05:00", true))
+
+		mock.ExpectPrepare(`UPDATE "tipo_inscripcion" SET .* WHERE "id" = \$10`).
+			ExpectExec().
+			WithArgs("string", "string", "string", true, 1.0, 0, "2024-08-09t10:57:41.965807-05:00Z", "2024-08-09t10:57:41.9662181-05:00Z", true, 1).
+			WillReturnResult(sqlmock.NewResult(1, 1))*/
+
+	// Esperar la preparación de la consulta DELETE
+	mock.ExpectPrepare(`DELETE FROM "tipo_inscripcion" WHERE "id" = \$1`).
+		ExpectExec().
+		WithArgs(1). // Aquí defines el valor del ID que esperas para el DELETE
+		WillReturnResult(sqlmock.NewResult(1, 1))
+
+	mock.ExpectQuery(`SELECT T0\."id" FROM "cupo_inscripcion" T0 WHERE T0\."tipo_inscripcion_id" IN \(\$1\)`).
+		WithArgs(1).
 		WillReturnRows(sqlmock.NewRows([]string{"id"}).AddRow(1))
 
 	orm.Debug = true
