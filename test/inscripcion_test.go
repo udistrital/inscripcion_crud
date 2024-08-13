@@ -25,6 +25,7 @@ import (
 	"github.com/cucumber/godog"
 	"github.com/cucumber/godog/colors"
 	"github.com/udistrital/inscripcion_crud/controllers"
+	"github.com/udistrital/inscripcion_crud/test/files/mocks"
 
 	//"github.com/udistrital/inscripcion_crud/test/files/mocks"
 
@@ -45,16 +46,16 @@ var (
 )
 
 // @exe_cmd ejecuta comandos en la terminal
-func exe_cmd(cmd string, wg *sync.WaitGroup) {
+func exe_cmd(cmd string) {
 	parts := strings.Fields(cmd)
-	out, err := exec.Command(parts[0], parts[1]).Output()
+	out, err := exec.Command(parts[0], parts[1:]...).Output()
 
 	if err != nil {
-		fmt.Println("error occured")
+		fmt.Println("error occurred")
 		fmt.Printf("%s", err)
+		return
 	}
 	fmt.Printf("%s", out)
-	wg.Done()
 }
 
 // @deleteFile Borrar archivos
@@ -89,7 +90,7 @@ func run_bee() {
 	commands := []string{"sh script.sh &"}
 	for _, str := range commands {
 		wg.Add(1)
-		go exe_cmd(str, wg)
+		go exe_cmd(str)
 	}
 	time.Sleep(5 * time.Second)
 	deleteFile("script.sh")
@@ -208,8 +209,6 @@ func getPages(ruta string) []byte {
 // @iSendRequestToWhereBodyIsJson realiza la solicitud a la API
 func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 
-	fmt.Println(bodyreq)
-
 	if debug {
 		fmt.Println("Step: iSendRequestToWhereBodyIsJson")
 	}
@@ -242,8 +241,6 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 
 	pages := getPages(bodyreq)
 
-	fmt.Println("Buffer Bytes")
-	fmt.Println(bytes.NewBuffer(pages))
 	// Crear la solicitud usando httptest y la ruta en Beego
 	req, err := http.NewRequest(method, url, bytes.NewBuffer(pages))
 	if err != nil {
@@ -257,16 +254,11 @@ func iSendRequestToWhereBodyIsJson(method, endpoint, bodyreq string) error {
 	// Llama al handler correspondiente
 	beego.BeeApp.Handlers.ServeHTTP(response, req)
 
-	fmt.Println("Response")
-	fmt.Println(response.Result().Status)
 	resStatus = response.Result().Status
-	fmt.Println(response.Body.Bytes())
 	resBody = response.Body.Bytes()
 
 	if method == "POST" && resStatus == "201 Created" {
 		json.Unmarshal(resBody, &savepostres)
-		fmt.Println("ResBody")
-		fmt.Println(savepostres)
 		Id = savepostres["Id"].(float64)
 	}
 
@@ -332,8 +324,7 @@ func theResponseShouldMatchJson(arg1 string) error {
 	return fmt.Errorf("Respuesta no validada")
 }
 
-// @FeatureContext Define los steps de los escenarios a ejecutar
-func FeatureContext(s *godog.ScenarioContext) {
+func createMocks(method string) {
 
 	var err error
 	db, mock, err = sqlmock.New()
@@ -341,63 +332,24 @@ func FeatureContext(s *godog.ScenarioContext) {
 		fmt.Errorf("an error '%s' was not expected when opening a stub database connection", err)
 	}
 
-	//mocks.GetAllTipoInscripcionMock(mock)
+	switch method {
+	case "GET":
+		mocks.GetAllTipoInscripcionMock(mock)
+	case "GETID":
+		mocks.GetByIdTipoInscripcionMock(mock)
+	case "POST":
+		mocks.PostTipoInscripcionMock(mock)
+	case "PUT":
+		mocks.PutTipoInscripcion(mock)
+	}
 
-	/*
-		//SELECT ALL MOCK
-		mock.ExpectPrepare(`SELECT .* FROM "tipo_inscripcion" .* LIMIT 10`).
-			ExpectQuery().
-			WillReturnRows(sqlmock.NewRows([]string{"id", "nombre", "descripcion", "codigo_abreviacion", "activo", "numero_orden", "nivel_id", "fecha_creacion", "fecha_modificacion", "especial"}).
-				AddRow(1, "Nombre1", "Descripción1", "Abreviación1", true, 1.0, 1, "2024-08-09T10:57:41.965807-05:00", "2024-08-09T10:57:41.9662181-05:00", true))
-
-		//POST MOCK
-		mock.ExpectPrepare(`INSERT INTO "tipo_inscripcion".*RETURNING "id"`).
-		ExpectQuery().
-		WithArgs(
-			"Nombre",
-			"Descripcion",
-			"Abreviacion",
-			true,
-			1.0,
-			1,
-			"2024-08-09T10:57:41.965807-05:00",
-			"2024-08-09T10:57:41.965807-05:00",
-			true,
-		).
-		WillReturnRows(sqlmock.NewRows([]string{"id"}).AddRow(1))*/
-
-	// GET BY ID MOCK
-	mock.ExpectPrepare(`SELECT .* FROM "tipo_inscripcion" WHERE "id" = \$1$`).
-		ExpectQuery().
-		WithArgs(1). // Aquí defines el valor del parámetro que esperas
-		WillReturnRows(sqlmock.NewRows([]string{"id", "nombre", "descripcion", "codigo_abreviacion", "activo", "numero_orden", "nivel_id", "fecha_creacion", "fecha_modificacion", "especial"}).
-			AddRow(1, "NombreExistente", "DescripciónExistente", "AbreviaciónExistente", true, 1, 1, "2024-08-09T10:57:41.965807-05:00", "2024-08-09T10:57:41.9662181-05:00", true))
-
-		// PUT MOCK
-		/*mock.ExpectQuery(`SELECT .* FROM "tipo_inscripcion" WHERE "id" = \$1$`).
-			WithArgs(1). // Asegúrate de que el ID que estás usando aquí coincide con el que se pasa en la solicitud
-			WillReturnRows(sqlmock.NewRows([]string{"id", "nombre", "descripcion", "codigo_abreviacion", "activo", "numero_orden", "nivel_id", "fecha_creacion", "fecha_modificacion", "especial"}).
-				AddRow(1, "NombreExistente", "DescripciónExistente", "AbreviaciónExistente", true, 1, 1, "2024-08-09T10:57:41.965807-05:00", "2024-08-09T10:57:41.9662181-05:00", true))
-
-		mock.ExpectPrepare(`UPDATE "tipo_inscripcion" SET .* WHERE "id" = \$10`).
-			ExpectExec().
-			WithArgs("string", "string", "string", true, 1.0, 0, "2024-08-09t10:57:41.965807-05:00Z", "2024-08-09t10:57:41.9662181-05:00Z", true, 1).
-			WillReturnResult(sqlmock.NewResult(1, 1))*/
-
-	// Esperar la preparación de la consulta DELETE
-	mock.ExpectPrepare(`DELETE FROM "tipo_inscripcion" WHERE "id" = \$1`).
-		ExpectExec().
-		WithArgs(1). // Aquí defines el valor del ID que esperas para el DELETE
-		WillReturnResult(sqlmock.NewResult(1, 1))
-
-	mock.ExpectQuery(`SELECT T0\."id" FROM "cupo_inscripcion" T0 WHERE T0\."tipo_inscripcion_id" IN \(\$1\)`).
-		WithArgs(1).
-		WillReturnRows(sqlmock.NewRows([]string{"id"}).AddRow(1))
-
-	orm.Debug = true
 	orm.RegisterDriver("postgres", orm.DRPostgres)
 	orm.AddAliasWthDB("default", "postgres", db)
+}
 
+// @FeatureContext Define los steps de los escenarios a ejecutar
+func FeatureContext(s *godog.ScenarioContext) {
+	s.Step(`^I create mock whit "([^"]*)"$`, createMocks)
 	s.Step(`^I send "([^"]*)" request to "([^"]*)" where body is json "([^"]*)"$`, iSendRequestToWhereBodyIsJson)
 	s.Step(`^the response code should be "([^"]*)"$`, theResponseCodeShouldBe)
 	s.Step(`^the response should match json "([^"]*)"$`, theResponseShouldMatchJson)

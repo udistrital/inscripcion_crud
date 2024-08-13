@@ -1999,6 +1999,9 @@ definitions:
       NotaFinal:
         type: number
         format: double
+      Opcion:
+        type: integer
+        format: int64
       PeriodoId:
         type: integer
         format: int64
