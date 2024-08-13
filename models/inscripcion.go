@@ -25,6 +25,7 @@ type Inscripcion struct {
 	FechaModificacion   string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	Credencial          int                `orm:"column(credencial);null"`
 	Opcion              int                `orm:"column(opcion);null"`
+	TipoCupo            int                `orm:"column(tipo_cupo);null"`
 	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
 }

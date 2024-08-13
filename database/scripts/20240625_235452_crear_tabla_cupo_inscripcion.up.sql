@@ -1,5 +1,5 @@
 CREATE TABLE inscripcion.cupo_inscripcion (
-	id integer NOT NULL,
+	id SERIAL NOT NULL,
 	cupos_habilitados integer NOT NULL,
 	cupos_opcionados integer NOT NULL,
 	periodo_id integer NOT NULL,
@@ -13,8 +13,8 @@ CREATE TABLE inscripcion.cupo_inscripcion (
 );
 
 CREATE TABLE inscripcion.documento_cupo (
-	id integer NOT NULL,
-	uid integer NOT NULL,
+	id SERIAL NOT NULL,
+	uid character varying(250) NOT NULL,
 	comentario character varying(250) NOT NULL,
 	cupo_inscripcion_id integer NOT NULL,
 	activo boolean NOT NULL,
