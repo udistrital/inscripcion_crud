@@ -21,6 +21,7 @@ func init() {
 func (m *AgregarCampoTipoCupo_20240801_230708) Up() {
 	// use m.SQL("CREATE TABLE ...") to make schema update
 	m.SQL("ALTER TABLE IF EXISTS inscripcion.inscripcion ADD COLUMN tipo_cupo integer;")
+	m.SQL("ALTER TABLE IF EXISTS inscripcion.documento_programa ADD COLUMN tipo_cupo integer;")
 
 }
 
@@ -28,5 +29,6 @@ func (m *AgregarCampoTipoCupo_20240801_230708) Up() {
 func (m *AgregarCampoTipoCupo_20240801_230708) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
 	m.SQL("ALTER TABLE IF EXISTS inscripcion.inscripcion DROP COLUMN tipo_cupo;")
+	m.SQL("ALTER TABLE IF EXISTS inscripcion.documento_programa DROP COLUMN tipo_cupo;")
 
 }
