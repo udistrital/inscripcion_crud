@@ -49,6 +49,7 @@ func AddInscripcion(m *Inscripcion) (id int64, err error) {
 // GetInscripcionById retrieves Inscripcion by Id. Returns error if
 // Id doesn't exist
 func GetInscripcionById(id int) (v *Inscripcion, err error) {
+	fmt.Print("")
 	o := orm.NewOrm()
 	v = &Inscripcion{Id: id}
 	if err = o.Read(v); err == nil {
