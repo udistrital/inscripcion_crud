@@ -2874,7 +2874,7 @@
                     "type": "integer",
                     "format": "int64"
                 },
-                "ProgramaAcademicoId": {
+                "ProyectoAcademicoId": {
                     "type": "integer",
                     "format": "int64"
                 },
@@ -2907,8 +2907,7 @@
                     "format": "int64"
                 },
                 "Uid": {
-                    "type": "integer",
-                    "format": "int64"
+                    "type": "string"
                 }
             }
         },
@@ -2937,6 +2936,10 @@
                     "format": "int64"
                 },
                 "ProgramaId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "TipoCupo": {
                     "type": "integer",
                     "format": "int64"
                 },
