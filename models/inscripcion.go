@@ -27,6 +27,7 @@ type Inscripcion struct {
 	Opcion              int                `orm:"column(opcion);null"`
 	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
+	TipoCupo            int                `orm:"column(tipo_cupo);null"`
 }
 
 func (t *Inscripcion) TableName() string {
@@ -48,6 +49,7 @@ func AddInscripcion(m *Inscripcion) (id int64, err error) {
 // GetInscripcionById retrieves Inscripcion by Id. Returns error if
 // Id doesn't exist
 func GetInscripcionById(id int) (v *Inscripcion, err error) {
+	fmt.Print("")
 	o := orm.NewOrm()
 	v = &Inscripcion{Id: id}
 	if err = o.Read(v); err == nil {
