@@ -2270,6 +2270,9 @@ definitions:
         format: int64
       TipoIcfesId:
         $ref: '#/definitions/models.TipoIcfes'
+      Uid:
+        type: integer
+        format: int64
       Valido:
         type: boolean
   models.Propuesta:
