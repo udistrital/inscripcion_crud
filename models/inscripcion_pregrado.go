@@ -21,6 +21,7 @@ type InscripcionPregrado struct {
 	FechaModificacion         string       `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
 	TipoIcfesId               *TipoIcfes   `orm:"column(tipo_icfes_id);rel(fk)"`
 	Valido                    bool         `orm:"column(valido)"`
+	Uid                       int          `orm:"column(uid)"`
 }
 
 func (t *InscripcionPregrado) TableName() string {

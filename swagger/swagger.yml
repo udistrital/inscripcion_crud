@@ -1,7 +1,8 @@
 swagger: "2.0"
 info:
   title: beego Test API
-  description: beego has a very cool tools to autogenerate documents for your API
+  description: |
+    beego has a very cool tools to autogenerate documents for your API
   version: 1.0.0
   termsOfService: http://beego.me/
   contact:
@@ -15,7 +16,9 @@ paths:
     get:
       tags:
       - cupo_inscripcion
-      description: get CupoInscripcion
+      description: |-
+        get CupoInscripcion
+        <br>
       operationId: CupoInscripcionController.Get All
       parameters:
       - in: query
@@ -32,7 +35,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -52,7 +56,9 @@ paths:
     post:
       tags:
       - cupo_inscripcion
-      description: create CupoInscripcion
+      description: |-
+        create CupoInscripcion
+        <br>
       operationId: CupoInscripcionController.Post
       parameters:
       - in: body
@@ -70,7 +76,9 @@ paths:
     get:
       tags:
       - cupo_inscripcion
-      description: get CupoInscripcion by id
+      description: |-
+        get CupoInscripcion by id
+        <br>
       operationId: CupoInscripcionController.Get One
       parameters:
       - in: path
@@ -88,7 +96,9 @@ paths:
     put:
       tags:
       - cupo_inscripcion
-      description: update the CupoInscripcion
+      description: |-
+        update the CupoInscripcion
+        <br>
       operationId: CupoInscripcionController.Put
       parameters:
       - in: path
@@ -112,7 +122,9 @@ paths:
     delete:
       tags:
       - cupo_inscripcion
-      description: delete the CupoInscripcion
+      description: |-
+        delete the CupoInscripcion
+        <br>
       operationId: CupoInscripcionController.Delete
       parameters:
       - in: path
@@ -129,7 +141,9 @@ paths:
     get:
       tags:
       - documento_cupo
-      description: get DocumentoCupo
+      description: |-
+        get DocumentoCupo
+        <br>
       operationId: DocumentoCupoController.Get All
       parameters:
       - in: query
@@ -146,7 +160,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -166,7 +181,9 @@ paths:
     post:
       tags:
       - documento_cupo
-      description: create DocumentoCupo
+      description: |-
+        create DocumentoCupo
+        <br>
       operationId: DocumentoCupoController.Post
       parameters:
       - in: body
@@ -184,7 +201,9 @@ paths:
     get:
       tags:
       - documento_cupo
-      description: get DocumentoCupo by id
+      description: |-
+        get DocumentoCupo by id
+        <br>
       operationId: DocumentoCupoController.Get One
       parameters:
       - in: path
@@ -202,7 +221,9 @@ paths:
     put:
       tags:
       - documento_cupo
-      description: update the DocumentoCupo
+      description: |-
+        update the DocumentoCupo
+        <br>
       operationId: DocumentoCupoController.Put
       parameters:
       - in: path
@@ -226,7 +247,9 @@ paths:
     delete:
       tags:
       - documento_cupo
-      description: delete the DocumentoCupo
+      description: |-
+        delete the DocumentoCupo
+        <br>
       operationId: DocumentoCupoController.Delete
       parameters:
       - in: path
@@ -243,7 +266,9 @@ paths:
     get:
       tags:
       - documento_programa
-      description: get DocumentoPrograma
+      description: |-
+        get DocumentoPrograma
+        <br>
       operationId: DocumentoProgramaController.Get All
       parameters:
       - in: query
@@ -260,7 +285,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -280,7 +306,9 @@ paths:
     post:
       tags:
       - documento_programa
-      description: create DocumentoPrograma
+      description: |-
+        create DocumentoPrograma
+        <br>
       operationId: DocumentoProgramaController.Post
       parameters:
       - in: body
@@ -298,7 +326,9 @@ paths:
     get:
       tags:
       - documento_programa
-      description: get DocumentoPrograma by id
+      description: |-
+        get DocumentoPrograma by id
+        <br>
       operationId: DocumentoProgramaController.Get One
       parameters:
       - in: path
@@ -316,7 +346,9 @@ paths:
     put:
       tags:
       - documento_programa
-      description: update the DocumentoPrograma
+      description: |-
+        update the DocumentoPrograma
+        <br>
       operationId: DocumentoProgramaController.Put
       parameters:
       - in: path
@@ -340,7 +372,9 @@ paths:
     delete:
       tags:
       - documento_programa
-      description: delete the DocumentoPrograma
+      description: |-
+        delete the DocumentoPrograma
+        <br>
       operationId: DocumentoProgramaController.Delete
       parameters:
       - in: path
@@ -357,7 +391,9 @@ paths:
     get:
       tags:
       - estado_inscripcion
-      description: get EstadoInscripcion
+      description: |-
+        get EstadoInscripcion
+        <br>
       operationId: EstadoInscripcionController.Get All
       parameters:
       - in: query
@@ -374,7 +410,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -394,7 +431,9 @@ paths:
     post:
       tags:
       - estado_inscripcion
-      description: create EstadoInscripcion
+      description: |-
+        create EstadoInscripcion
+        <br>
       operationId: EstadoInscripcionController.Post
       parameters:
       - in: body
@@ -412,7 +451,9 @@ paths:
     get:
       tags:
       - estado_inscripcion
-      description: get EstadoInscripcion by id
+      description: |-
+        get EstadoInscripcion by id
+        <br>
       operationId: EstadoInscripcionController.Get One
       parameters:
       - in: path
@@ -430,7 +471,9 @@ paths:
     put:
       tags:
       - estado_inscripcion
-      description: update the EstadoInscripcion
+      description: |-
+        update the EstadoInscripcion
+        <br>
       operationId: EstadoInscripcionController.Put
       parameters:
       - in: path
@@ -454,7 +497,9 @@ paths:
     delete:
       tags:
       - estado_inscripcion
-      description: delete the EstadoInscripcion
+      description: |-
+        delete the EstadoInscripcion
+        <br>
       operationId: EstadoInscripcionController.Delete
       parameters:
       - in: path
@@ -471,7 +516,9 @@ paths:
     get:
       tags:
       - inscripcion
-      description: get Inscripcion
+      description: |-
+        get Inscripcion
+        <br>
       operationId: InscripcionController.Get All
       parameters:
       - in: query
@@ -488,7 +535,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -508,7 +556,9 @@ paths:
     post:
       tags:
       - inscripcion
-      description: create Inscripcion
+      description: |-
+        create Inscripcion
+        <br>
       operationId: InscripcionController.Post
       parameters:
       - in: body
@@ -526,7 +576,9 @@ paths:
     get:
       tags:
       - inscripcion
-      description: get Inscripcion by id
+      description: |-
+        get Inscripcion by id
+        <br>
       operationId: InscripcionController.Get One
       parameters:
       - in: path
@@ -544,7 +596,9 @@ paths:
     put:
       tags:
       - inscripcion
-      description: update the Inscripcion
+      description: |-
+        update the Inscripcion
+        <br>
       operationId: InscripcionController.Put
       parameters:
       - in: path
@@ -568,7 +622,9 @@ paths:
     delete:
       tags:
       - inscripcion
-      description: delete the Inscripcion
+      description: |-
+        delete the Inscripcion
+        <br>
       operationId: InscripcionController.Delete
       parameters:
       - in: path
@@ -585,7 +641,9 @@ paths:
     get:
       tags:
       - inscripcion_evolucion_estado
-      description: get InscripcionEvolucionEstado
+      description: |-
+        get InscripcionEvolucionEstado
+        <br>
       operationId: InscripcionEvolucionEstadoController.Get All
       parameters:
       - in: query
@@ -602,7 +660,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -622,7 +681,9 @@ paths:
     post:
       tags:
       - inscripcion_evolucion_estado
-      description: create InscripcionEvolucionEstado
+      description: |-
+        create InscripcionEvolucionEstado
+        <br>
       operationId: InscripcionEvolucionEstadoController.Post
       parameters:
       - in: body
@@ -640,7 +701,9 @@ paths:
     get:
       tags:
       - inscripcion_evolucion_estado
-      description: get InscripcionEvolucionEstado by id
+      description: |-
+        get InscripcionEvolucionEstado by id
+        <br>
       operationId: InscripcionEvolucionEstadoController.Get One
       parameters:
       - in: path
@@ -658,7 +721,9 @@ paths:
     put:
       tags:
       - inscripcion_evolucion_estado
-      description: update the InscripcionEvolucionEstado
+      description: |-
+        update the InscripcionEvolucionEstado
+        <br>
       operationId: InscripcionEvolucionEstadoController.Put
       parameters:
       - in: path
@@ -682,7 +747,9 @@ paths:
     delete:
       tags:
       - inscripcion_evolucion_estado
-      description: delete the InscripcionEvolucionEstado
+      description: |-
+        delete the InscripcionEvolucionEstado
+        <br>
       operationId: InscripcionEvolucionEstadoController.Delete
       parameters:
       - in: path
@@ -699,7 +766,9 @@ paths:
     get:
       tags:
       - inscripcion_posgrado
-      description: get InscripcionPosgrado
+      description: |-
+        get InscripcionPosgrado
+        <br>
       operationId: InscripcionPosgradoController.Get All
       parameters:
       - in: query
@@ -716,7 +785,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -736,7 +806,9 @@ paths:
     post:
       tags:
       - inscripcion_posgrado
-      description: create InscripcionPosgrado
+      description: |-
+        create InscripcionPosgrado
+        <br>
       operationId: InscripcionPosgradoController.Post
       parameters:
       - in: body
@@ -754,7 +826,9 @@ paths:
     get:
       tags:
       - inscripcion_posgrado
-      description: get InscripcionPosgrado by id
+      description: |-
+        get InscripcionPosgrado by id
+        <br>
       operationId: InscripcionPosgradoController.Get One
       parameters:
       - in: path
@@ -772,7 +846,9 @@ paths:
     put:
       tags:
       - inscripcion_posgrado
-      description: update the InscripcionPosgrado
+      description: |-
+        update the InscripcionPosgrado
+        <br>
       operationId: InscripcionPosgradoController.Put
       parameters:
       - in: path
@@ -796,7 +872,9 @@ paths:
     delete:
       tags:
       - inscripcion_posgrado
-      description: delete the InscripcionPosgrado
+      description: |-
+        delete the InscripcionPosgrado
+        <br>
       operationId: InscripcionPosgradoController.Delete
       parameters:
       - in: path
@@ -813,7 +891,9 @@ paths:
     get:
       tags:
       - inscripcion_pregrado
-      description: get InscripcionPregrado
+      description: |-
+        get InscripcionPregrado
+        <br>
       operationId: InscripcionPregradoController.Get All
       parameters:
       - in: query
@@ -830,7 +910,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -850,7 +931,9 @@ paths:
     post:
       tags:
       - inscripcion_pregrado
-      description: create InscripcionPregrado
+      description: |-
+        create InscripcionPregrado
+        <br>
       operationId: InscripcionPregradoController.Post
       parameters:
       - in: body
@@ -868,7 +951,9 @@ paths:
     get:
       tags:
       - inscripcion_pregrado
-      description: get InscripcionPregrado by id
+      description: |-
+        get InscripcionPregrado by id
+        <br>
       operationId: InscripcionPregradoController.Get One
       parameters:
       - in: path
@@ -886,7 +971,9 @@ paths:
     put:
       tags:
       - inscripcion_pregrado
-      description: update the InscripcionPregrado
+      description: |-
+        update the InscripcionPregrado
+        <br>
       operationId: InscripcionPregradoController.Put
       parameters:
       - in: path
@@ -910,7 +997,9 @@ paths:
     delete:
       tags:
       - inscripcion_pregrado
-      description: delete the InscripcionPregrado
+      description: |-
+        delete the InscripcionPregrado
+        <br>
       operationId: InscripcionPregradoController.Delete
       parameters:
       - in: path
@@ -927,7 +1016,9 @@ paths:
     get:
       tags:
       - propuesta
-      description: get Propuesta
+      description: |-
+        get Propuesta
+        <br>
       operationId: PropuestaController.Get All
       parameters:
       - in: query
@@ -944,7 +1035,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -964,7 +1056,9 @@ paths:
     post:
       tags:
       - propuesta
-      description: create Propuesta
+      description: |-
+        create Propuesta
+        <br>
       operationId: PropuestaController.Post
       parameters:
       - in: body
@@ -982,7 +1076,9 @@ paths:
     get:
       tags:
       - propuesta
-      description: get Propuesta by id
+      description: |-
+        get Propuesta by id
+        <br>
       operationId: PropuestaController.Get One
       parameters:
       - in: path
@@ -1000,7 +1096,9 @@ paths:
     put:
       tags:
       - propuesta
-      description: update the Propuesta
+      description: |-
+        update the Propuesta
+        <br>
       operationId: PropuestaController.Put
       parameters:
       - in: path
@@ -1024,7 +1122,9 @@ paths:
     delete:
       tags:
       - propuesta
-      description: delete the Propuesta
+      description: |-
+        delete the Propuesta
+        <br>
       operationId: PropuestaController.Delete
       parameters:
       - in: path
@@ -1041,7 +1141,9 @@ paths:
     get:
       tags:
       - reintegro
-      description: get Reintegro
+      description: |-
+        get Reintegro
+        <br>
       operationId: ReintegroController.Get All
       parameters:
       - in: query
@@ -1058,7 +1160,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1078,7 +1181,9 @@ paths:
     post:
       tags:
       - reintegro
-      description: create Reintegro
+      description: |-
+        create Reintegro
+        <br>
       operationId: ReintegroController.Post
       parameters:
       - in: body
@@ -1096,7 +1201,9 @@ paths:
     get:
       tags:
       - reintegro
-      description: get Reintegro by id
+      description: |-
+        get Reintegro by id
+        <br>
       operationId: ReintegroController.Get One
       parameters:
       - in: path
@@ -1114,7 +1221,9 @@ paths:
     put:
       tags:
       - reintegro
-      description: update the Reintegro
+      description: |-
+        update the Reintegro
+        <br>
       operationId: ReintegroController.Put
       parameters:
       - in: path
@@ -1138,7 +1247,9 @@ paths:
     delete:
       tags:
       - reintegro
-      description: delete the Reintegro
+      description: |-
+        delete the Reintegro
+        <br>
       operationId: ReintegroController.Delete
       parameters:
       - in: path
@@ -1155,7 +1266,9 @@ paths:
     get:
       tags:
       - soporte_documento_programa
-      description: get SoporteDocumentoPrograma
+      description: |-
+        get SoporteDocumentoPrograma
+        <br>
       operationId: SoporteDocumentoProgramaController.Get All
       parameters:
       - in: query
@@ -1172,7 +1285,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1192,7 +1306,9 @@ paths:
     post:
       tags:
       - soporte_documento_programa
-      description: create SoporteDocumentoPrograma
+      description: |-
+        create SoporteDocumentoPrograma
+        <br>
       operationId: SoporteDocumentoProgramaController.Post
       parameters:
       - in: body
@@ -1210,7 +1326,9 @@ paths:
     get:
       tags:
       - soporte_documento_programa
-      description: get SoporteDocumentoPrograma by id
+      description: |-
+        get SoporteDocumentoPrograma by id
+        <br>
       operationId: SoporteDocumentoProgramaController.Get One
       parameters:
       - in: path
@@ -1228,7 +1346,9 @@ paths:
     put:
       tags:
       - soporte_documento_programa
-      description: update the SoporteDocumentoPrograma
+      description: |-
+        update the SoporteDocumentoPrograma
+        <br>
       operationId: SoporteDocumentoProgramaController.Put
       parameters:
       - in: path
@@ -1252,7 +1372,9 @@ paths:
     delete:
       tags:
       - soporte_documento_programa
-      description: delete the SoporteDocumentoPrograma
+      description: |-
+        delete the SoporteDocumentoPrograma
+        <br>
       operationId: SoporteDocumentoProgramaController.Delete
       parameters:
       - in: path
@@ -1269,7 +1391,9 @@ paths:
     get:
       tags:
       - tipo_documento_programa
-      description: get TipoDocumentoPrograma
+      description: |-
+        get TipoDocumentoPrograma
+        <br>
       operationId: TipoDocumentoProgramaController.Get All
       parameters:
       - in: query
@@ -1286,7 +1410,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1306,7 +1431,9 @@ paths:
     post:
       tags:
       - tipo_documento_programa
-      description: create TipoDocumentoPrograma
+      description: |-
+        create TipoDocumentoPrograma
+        <br>
       operationId: TipoDocumentoProgramaController.Post
       parameters:
       - in: body
@@ -1324,7 +1451,9 @@ paths:
     get:
       tags:
       - tipo_documento_programa
-      description: get TipoDocumentoPrograma by id
+      description: |-
+        get TipoDocumentoPrograma by id
+        <br>
       operationId: TipoDocumentoProgramaController.Get One
       parameters:
       - in: path
@@ -1342,7 +1471,9 @@ paths:
     put:
       tags:
       - tipo_documento_programa
-      description: update the TipoDocumentoPrograma
+      description: |-
+        update the TipoDocumentoPrograma
+        <br>
       operationId: TipoDocumentoProgramaController.Put
       parameters:
       - in: path
@@ -1366,7 +1497,9 @@ paths:
     delete:
       tags:
       - tipo_documento_programa
-      description: delete the TipoDocumentoPrograma
+      description: |-
+        delete the TipoDocumentoPrograma
+        <br>
       operationId: TipoDocumentoProgramaController.Delete
       parameters:
       - in: path
@@ -1383,7 +1516,9 @@ paths:
     get:
       tags:
       - tipo_icfes
-      description: get TipoIcfes
+      description: |-
+        get TipoIcfes
+        <br>
       operationId: TipoIcfesController.Get All
       parameters:
       - in: query
@@ -1400,7 +1535,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1420,7 +1556,9 @@ paths:
     post:
       tags:
       - tipo_icfes
-      description: create TipoIcfes
+      description: |-
+        create TipoIcfes
+        <br>
       operationId: TipoIcfesController.Post
       parameters:
       - in: body
@@ -1438,7 +1576,9 @@ paths:
     get:
       tags:
       - tipo_icfes
-      description: get TipoIcfes by id
+      description: |-
+        get TipoIcfes by id
+        <br>
       operationId: TipoIcfesController.Get One
       parameters:
       - in: path
@@ -1456,7 +1596,9 @@ paths:
     put:
       tags:
       - tipo_icfes
-      description: update the TipoIcfes
+      description: |-
+        update the TipoIcfes
+        <br>
       operationId: TipoIcfesController.Put
       parameters:
       - in: path
@@ -1480,7 +1622,9 @@ paths:
     delete:
       tags:
       - tipo_icfes
-      description: delete the TipoIcfes
+      description: |-
+        delete the TipoIcfes
+        <br>
       operationId: TipoIcfesController.Delete
       parameters:
       - in: path
@@ -1497,7 +1641,9 @@ paths:
     get:
       tags:
       - tipo_inscripcion
-      description: get TipoInscripcion
+      description: |-
+        get TipoInscripcion
+        <br>
       operationId: TipoInscripcionController.Get All
       parameters:
       - in: query
@@ -1514,7 +1660,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1534,7 +1681,9 @@ paths:
     post:
       tags:
       - tipo_inscripcion
-      description: create TipoInscripcion
+      description: |-
+        create TipoInscripcion
+        <br>
       operationId: TipoInscripcionController.Post
       parameters:
       - in: body
@@ -1552,7 +1701,9 @@ paths:
     get:
       tags:
       - tipo_inscripcion
-      description: get TipoInscripcion by id
+      description: |-
+        get TipoInscripcion by id
+        <br>
       operationId: TipoInscripcionController.Get One
       parameters:
       - in: path
@@ -1570,7 +1721,9 @@ paths:
     put:
       tags:
       - tipo_inscripcion
-      description: update the TipoInscripcion
+      description: |-
+        update the TipoInscripcion
+        <br>
       operationId: TipoInscripcionController.Put
       parameters:
       - in: path
@@ -1594,7 +1747,9 @@ paths:
     delete:
       tags:
       - tipo_inscripcion
-      description: delete the TipoInscripcion
+      description: |-
+        delete the TipoInscripcion
+        <br>
       operationId: TipoInscripcionController.Delete
       parameters:
       - in: path
@@ -1611,7 +1766,9 @@ paths:
     get:
       tags:
       - tipo_proyecto
-      description: get TipoProyecto
+      description: |-
+        get TipoProyecto
+        <br>
       operationId: TipoProyectoController.Get All
       parameters:
       - in: query
@@ -1628,7 +1785,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1648,7 +1806,9 @@ paths:
     post:
       tags:
       - tipo_proyecto
-      description: create TipoProyecto
+      description: |-
+        create TipoProyecto
+        <br>
       operationId: TipoProyectoController.Post
       parameters:
       - in: body
@@ -1666,7 +1826,9 @@ paths:
     get:
       tags:
       - tipo_proyecto
-      description: get TipoProyecto by id
+      description: |-
+        get TipoProyecto by id
+        <br>
       operationId: TipoProyectoController.Get One
       parameters:
       - in: path
@@ -1684,7 +1846,9 @@ paths:
     put:
       tags:
       - tipo_proyecto
-      description: update the TipoProyecto
+      description: |-
+        update the TipoProyecto
+        <br>
       operationId: TipoProyectoController.Put
       parameters:
       - in: path
@@ -1708,7 +1872,9 @@ paths:
     delete:
       tags:
       - tipo_proyecto
-      description: delete the TipoProyecto
+      description: |-
+        delete the TipoProyecto
+        <br>
       operationId: TipoProyectoController.Delete
       parameters:
       - in: path
@@ -1725,7 +1891,9 @@ paths:
     post:
       tags:
       - tr_inscripcion
-      description: create TrInscripcionReintegro
+      description: |-
+        create TrInscripcionReintegro
+        <br>
       operationId: TrInscripcionController.PostReintegro
       parameters:
       - in: body
@@ -1743,7 +1911,9 @@ paths:
     post:
       tags:
       - tr_inscripcion
-      description: create TrInscripcionTransferencia
+      description: |-
+        create TrInscripcionTransferencia
+        <br>
       operationId: TrInscripcionController.PostTransferencia
       parameters:
       - in: body
@@ -1761,7 +1931,9 @@ paths:
     get:
       tags:
       - transferencia
-      description: get Transferencia
+      description: |-
+        get Transferencia
+        <br>
       operationId: TransferenciaController.Get All
       parameters:
       - in: query
@@ -1778,7 +1950,8 @@ paths:
         type: string
       - in: query
         name: order
-        description: Order corresponding to each sortby field, if single value, apply to all sortby fields. e.g. desc,asc ...
+        description: Order corresponding to each sortby field, if single value, apply
+          to all sortby fields. e.g. desc,asc ...
         type: string
       - in: query
         name: limit
@@ -1798,7 +1971,9 @@ paths:
     post:
       tags:
       - transferencia
-      description: create Transferencia
+      description: |-
+        create Transferencia
+        <br>
       operationId: TransferenciaController.Post
       parameters:
       - in: body
@@ -1816,7 +1991,9 @@ paths:
     get:
       tags:
       - transferencia
-      description: get Transferencia by id
+      description: |-
+        get Transferencia by id
+        <br>
       operationId: TransferenciaController.Get One
       parameters:
       - in: path
@@ -1834,7 +2011,9 @@ paths:
     put:
       tags:
       - transferencia
-      description: update the Transferencia
+      description: |-
+        update the Transferencia
+        <br>
       operationId: TransferenciaController.Put
       parameters:
       - in: path
@@ -1858,7 +2037,9 @@ paths:
     delete:
       tags:
       - transferencia
-      description: delete the Transferencia
+      description: |-
+        delete the Transferencia
+        <br>
       operationId: TransferenciaController.Delete
       parameters:
       - in: path
@@ -1881,6 +2062,9 @@ definitions:
       CupoId:
         type: integer
         format: int64
+      CuposDisponibles:
+        type: integer
+        format: int64
       CuposHabilitados:
         type: integer
         format: int64
@@ -1897,7 +2081,7 @@ definitions:
       PeriodoId:
         type: integer
         format: int64
-      ProgramaAcademicoId:
+      ProyectoAcademicoId:
         type: integer
         format: int64
       TipoInscripcionId:
@@ -1920,8 +2104,7 @@ definitions:
         type: integer
         format: int64
       Uid:
-        type: integer
-        format: int64
+        type: string
   models.DocumentoPrograma:
     title: DocumentoPrograma
     type: object
@@ -1941,6 +2124,9 @@ definitions:
         type: integer
         format: int64
       ProgramaId:
+        type: integer
+        format: int64
+      TipoCupo:
         type: integer
         format: int64
       TipoDocumentoProgramaId:
