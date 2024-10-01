@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "beego Test API",
-        "description": "beego has a very cool tools to autogenerate documents for your API\n",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
         "version": "1.0.0",
         "termsOfService": "http://beego.me/",
         "contact": {
@@ -20,7 +20,7 @@
                 "tags": [
                     "cupo_inscripcion"
                 ],
-                "description": "get CupoInscripcion\n\u003cbr\u003e",
+                "description": "get CupoInscripcion",
                 "operationId": "CupoInscripcionController.Get All",
                 "parameters": [
                     {
@@ -76,7 +76,7 @@
                 "tags": [
                     "cupo_inscripcion"
                 ],
-                "description": "create CupoInscripcion\n\u003cbr\u003e",
+                "description": "create CupoInscripcion",
                 "operationId": "CupoInscripcionController.Post",
                 "parameters": [
                     {
@@ -104,7 +104,7 @@
                 "tags": [
                     "cupo_inscripcion"
                 ],
-                "description": "get CupoInscripcion by id\n\u003cbr\u003e",
+                "description": "get CupoInscripcion by id",
                 "operationId": "CupoInscripcionController.Get One",
                 "parameters": [
                     {
@@ -131,7 +131,7 @@
                 "tags": [
                     "cupo_inscripcion"
                 ],
-                "description": "update the CupoInscripcion\n\u003cbr\u003e",
+                "description": "update the CupoInscripcion",
                 "operationId": "CupoInscripcionController.Put",
                 "parameters": [
                     {
@@ -167,7 +167,7 @@
                 "tags": [
                     "cupo_inscripcion"
                 ],
-                "description": "delete the CupoInscripcion\n\u003cbr\u003e",
+                "description": "delete the CupoInscripcion",
                 "operationId": "CupoInscripcionController.Delete",
                 "parameters": [
                     {
@@ -193,7 +193,7 @@
                 "tags": [
                     "documento_cupo"
                 ],
-                "description": "get DocumentoCupo\n\u003cbr\u003e",
+                "description": "get DocumentoCupo",
                 "operationId": "DocumentoCupoController.Get All",
                 "parameters": [
                     {
@@ -249,7 +249,7 @@
                 "tags": [
                     "documento_cupo"
                 ],
-                "description": "create DocumentoCupo\n\u003cbr\u003e",
+                "description": "create DocumentoCupo",
                 "operationId": "DocumentoCupoController.Post",
                 "parameters": [
                     {
@@ -277,7 +277,7 @@
                 "tags": [
                     "documento_cupo"
                 ],
-                "description": "get DocumentoCupo by id\n\u003cbr\u003e",
+                "description": "get DocumentoCupo by id",
                 "operationId": "DocumentoCupoController.Get One",
                 "parameters": [
                     {
@@ -304,7 +304,7 @@
                 "tags": [
                     "documento_cupo"
                 ],
-                "description": "update the DocumentoCupo\n\u003cbr\u003e",
+                "description": "update the DocumentoCupo",
                 "operationId": "DocumentoCupoController.Put",
                 "parameters": [
                     {
@@ -340,7 +340,7 @@
                 "tags": [
                     "documento_cupo"
                 ],
-                "description": "delete the DocumentoCupo\n\u003cbr\u003e",
+                "description": "delete the DocumentoCupo",
                 "operationId": "DocumentoCupoController.Delete",
                 "parameters": [
                     {
@@ -366,7 +366,7 @@
                 "tags": [
                     "documento_programa"
                 ],
-                "description": "get DocumentoPrograma\n\u003cbr\u003e",
+                "description": "get DocumentoPrograma",
                 "operationId": "DocumentoProgramaController.Get All",
                 "parameters": [
                     {
@@ -422,7 +422,7 @@
                 "tags": [
                     "documento_programa"
                 ],
-                "description": "create DocumentoPrograma\n\u003cbr\u003e",
+                "description": "create DocumentoPrograma",
                 "operationId": "DocumentoProgramaController.Post",
                 "parameters": [
                     {
@@ -450,7 +450,7 @@
                 "tags": [
                     "documento_programa"
                 ],
-                "description": "get DocumentoPrograma by id\n\u003cbr\u003e",
+                "description": "get DocumentoPrograma by id",
                 "operationId": "DocumentoProgramaController.Get One",
                 "parameters": [
                     {
@@ -477,7 +477,7 @@
                 "tags": [
                     "documento_programa"
                 ],
-                "description": "update the DocumentoPrograma\n\u003cbr\u003e",
+                "description": "update the DocumentoPrograma",
                 "operationId": "DocumentoProgramaController.Put",
                 "parameters": [
                     {
@@ -513,7 +513,7 @@
                 "tags": [
                     "documento_programa"
                 ],
-                "description": "delete the DocumentoPrograma\n\u003cbr\u003e",
+                "description": "delete the DocumentoPrograma",
                 "operationId": "DocumentoProgramaController.Delete",
                 "parameters": [
                     {
@@ -539,7 +539,7 @@
                 "tags": [
                     "estado_inscripcion"
                 ],
-                "description": "get EstadoInscripcion\n\u003cbr\u003e",
+                "description": "get EstadoInscripcion",
                 "operationId": "EstadoInscripcionController.Get All",
                 "parameters": [
                     {
@@ -595,7 +595,7 @@
                 "tags": [
                     "estado_inscripcion"
                 ],
-                "description": "create EstadoInscripcion\n\u003cbr\u003e",
+                "description": "create EstadoInscripcion",
                 "operationId": "EstadoInscripcionController.Post",
                 "parameters": [
                     {
@@ -623,7 +623,7 @@
                 "tags": [
                     "estado_inscripcion"
                 ],
-                "description": "get EstadoInscripcion by id\n\u003cbr\u003e",
+                "description": "get EstadoInscripcion by id",
                 "operationId": "EstadoInscripcionController.Get One",
                 "parameters": [
                     {
@@ -650,7 +650,7 @@
                 "tags": [
                     "estado_inscripcion"
                 ],
-                "description": "update the EstadoInscripcion\n\u003cbr\u003e",
+                "description": "update the EstadoInscripcion",
                 "operationId": "EstadoInscripcionController.Put",
                 "parameters": [
                     {
@@ -686,7 +686,7 @@
                 "tags": [
                     "estado_inscripcion"
                 ],
-                "description": "delete the EstadoInscripcion\n\u003cbr\u003e",
+                "description": "delete the EstadoInscripcion",
                 "operationId": "EstadoInscripcionController.Delete",
                 "parameters": [
                     {
@@ -712,7 +712,7 @@
                 "tags": [
                     "inscripcion"
                 ],
-                "description": "get Inscripcion\n\u003cbr\u003e",
+                "description": "get Inscripcion",
                 "operationId": "InscripcionController.Get All",
                 "parameters": [
                     {
@@ -768,7 +768,7 @@
                 "tags": [
                     "inscripcion"
                 ],
-                "description": "create Inscripcion\n\u003cbr\u003e",
+                "description": "create Inscripcion",
                 "operationId": "InscripcionController.Post",
                 "parameters": [
                     {
@@ -796,7 +796,7 @@
                 "tags": [
                     "inscripcion"
                 ],
-                "description": "get Inscripcion by id\n\u003cbr\u003e",
+                "description": "get Inscripcion by id",
                 "operationId": "InscripcionController.Get One",
                 "parameters": [
                     {
@@ -823,7 +823,7 @@
                 "tags": [
                     "inscripcion"
                 ],
-                "description": "update the Inscripcion\n\u003cbr\u003e",
+                "description": "update the Inscripcion",
                 "operationId": "InscripcionController.Put",
                 "parameters": [
                     {
@@ -859,7 +859,7 @@
                 "tags": [
                     "inscripcion"
                 ],
-                "description": "delete the Inscripcion\n\u003cbr\u003e",
+                "description": "delete the Inscripcion",
                 "operationId": "InscripcionController.Delete",
                 "parameters": [
                     {
@@ -885,7 +885,7 @@
                 "tags": [
                     "inscripcion_evolucion_estado"
                 ],
-                "description": "get InscripcionEvolucionEstado\n\u003cbr\u003e",
+                "description": "get InscripcionEvolucionEstado",
                 "operationId": "InscripcionEvolucionEstadoController.Get All",
                 "parameters": [
                     {
@@ -941,7 +941,7 @@
                 "tags": [
                     "inscripcion_evolucion_estado"
                 ],
-                "description": "create InscripcionEvolucionEstado\n\u003cbr\u003e",
+                "description": "create InscripcionEvolucionEstado",
                 "operationId": "InscripcionEvolucionEstadoController.Post",
                 "parameters": [
                     {
@@ -969,7 +969,7 @@
                 "tags": [
                     "inscripcion_evolucion_estado"
                 ],
-                "description": "get InscripcionEvolucionEstado by id\n\u003cbr\u003e",
+                "description": "get InscripcionEvolucionEstado by id",
                 "operationId": "InscripcionEvolucionEstadoController.Get One",
                 "parameters": [
                     {
@@ -996,7 +996,7 @@
                 "tags": [
                     "inscripcion_evolucion_estado"
                 ],
-                "description": "update the InscripcionEvolucionEstado\n\u003cbr\u003e",
+                "description": "update the InscripcionEvolucionEstado",
                 "operationId": "InscripcionEvolucionEstadoController.Put",
                 "parameters": [
                     {
@@ -1032,7 +1032,7 @@
                 "tags": [
                     "inscripcion_evolucion_estado"
                 ],
-                "description": "delete the InscripcionEvolucionEstado\n\u003cbr\u003e",
+                "description": "delete the InscripcionEvolucionEstado",
                 "operationId": "InscripcionEvolucionEstadoController.Delete",
                 "parameters": [
                     {
@@ -1058,7 +1058,7 @@
                 "tags": [
                     "inscripcion_posgrado"
                 ],
-                "description": "get InscripcionPosgrado\n\u003cbr\u003e",
+                "description": "get InscripcionPosgrado",
                 "operationId": "InscripcionPosgradoController.Get All",
                 "parameters": [
                     {
@@ -1114,7 +1114,7 @@
                 "tags": [
                     "inscripcion_posgrado"
                 ],
-                "description": "create InscripcionPosgrado\n\u003cbr\u003e",
+                "description": "create InscripcionPosgrado",
                 "operationId": "InscripcionPosgradoController.Post",
                 "parameters": [
                     {
@@ -1142,7 +1142,7 @@
                 "tags": [
                     "inscripcion_posgrado"
                 ],
-                "description": "get InscripcionPosgrado by id\n\u003cbr\u003e",
+                "description": "get InscripcionPosgrado by id",
                 "operationId": "InscripcionPosgradoController.Get One",
                 "parameters": [
                     {
@@ -1169,7 +1169,7 @@
                 "tags": [
                     "inscripcion_posgrado"
                 ],
-                "description": "update the InscripcionPosgrado\n\u003cbr\u003e",
+                "description": "update the InscripcionPosgrado",
                 "operationId": "InscripcionPosgradoController.Put",
                 "parameters": [
                     {
@@ -1205,7 +1205,7 @@
                 "tags": [
                     "inscripcion_posgrado"
                 ],
-                "description": "delete the InscripcionPosgrado\n\u003cbr\u003e",
+                "description": "delete the InscripcionPosgrado",
                 "operationId": "InscripcionPosgradoController.Delete",
                 "parameters": [
                     {
@@ -1231,7 +1231,7 @@
                 "tags": [
                     "inscripcion_pregrado"
                 ],
-                "description": "get InscripcionPregrado\n\u003cbr\u003e",
+                "description": "get InscripcionPregrado",
                 "operationId": "InscripcionPregradoController.Get All",
                 "parameters": [
                     {
@@ -1287,7 +1287,7 @@
                 "tags": [
                     "inscripcion_pregrado"
                 ],
-                "description": "create InscripcionPregrado\n\u003cbr\u003e",
+                "description": "create InscripcionPregrado",
                 "operationId": "InscripcionPregradoController.Post",
                 "parameters": [
                     {
@@ -1315,7 +1315,7 @@
                 "tags": [
                     "inscripcion_pregrado"
                 ],
-                "description": "get InscripcionPregrado by id\n\u003cbr\u003e",
+                "description": "get InscripcionPregrado by id",
                 "operationId": "InscripcionPregradoController.Get One",
                 "parameters": [
                     {
@@ -1342,7 +1342,7 @@
                 "tags": [
                     "inscripcion_pregrado"
                 ],
-                "description": "update the InscripcionPregrado\n\u003cbr\u003e",
+                "description": "update the InscripcionPregrado",
                 "operationId": "InscripcionPregradoController.Put",
                 "parameters": [
                     {
@@ -1378,7 +1378,7 @@
                 "tags": [
                     "inscripcion_pregrado"
                 ],
-                "description": "delete the InscripcionPregrado\n\u003cbr\u003e",
+                "description": "delete the InscripcionPregrado",
                 "operationId": "InscripcionPregradoController.Delete",
                 "parameters": [
                     {
@@ -1404,7 +1404,7 @@
                 "tags": [
                     "propuesta"
                 ],
-                "description": "get Propuesta\n\u003cbr\u003e",
+                "description": "get Propuesta",
                 "operationId": "PropuestaController.Get All",
                 "parameters": [
                     {
@@ -1460,7 +1460,7 @@
                 "tags": [
                     "propuesta"
                 ],
-                "description": "create Propuesta\n\u003cbr\u003e",
+                "description": "create Propuesta",
                 "operationId": "PropuestaController.Post",
                 "parameters": [
                     {
@@ -1488,7 +1488,7 @@
                 "tags": [
                     "propuesta"
                 ],
-                "description": "get Propuesta by id\n\u003cbr\u003e",
+                "description": "get Propuesta by id",
                 "operationId": "PropuestaController.Get One",
                 "parameters": [
                     {
@@ -1515,7 +1515,7 @@
                 "tags": [
                     "propuesta"
                 ],
-                "description": "update the Propuesta\n\u003cbr\u003e",
+                "description": "update the Propuesta",
                 "operationId": "PropuestaController.Put",
                 "parameters": [
                     {
@@ -1551,7 +1551,7 @@
                 "tags": [
                     "propuesta"
                 ],
-                "description": "delete the Propuesta\n\u003cbr\u003e",
+                "description": "delete the Propuesta",
                 "operationId": "PropuestaController.Delete",
                 "parameters": [
                     {
@@ -1577,7 +1577,7 @@
                 "tags": [
                     "reintegro"
                 ],
-                "description": "get Reintegro\n\u003cbr\u003e",
+                "description": "get Reintegro",
                 "operationId": "ReintegroController.Get All",
                 "parameters": [
                     {
@@ -1633,7 +1633,7 @@
                 "tags": [
                     "reintegro"
                 ],
-                "description": "create Reintegro\n\u003cbr\u003e",
+                "description": "create Reintegro",
                 "operationId": "ReintegroController.Post",
                 "parameters": [
                     {
@@ -1661,7 +1661,7 @@
                 "tags": [
                     "reintegro"
                 ],
-                "description": "get Reintegro by id\n\u003cbr\u003e",
+                "description": "get Reintegro by id",
                 "operationId": "ReintegroController.Get One",
                 "parameters": [
                     {
@@ -1688,7 +1688,7 @@
                 "tags": [
                     "reintegro"
                 ],
-                "description": "update the Reintegro\n\u003cbr\u003e",
+                "description": "update the Reintegro",
                 "operationId": "ReintegroController.Put",
                 "parameters": [
                     {
@@ -1724,7 +1724,7 @@
                 "tags": [
                     "reintegro"
                 ],
-                "description": "delete the Reintegro\n\u003cbr\u003e",
+                "description": "delete the Reintegro",
                 "operationId": "ReintegroController.Delete",
                 "parameters": [
                     {
@@ -1750,7 +1750,7 @@
                 "tags": [
                     "soporte_documento_programa"
                 ],
-                "description": "get SoporteDocumentoPrograma\n\u003cbr\u003e",
+                "description": "get SoporteDocumentoPrograma",
                 "operationId": "SoporteDocumentoProgramaController.Get All",
                 "parameters": [
                     {
@@ -1806,7 +1806,7 @@
                 "tags": [
                     "soporte_documento_programa"
                 ],
-                "description": "create SoporteDocumentoPrograma\n\u003cbr\u003e",
+                "description": "create SoporteDocumentoPrograma",
                 "operationId": "SoporteDocumentoProgramaController.Post",
                 "parameters": [
                     {
@@ -1834,7 +1834,7 @@
                 "tags": [
                     "soporte_documento_programa"
                 ],
-                "description": "get SoporteDocumentoPrograma by id\n\u003cbr\u003e",
+                "description": "get SoporteDocumentoPrograma by id",
                 "operationId": "SoporteDocumentoProgramaController.Get One",
                 "parameters": [
                     {
@@ -1861,7 +1861,7 @@
                 "tags": [
                     "soporte_documento_programa"
                 ],
-                "description": "update the SoporteDocumentoPrograma\n\u003cbr\u003e",
+                "description": "update the SoporteDocumentoPrograma",
                 "operationId": "SoporteDocumentoProgramaController.Put",
                 "parameters": [
                     {
@@ -1897,7 +1897,7 @@
                 "tags": [
                     "soporte_documento_programa"
                 ],
-                "description": "delete the SoporteDocumentoPrograma\n\u003cbr\u003e",
+                "description": "delete the SoporteDocumentoPrograma",
                 "operationId": "SoporteDocumentoProgramaController.Delete",
                 "parameters": [
                     {
@@ -1923,7 +1923,7 @@
                 "tags": [
                     "tipo_documento_programa"
                 ],
-                "description": "get TipoDocumentoPrograma\n\u003cbr\u003e",
+                "description": "get TipoDocumentoPrograma",
                 "operationId": "TipoDocumentoProgramaController.Get All",
                 "parameters": [
                     {
@@ -1979,7 +1979,7 @@
                 "tags": [
                     "tipo_documento_programa"
                 ],
-                "description": "create TipoDocumentoPrograma\n\u003cbr\u003e",
+                "description": "create TipoDocumentoPrograma",
                 "operationId": "TipoDocumentoProgramaController.Post",
                 "parameters": [
                     {
@@ -2007,7 +2007,7 @@
                 "tags": [
                     "tipo_documento_programa"
                 ],
-                "description": "get TipoDocumentoPrograma by id\n\u003cbr\u003e",
+                "description": "get TipoDocumentoPrograma by id",
                 "operationId": "TipoDocumentoProgramaController.Get One",
                 "parameters": [
                     {
@@ -2034,7 +2034,7 @@
                 "tags": [
                     "tipo_documento_programa"
                 ],
-                "description": "update the TipoDocumentoPrograma\n\u003cbr\u003e",
+                "description": "update the TipoDocumentoPrograma",
                 "operationId": "TipoDocumentoProgramaController.Put",
                 "parameters": [
                     {
@@ -2070,7 +2070,7 @@
                 "tags": [
                     "tipo_documento_programa"
                 ],
-                "description": "delete the TipoDocumentoPrograma\n\u003cbr\u003e",
+                "description": "delete the TipoDocumentoPrograma",
                 "operationId": "TipoDocumentoProgramaController.Delete",
                 "parameters": [
                     {
@@ -2096,7 +2096,7 @@
                 "tags": [
                     "tipo_icfes"
                 ],
-                "description": "get TipoIcfes\n\u003cbr\u003e",
+                "description": "get TipoIcfes",
                 "operationId": "TipoIcfesController.Get All",
                 "parameters": [
                     {
@@ -2152,7 +2152,7 @@
                 "tags": [
                     "tipo_icfes"
                 ],
-                "description": "create TipoIcfes\n\u003cbr\u003e",
+                "description": "create TipoIcfes",
                 "operationId": "TipoIcfesController.Post",
                 "parameters": [
                     {
@@ -2180,7 +2180,7 @@
                 "tags": [
                     "tipo_icfes"
                 ],
-                "description": "get TipoIcfes by id\n\u003cbr\u003e",
+                "description": "get TipoIcfes by id",
                 "operationId": "TipoIcfesController.Get One",
                 "parameters": [
                     {
@@ -2207,7 +2207,7 @@
                 "tags": [
                     "tipo_icfes"
                 ],
-                "description": "update the TipoIcfes\n\u003cbr\u003e",
+                "description": "update the TipoIcfes",
                 "operationId": "TipoIcfesController.Put",
                 "parameters": [
                     {
@@ -2243,7 +2243,7 @@
                 "tags": [
                     "tipo_icfes"
                 ],
-                "description": "delete the TipoIcfes\n\u003cbr\u003e",
+                "description": "delete the TipoIcfes",
                 "operationId": "TipoIcfesController.Delete",
                 "parameters": [
                     {
@@ -2269,7 +2269,7 @@
                 "tags": [
                     "tipo_inscripcion"
                 ],
-                "description": "get TipoInscripcion\n\u003cbr\u003e",
+                "description": "get TipoInscripcion",
                 "operationId": "TipoInscripcionController.Get All",
                 "parameters": [
                     {
@@ -2325,7 +2325,7 @@
                 "tags": [
                     "tipo_inscripcion"
                 ],
-                "description": "create TipoInscripcion\n\u003cbr\u003e",
+                "description": "create TipoInscripcion",
                 "operationId": "TipoInscripcionController.Post",
                 "parameters": [
                     {
@@ -2353,7 +2353,7 @@
                 "tags": [
                     "tipo_inscripcion"
                 ],
-                "description": "get TipoInscripcion by id\n\u003cbr\u003e",
+                "description": "get TipoInscripcion by id",
                 "operationId": "TipoInscripcionController.Get One",
                 "parameters": [
                     {
@@ -2380,7 +2380,7 @@
                 "tags": [
                     "tipo_inscripcion"
                 ],
-                "description": "update the TipoInscripcion\n\u003cbr\u003e",
+                "description": "update the TipoInscripcion",
                 "operationId": "TipoInscripcionController.Put",
                 "parameters": [
                     {
@@ -2416,7 +2416,7 @@
                 "tags": [
                     "tipo_inscripcion"
                 ],
-                "description": "delete the TipoInscripcion\n\u003cbr\u003e",
+                "description": "delete the TipoInscripcion",
                 "operationId": "TipoInscripcionController.Delete",
                 "parameters": [
                     {
@@ -2442,7 +2442,7 @@
                 "tags": [
                     "tipo_proyecto"
                 ],
-                "description": "get TipoProyecto\n\u003cbr\u003e",
+                "description": "get TipoProyecto",
                 "operationId": "TipoProyectoController.Get All",
                 "parameters": [
                     {
@@ -2498,7 +2498,7 @@
                 "tags": [
                     "tipo_proyecto"
                 ],
-                "description": "create TipoProyecto\n\u003cbr\u003e",
+                "description": "create TipoProyecto",
                 "operationId": "TipoProyectoController.Post",
                 "parameters": [
                     {
@@ -2526,7 +2526,7 @@
                 "tags": [
                     "tipo_proyecto"
                 ],
-                "description": "get TipoProyecto by id\n\u003cbr\u003e",
+                "description": "get TipoProyecto by id",
                 "operationId": "TipoProyectoController.Get One",
                 "parameters": [
                     {
@@ -2553,7 +2553,7 @@
                 "tags": [
                     "tipo_proyecto"
                 ],
-                "description": "update the TipoProyecto\n\u003cbr\u003e",
+                "description": "update the TipoProyecto",
                 "operationId": "TipoProyectoController.Put",
                 "parameters": [
                     {
@@ -2589,7 +2589,7 @@
                 "tags": [
                     "tipo_proyecto"
                 ],
-                "description": "delete the TipoProyecto\n\u003cbr\u003e",
+                "description": "delete the TipoProyecto",
                 "operationId": "TipoProyectoController.Delete",
                 "parameters": [
                     {
@@ -2615,7 +2615,7 @@
                 "tags": [
                     "tr_inscripcion"
                 ],
-                "description": "create TrInscripcionReintegro\n\u003cbr\u003e",
+                "description": "create TrInscripcionReintegro",
                 "operationId": "TrInscripcionController.PostReintegro",
                 "parameters": [
                     {
@@ -2643,7 +2643,7 @@
                 "tags": [
                     "tr_inscripcion"
                 ],
-                "description": "create TrInscripcionTransferencia\n\u003cbr\u003e",
+                "description": "create TrInscripcionTransferencia",
                 "operationId": "TrInscripcionController.PostTransferencia",
                 "parameters": [
                     {
@@ -2671,7 +2671,7 @@
                 "tags": [
                     "transferencia"
                 ],
-                "description": "get Transferencia\n\u003cbr\u003e",
+                "description": "get Transferencia",
                 "operationId": "TransferenciaController.Get All",
                 "parameters": [
                     {
@@ -2727,7 +2727,7 @@
                 "tags": [
                     "transferencia"
                 ],
-                "description": "create Transferencia\n\u003cbr\u003e",
+                "description": "create Transferencia",
                 "operationId": "TransferenciaController.Post",
                 "parameters": [
                     {
@@ -2755,7 +2755,7 @@
                 "tags": [
                     "transferencia"
                 ],
-                "description": "get Transferencia by id\n\u003cbr\u003e",
+                "description": "get Transferencia by id",
                 "operationId": "TransferenciaController.Get One",
                 "parameters": [
                     {
@@ -2782,7 +2782,7 @@
                 "tags": [
                     "transferencia"
                 ],
-                "description": "update the Transferencia\n\u003cbr\u003e",
+                "description": "update the Transferencia",
                 "operationId": "TransferenciaController.Put",
                 "parameters": [
                     {
@@ -2818,7 +2818,7 @@
                 "tags": [
                     "transferencia"
                 ],
-                "description": "delete the Transferencia\n\u003cbr\u003e",
+                "description": "delete the Transferencia",
                 "operationId": "TransferenciaController.Delete",
                 "parameters": [
                     {
@@ -3251,6 +3251,9 @@
             "title": "SoporteDocumentoPrograma",
             "type": "object",
             "properties": {
+                "Activo": {
+                    "type": "boolean"
+                },
                 "DocumentoId": {
                     "type": "integer",
                     "format": "int64"
