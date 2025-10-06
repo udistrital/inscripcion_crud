@@ -23,7 +23,8 @@ func AddTrInscripcionReintegro(m *TrInscripcionReintegro) (err error) {
 	
 	if idInscripcion, errTr := o.Insert(m.InscripcionEstudiante); errTr == nil {
 		fmt.Println("Inscripcion registrada, Id: ", idInscripcion)
-		m.ReintegroEstudiante.InscripcionId.Id = int(idInscripcion)
+		id := int(idInscripcion)
+		m.ReintegroEstudiante.InscripcionId = id
 	} else {
 		err = errTr
 		fmt.Println(err)
