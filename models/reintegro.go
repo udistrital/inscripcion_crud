@@ -11,14 +11,14 @@ import (
 
 type Reintegro struct {
 	Id                int    `orm:"column(id);pk;auto"`
-	CodigoEstudiante  int    `orm:"column(codigo_estudiante)"`
+	CodigoEstudiante  int64  `orm:"column(codigo_estudiante)"`
 	MotivoRetiro      string `orm:"column(motivo_retiro)" `
 	Activo            bool   `orm:"column(activo)" `
 	FechaCreacion     string `orm:"column(fecha_creacion);type(timestamp without time zone)" `
 	FechaModificacion string `orm:"column(fecha_modificacion);type(timestamp without time zone)" `
 	InscripcionId     int    `orm:"column(inscripcion_id);null" `
-	Telefono1         string `orm:"column(telefono_1)" `
-	Telefono2         string `orm:"column(telefono_2)" `
+	Telefono1         int64  `orm:"column(telefono_1)" `
+	Telefono2         int64  `orm:"column(telefono_2)" `
 }
 
 func (t *Reintegro) TableName() string {
