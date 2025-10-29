@@ -36,24 +36,31 @@ func (c *ReintegroController) URLMapping() {
 // @router / [post]
 func (c *ReintegroController) Post() {
 	var v models.Reintegro
-	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err == nil {
-		v.FechaCreacion = time_bogota.TiempoBogotaFormato()
-		v.FechaModificacion = time_bogota.TiempoBogotaFormato()
-		if _, err := models.AddReintegro(&v); err == nil {
-			c.Ctx.Output.SetStatus(201)
-			c.Data["json"] = v
-		} else {
-			logs.Error(err)
-			//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
-			c.Data["system"] = err
-			c.Abort("400")
+	if err := json.Unmarshal(c.Ctx.Input.RequestBody, &v); err != nil {
+		logs.Error("Error unmarshalling request body: ", err)
+		c.Data["json"] = map[string]interface{}{
+			"error":   "Invalid request body",
+			"details": err.Error(),
 		}
-	} else {
-		logs.Error(err)
-		//c.Data["development"] = map[string]interface{}{"Code": "000", "Body": err.Error(), "Type": "error"}
-		c.Data["system"] = err
-		c.Abort("400")
+		c.Ctx.Output.SetStatus(400)
+		c.ServeJSON()
+		return
 	}
+	v.FechaCreacion = time_bogota.TiempoBogotaFormato()
+	v.FechaModificacion = time_bogota.TiempoBogotaFormato()
+	if _, err := models.AddReintegro(&v); err != nil {
+		logs.Error("Error adding Reintegro: ", err)
+		c.Data["json"] = map[string]interface{}{
+			"error":   "Failed to create Reintegro",
+			"details": err.Error(),
+		}
+		c.Ctx.Output.SetStatus(400)
+		c.ServeJSON()
+		return
+	}
+
+	c.Ctx.Output.SetStatus(201)
+	c.Data["json"] = v
 	c.ServeJSON()
 }
 
