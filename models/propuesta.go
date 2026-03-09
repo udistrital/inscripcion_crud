@@ -10,17 +10,17 @@ import (
 )
 
 type Propuesta struct {
-	Id                                    int           `orm:"column(id);pk;auto"`
-	Nombre                                string        `orm:"column(nombre)"`
-	Resumen                               string        `orm:"column(resumen);null"`
-	GrupoInvestigacionId 				  int           `orm:"column(grupo_investigacion_id)"`
-	LineaInvestigacionId 				  int           `orm:"column(linea_investigacion_id)"`
-	DocumentoId                           int           `orm:"column(documento_id)"`
-	Activo                                bool          `orm:"column(activo)"`
-	FechaCreacion                         string        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
-	FechaModificacion                     string        `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
-	InscripcionId                         *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
-	TipoProyectoId                        *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
+	Id                   int           `orm:"column(id);pk;auto"`
+	Nombre               string        `orm:"column(nombre)"`
+	Resumen              string        `orm:"column(resumen);null"`
+	GrupoInvestigacionId int           `orm:"column(grupo_investigacion_id)"`
+	LineaInvestigacionId int           `orm:"column(linea_investigacion_id)"`
+	DocumentoId          int           `orm:"column(documento_id)"`
+	Activo               bool          `orm:"column(activo)"`
+	FechaCreacion        string        `orm:"column(fecha_creacion);type(timestamp without time zone)"`
+	FechaModificacion    string        `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	InscripcionId        *Inscripcion  `orm:"column(inscripcion_id);rel(fk)"`
+	TipoProyectoId       *TipoProyecto `orm:"column(tipo_proyecto_id);rel(fk)"`
 }
 
 func (t *Propuesta) TableName() string {
