@@ -1,6 +1,6 @@
 module github.com/udistrital/inscripcion_crud
 
-go 1.24
+go 1.25
 
 require (
 	github.com/astaxie/beego v1.12.3
