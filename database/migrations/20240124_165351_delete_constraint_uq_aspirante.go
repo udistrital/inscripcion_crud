@@ -26,5 +26,5 @@ func (m *DeleteConstraintUqAspirante_20240124_165351) Up() {
 // Reverse the migrations
 func (m *DeleteConstraintUqAspirante_20240124_165351) Down() {
 	// use m.SQL("DROP TABLE ...") to reverse schema update
-	m.SQL("ALTER TABLE inscripcion.inscripcion ADD CONSTRAINT uq_aspirante UNIQUE (persona_id, programa_academico_id, periodo_id);")	
+	m.SQL("ALTER TABLE inscripcion.inscripcion ADD CONSTRAINT uq_aspirante UNIQUE (persona_id, programa_academico_id, periodo_id);")
 }
