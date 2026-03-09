@@ -13,7 +13,7 @@ import (
 type Inscripcion struct {
 	Id                  int                `orm:"column(id);pk;auto"`
 	PersonaId           int                `orm:"column(persona_id)"`
-	ProgramaAcademicoId int                `orm:"column(programa_academico_id)"`
+	ProgramaAcademicoId int                `orm:"column(programa_academico_id);null"`
 	ReciboInscripcion   string             `orm:"column(recibo_inscripcion);null"`
 	PeriodoId           int                `orm:"column(periodo_id)"`
 	EnfasisId           int                `orm:"column(enfasis_id);null"`
@@ -23,8 +23,11 @@ type Inscripcion struct {
 	Activo              bool               `orm:"column(activo)"`
 	FechaCreacion       string             `orm:"column(fecha_creacion);type(timestamp without time zone)"`
 	FechaModificacion   string             `orm:"column(fecha_modificacion);type(timestamp without time zone)"`
+	Credencial          int                `orm:"column(credencial);null"`
+	Opcion              int                `orm:"column(opcion);null"`
 	EstadoInscripcionId *EstadoInscripcion `orm:"column(estado_inscripcion_id);rel(fk)"`
 	TipoInscripcionId   *TipoInscripcion   `orm:"column(tipo_inscripcion_id);rel(fk)"`
+	TipoCupo            int                `orm:"column(tipo_cupo);null"`
 }
 
 func (t *Inscripcion) TableName() string {
@@ -46,6 +49,7 @@ func AddInscripcion(m *Inscripcion) (id int64, err error) {
 // GetInscripcionById retrieves Inscripcion by Id. Returns error if
 // Id doesn't exist
 func GetInscripcionById(id int) (v *Inscripcion, err error) {
+	fmt.Print("")
 	o := orm.NewOrm()
 	v = &Inscripcion{Id: id}
 	if err = o.Read(v); err == nil {
@@ -66,6 +70,9 @@ func GetAllInscripcion(query map[string]string, fields []string, sortby []string
 		k = strings.Replace(k, ".", "__", -1)
 		if strings.Contains(k, "isnull") {
 			qs = qs.Filter(k, (v == "true" || v == "1"))
+		} else if strings.HasSuffix(k, "__in") {
+			arr := strings.Split(v, "|")
+			qs = qs.Filter(k, arr)
 		} else {
 			qs = qs.Filter(k, v)
 		}

@@ -12,19 +12,18 @@ type TrInscripcionReintegro struct {
 }
 
 type TrInscripcionTransferencia struct {
-	InscripcionEstudiante *Inscripcion
-	TransferenciaEstudiante   *Transferencia
+	InscripcionEstudiante   *Inscripcion
+	TransferenciaEstudiante *Transferencia
 }
 
 // AddTrInscripcionReintegro Transacción para registrar toda la información de un reintegro
 func AddTrInscripcionReintegro(m *TrInscripcionReintegro) (err error) {
 	o := orm.NewOrm()
 	err = o.Begin()
-	
+
 	if idInscripcion, errTr := o.Insert(m.InscripcionEstudiante); errTr == nil {
 		fmt.Println("Inscripcion registrada, Id: ", idInscripcion)
-		id := int(idInscripcion)
-		m.ReintegroEstudiante.InscripcionId = id
+		m.ReintegroEstudiante.InscripcionId.Id = int(idInscripcion)
 	} else {
 		err = errTr
 		fmt.Println(err)
@@ -50,7 +49,7 @@ func AddTrInscripcionReintegro(m *TrInscripcionReintegro) (err error) {
 func AddTrInscripcionTransferencia(m *TrInscripcionTransferencia) (err error) {
 	o := orm.NewOrm()
 	err = o.Begin()
-	
+
 	if idInscripcion, errTr := o.Insert(m.InscripcionEstudiante); errTr == nil {
 		fmt.Println("Inscripcion registrada, Id: ", idInscripcion)
 		m.TransferenciaEstudiante.InscripcionId.Id = int(idInscripcion)

@@ -1,0 +1,14 @@
+[
+    {
+        "Id": 1,
+        "Nombre": "PregradoPrueba",
+        "Descripcion": "Inscripción de pregrado de prueba",
+        "CodigoAbreviacion": "PREG",
+        "Activo": false,
+        "NumeroOrden": 1,
+        "NivelId": 1,
+        "FechaCreacion": "2024-06-18 21:58:23.831499 +0000 +0000",
+        "FechaModificacion": "2024-06-18 21:58:23.831499 +0000 +0000",
+        "Especial": false
+    }
+]

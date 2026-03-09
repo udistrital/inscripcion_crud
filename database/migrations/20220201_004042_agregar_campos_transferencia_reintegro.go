@@ -29,7 +29,7 @@ func (m *AgregarCamposTransferenciaReintegro_20220201_004042) Up() {
 		// handle error
 		fmt.Println(err)
 	}
-	
+
 	requests := strings.Split(string(file), ";")
 
 	for _, request := range requests {
