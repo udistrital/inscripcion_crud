@@ -1,12 +1,11 @@
 module github.com/udistrital/inscripcion_crud
 
-go 1.24
+go 1.25
 
 require (
 	github.com/astaxie/beego v1.12.3
 	github.com/cucumber/godog v0.15.1
 	github.com/lib/pq v1.11.2
-	github.com/udistrital/auditoria v0.0.0-20240801050554-30b15f390b24
 	github.com/udistrital/utils_oas v0.4.1
 )
 
@@ -47,9 +46,9 @@ require (
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible // indirect
 	github.com/pkg/errors v0.9.1 // indirect
-	github.com/prometheus/client_golang v1.10.0 // indirect
+	github.com/prometheus/client_golang v1.11.1 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
-	github.com/prometheus/common v0.21.0 // indirect
+	github.com/prometheus/common v0.26.0 // indirect
 	github.com/prometheus/procfs v0.6.0 // indirect
 	github.com/shiena/ansicolor v0.0.0-20200904210342-c7312218db18 // indirect
 	github.com/spf13/pflag v1.0.7 // indirect
